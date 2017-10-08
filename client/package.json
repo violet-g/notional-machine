@@ -8,5 +8,8 @@
   },
   "author": "Gabriela Georgieva",
   "license": "ISC",
-  "dependencies": {}
+  "dependencies": {},
+  "devDependencies": {
+    "webpack": "^3.6.0"
+  }
 }
