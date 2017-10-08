@@ -9,6 +9,9 @@
   "author": "Gabriela Georgieva",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.16.1"
+    "bookshelf": "^0.10.4",
+    "express": "^4.16.1",
+    "knex": "^0.13.0",
+    "sqlite3": "^3.1.13"
   }
 }
