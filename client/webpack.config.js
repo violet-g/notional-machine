@@ -1,17 +1,19 @@
 var HTMLWebpackPlugin = require('html-webpack-plugin');
 var HTMLWebackPluginConfig = new HTMLWebpackPlugin({
-  template: __dirname + 'build/index.html'
-  filename: 'index.html'
-  injext: 'body'
+  template: __dirname + '/build/index.html',
+  filename: 'index.html',
+  inject: 'body'
 });
 
 module.exports = {
-  entry: __dirname + 'src/index.js',
+  entry: __dirname + '/src/index.js',
   module: {
     loaders: [
-      test: /\.js$/,
-      exclude: /node_modules/,
-      loader: 'babel_loader'
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        loader: 'babel-loader'
+      }
     ]
   },
   output: {
