@@ -960,7 +960,7 @@ var React = __webpack_require__(4);
 var ReactDom = __webpack_require__(18);
 var App = __webpack_require__(32);
 
-ReactDom.render(React.createElement(App, null), document.getElementByID('app'));
+ReactDom.render(React.createElement(App, null), document.getElementByID("app"));
 
 /***/ }),
 /* 16 */
