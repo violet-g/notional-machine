@@ -1,3 +1,4 @@
+var path = require('path');
 var HTMLWebpackPlugin = require('html-webpack-plugin');
 var HTMLWebackPluginConfig = new HTMLWebpackPlugin({
   template: __dirname + '/src/index.html',
@@ -10,11 +11,17 @@ module.exports = {
   module: {
     loaders: [
       {
-        test: /\.js$/,
+        test: /\.jsx?$/,
         exclude: /node_modules/,
         loader: 'babel-loader'
       }
     ]
+  },
+  resolve: {
+    extensions: ['.js', '.jsx'],
+    alias: {
+      src: path.resolve(__dirname, './src/')
+    }
   },
   output: {
     filename: 'transformed.js',
