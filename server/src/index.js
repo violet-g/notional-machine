@@ -4,7 +4,10 @@ const app = express()
 const restRouter = require('./router')
 const { Pupil, Exercise } = require('./models')
 
+// Global Body parser middleware to convert the req body to a standard JS object
 app.use(bodyParser.json())
+
+// RESTful resources
 app.use('/pupil', restRouter(Pupil))
 app.use('/exercise', restRouter(Exercise))
 
