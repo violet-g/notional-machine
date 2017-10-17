@@ -4,14 +4,19 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "node src",
+    "dev-start": "nodemon src",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Gabriela Georgieva",
   "license": "ISC",
   "dependencies": {
-    "bookshelf": "^0.10.4",
+    "body-parser": "^1.18.2",
     "express": "^4.16.1",
-    "knex": "^0.13.0",
+    "sequelize": "^4.14.0",
     "sqlite3": "^3.1.13"
+  },
+  "devDependencies": {
+    "nodemon": "^1.12.1"
   }
 }
