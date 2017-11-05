@@ -13,13 +13,17 @@
 - exercise_ID: Number (FK)
 - pupil_ID: Number (FK)
 
-### Step
+### Pupil
 **Attributes:**
 - ID: Number (PK)
-- number: Number
-- input: String
-- output: String
-- expr_eval_canvas: file
+- username: String
+- password: String
+
+### Expression
+**Attributes:**
+- ID: Number (PK)
+- start_pos: Number
+- end_pos: Number
 - solution_ID: Number (FK)
 
 ### Arrow
@@ -27,6 +31,8 @@
 - ID: Number (PK)
 - start_row: Number
 - end_row: Number
+- annotation: boolean
+- solution_ID: Number (FK)
 - step_ID: Number (FK)
 
 ### Variable
@@ -36,15 +42,11 @@
 - value: String
 - step_ID: Number (FK)
 
-### Expression
+### Step
 **Attributes:**
 - ID: Number (PK)
-- start_pos: Number
-- end_pos: Number
+- number: Number
+- input: String
+- output: String
+- expr_eval_canvas: file
 - solution_ID: Number (FK)
-
-### Pupil
-**Attributes:**
-- ID: Number (PK)
-- username: String
-- password: String
