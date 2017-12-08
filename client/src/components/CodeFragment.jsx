@@ -1,20 +1,24 @@
 import React from 'react'
+import CodeLine from './CodeLine'
 
-function handleMouseUp(onHighlight) {
-  let selection = (document.all) ? document.selection.createRange().text :
-    document.getSelection().toString()
-  if (selection != "") {
-    onHighlight(selection)
-    if (document.all) {
-      document.selection.empty()
-    } else {
-      document.getSelection().removeAllRanges()
-    }
-  }
+function getLines(codeFragment) {
+  let lines = codeFragment.split(/\n/)
+  return lines
 }
 
-const CodeFragment = ({ codeFragment, onHighlight }) => (
-  <pre onMouseUp={() => handleMouseUp(onHighlight)}>{ codeFragment }</pre>
-)
+const CodeFragment = ({ codeFragment }) => {
+  let lines = getLines(codeFragment)
+  let lineComponents = []
+  let key = 0
+  for (let line of lines) {
+    let lineIndent = 0
+    if (line.match(/^\s+/) != null)
+      lineIndent = line.match(/^\s+/)[0].length
+    let cutLine = line.replace(/^\s+/, "")
+    lineComponents.push(<CodeLine key={key} indent={lineIndent} line={cutLine}/>)
+    key++
+  }
+  return <div>{lineComponents}</div>
+}
 
 export default CodeFragment

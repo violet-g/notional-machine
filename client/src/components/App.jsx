@@ -9,14 +9,6 @@ class App extends React.Component {
     this.state = { expressions: [] }
   }
 
-  onHighlight(expression) {
-    if (this.state.expressions.indexOf(expression) == -1) {
-      this.setState({ expressions: this.state.expressions.concat([expression]) })
-    } else {
-      this.setState({ expressions: this.state.expressions.filter(expr => expr != expression) })
-    }
-  }
-
   render() {
     const codeFragment = `
       a = 0
@@ -37,7 +29,7 @@ class App extends React.Component {
     return (
       <div>
         <Task taskDescription={taskDescription} />
-        <CodeFragment codeFragment={codeFragment} onHighlight={this.onHighlight.bind(this)} />
+        <CodeFragment codeFragment={codeFragment} />
       </div>
     )
   }
