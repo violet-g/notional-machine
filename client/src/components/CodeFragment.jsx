@@ -6,17 +6,26 @@ function getLines(codeFragment) {
   return lines
 }
 
-const CodeFragment = ({ codeFragment }) => {
+const CodeFragment = ({ codeFragment, onFirstToken, onLastToken, expressions }) => {
   let lines = getLines(codeFragment)
   let lineComponents = []
-  let key = 0
-  for (let line of lines) {
+  for (let i=0; i<lines.length; i++) {
+    const idx = i
     let lineIndent = 0
-    if (line.match(/^\s+/) != null)
-      lineIndent = line.match(/^\s+/)[0].length
-    let cutLine = line.replace(/^\s+/, "")
-    lineComponents.push(<CodeLine key={key} indent={lineIndent} line={cutLine}/>)
-    key++
+    if (lines[i].match(/^\s+/) != null)
+      lineIndent = lines[i].match(/^\s+/)[0].length
+    let cutLine = lines[i].replace(/^\s+/, "")
+    lineComponents.push(
+      <CodeLine
+        key={i}
+        indent={lineIndent}
+        line={cutLine}
+        onFirstToken={(tokenIdx)=>onFirstToken(idx, tokenIdx)}
+        onLastToken={(tokenIdx)=>onLastToken(idx, tokenIdx)}
+        lineExpressions={expressions.filter((expression) =>
+          expression.startLineIdx === i || expression.endLineIdx === i)}
+      />
+    )
   }
   return <div>{lineComponents}</div>
 }
