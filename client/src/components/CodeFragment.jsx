@@ -1,33 +1,46 @@
 import React from 'react'
-import CodeLine from './CodeLine'
+import CodeToken from './CodeToken'
 
-function getLines(codeFragment) {
+const CodeFragment = ({ codeFragment, mode, expressions, onTokenSelect }) => {
   let lines = codeFragment.split(/\n/)
-  return lines
-}
+  let components = []
+  let tokenIdx = 0
 
-const CodeFragment = ({ codeFragment, onFirstToken, onLastToken, expressions }) => {
-  let lines = getLines(codeFragment)
-  let lineComponents = []
   for (let i=0; i<lines.length; i++) {
-    const idx = i
+
+    // save indentation for printing
     let lineIndent = 0
     if (lines[i].match(/^\s+/) != null)
       lineIndent = lines[i].match(/^\s+/)[0].length
-    let cutLine = lines[i].replace(/^\s+/, "")
-    lineComponents.push(
-      <CodeLine
-        key={i}
-        indent={lineIndent}
-        line={cutLine}
-        onFirstToken={(tokenIdx)=>onFirstToken(idx, tokenIdx)}
-        onLastToken={(tokenIdx)=>onLastToken(idx, tokenIdx)}
-        lineExpressions={expressions.filter((expression) =>
-          expression.startLineIdx === i || expression.endLineIdx === i)}
-      />
+
+    let line = lines[i].replace(/^\s+/, "")
+    let tokens = line.split(" ")
+    let tokenComponents = []
+
+    for (let j=0; j<tokens.length; j++) {
+      const tId = tokenIdx
+      tokenComponents.push(
+        <CodeToken
+          key={'tok_' + tokenIdx}
+          token={tokens[j]}
+          mode={mode}
+          onClick={() => onTokenSelect(tId)}
+          highlighted={!!expressions.find((expression) =>
+            tokenIdx >= expression.startTokenIdx && tokenIdx <= expression.endTokenIdx)}
+          isStart={!!expressions.find(expression => tokenIdx === expression.startTokenIdx)}
+          isEnd={!!expressions.find(expression => tokenIdx === expression.endTokenIdx)}
+        />
+      )
+      tokenIdx++
+    }
+
+    tokenComponents.push(<br key={'br_' + i} />)
+    let indent = 10*lineIndent
+    components.push(
+      <span key={'line_' + i} className="LineIndent" style={{ marginLeft: indent+"px" }}>{tokenComponents}</span>
     )
   }
-  return <div>{lineComponents}</div>
+  return <div>{components}</div>
 }
 
 export default CodeFragment
