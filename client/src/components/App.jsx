@@ -6,19 +6,20 @@ class App extends React.Component {
 
   constructor(props) {
     super(props)
-    this.state = { expressions: [], mode: false }
+    this.state = { expressions: [], mode: false, currToken: -1, lastStartToken: -1 }
   }
 
-  // add start of expression to state
+  // add expression to state
   handleTokenSelect(tokenIdx) {
-    if (!this.state.mode) {
+    if (!this.state.mode) { // beginning of a new expression
       this.setState({
         expressions: this.state.expressions.concat([{
           startTokenIdx: tokenIdx
         }]),
-        mode: !this.state.mode
+        mode: !this.state.mode,
+        lastStartToken: tokenIdx
       })
-    } else {
+    } else { // close expression
       // prep the update
       let update = Object.assign(this.state.expressions.slice(-1)[0], {
           endTokenIdx: tokenIdx
@@ -34,6 +35,10 @@ class App extends React.Component {
         mode: !this.state.mode
       })
     }
+  }
+
+  handleMouseOnToken(tokenId) {
+    this.setState({ currToken: tokenId })
   }
 
   render() {
@@ -56,12 +61,17 @@ class App extends React.Component {
     return (
       <div>
         <Task taskDescription={taskDescription} />
-        <CodeFragment
-          codeFragment={codeFragment}
-          expressions={this.state.expressions}
-          mode={this.state.mode}
-          onTokenSelect={(tokenIdx)=>this.handleTokenSelect(tokenIdx)}
-        />
+        <div className="CodeFragment">
+          <CodeFragment
+            codeFragment={codeFragment}
+            expressions={this.state.expressions}
+            mode={this.state.mode}
+            currToken={this.state.currToken}
+            onTokenSelect={(tokenIdx)=>this.handleTokenSelect(tokenIdx)}
+            onMouseOnToken={(tokenIdx)=>this.handleMouseOnToken(tokenIdx)}
+            lastStartToken={this.state.lastStartToken}
+          />
+        </div>
       </div>
     )
   }

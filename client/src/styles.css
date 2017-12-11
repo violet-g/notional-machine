@@ -8,6 +8,12 @@
   user-select: none;
 }
 
+.CodeToken.selected{
+  background-color: yellow;
+  border-left: none;
+  border-right: none;
+}
+
 .CodeToken.highlighted {
   background-color: red;
   border: 1px solid black;
@@ -17,8 +23,18 @@
 
 .CodeToken.start {
   border-left: 1px solid black;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
 }
 
 .CodeToken.end {
   border-right: 1px solid black;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+.CodeFragment {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: left;
 }

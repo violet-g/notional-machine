@@ -1,11 +1,13 @@
 import React from 'react'
 
-const CodeToken = ({ token, mode, onClick, highlighted, isStart, isEnd }) => (
+const CodeToken = ({ token, mode, onClick, selected, highlighted, isStart, isEnd, onMouseOnToken }) => (
   <span className={ "CodeToken" +
+    (selected ? " selected" : "") +
     (highlighted ? " highlighted" : "") +
-    (isStart ? " start" : "") +
-    (isEnd ? " end" : "")}
-    onClick={onClick}>
+    (highlighted && isStart ? " start" : "") +
+    (highlighted && isEnd ? " end" : "")}
+    onClick={onClick}
+    onMouseOver={onMouseOnToken}>
     { token }
   </span>
 )

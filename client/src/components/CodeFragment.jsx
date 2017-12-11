@@ -1,10 +1,16 @@
 import React from 'react'
 import CodeToken from './CodeToken'
 
-const CodeFragment = ({ codeFragment, mode, expressions, onTokenSelect }) => {
+function isSelected(mode, tokenIdx, currToken, startToken) {
+  return mode &&
+    ((currToken > startToken && tokenIdx >= startToken && tokenIdx<=currToken) ||
+      (currToken < startToken && tokenIdx <=startToken && tokenIdx>=currToken))
+}
+const CodeFragment = ({ codeFragment, mode, currToken, expressions, onTokenSelect, onMouseOnToken, lastStartToken }) => {
   let lines = codeFragment.split(/\n/)
   let components = []
   let tokenIdx = 0
+  let allTokens = []
 
   for (let i=0; i<lines.length; i++) {
 
@@ -19,12 +25,15 @@ const CodeFragment = ({ codeFragment, mode, expressions, onTokenSelect }) => {
 
     for (let j=0; j<tokens.length; j++) {
       const tId = tokenIdx
+      allTokens.push(tokenIdx)
       tokenComponents.push(
         <CodeToken
           key={'tok_' + tokenIdx}
           token={tokens[j]}
           mode={mode}
           onClick={() => onTokenSelect(tId)}
+          onMouseOnToken={() => onMouseOnToken(tId)}
+          selected={isSelected(mode, tId, currToken, lastStartToken)}
           highlighted={!!expressions.find((expression) =>
             tokenIdx >= expression.startTokenIdx && tokenIdx <= expression.endTokenIdx)}
           isStart={!!expressions.find(expression => tokenIdx === expression.startTokenIdx)}
@@ -37,7 +46,9 @@ const CodeFragment = ({ codeFragment, mode, expressions, onTokenSelect }) => {
     tokenComponents.push(<br key={'br_' + i} />)
     let indent = 10*lineIndent
     components.push(
-      <span key={'line_' + i} className="LineIndent" style={{ marginLeft: indent+"px" }}>{tokenComponents}</span>
+      <span key={'l_' + i} className="LineIndent" style={{ marginLeft: indent+"px" }}>
+        {tokenComponents}
+      </span>
     )
   }
   return <div>{components}</div>
