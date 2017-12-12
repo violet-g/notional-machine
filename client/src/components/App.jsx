@@ -37,8 +37,16 @@ class App extends React.Component {
     }
   }
 
+  // save token on which the user hovers
   handleMouseOnToken(tokenId) {
     this.setState({ currToken: tokenId })
+  }
+
+  // delete expression
+  handleDeleteExpr(endIdx) {
+    let exprIdx = this.state.expressions.map((expr) => expr.endTokenIdx).indexOf(endIdx)
+    this.setState({ expressions: this.state.expressions.slice(0, exprIdx).
+      concat(this.state.expressions.slice(exprIdx + 1)) })
   }
 
   render() {
@@ -65,11 +73,12 @@ class App extends React.Component {
           <CodeFragment
             codeFragment={codeFragment}
             expressions={this.state.expressions}
-            mode={this.state.mode}
             currToken={this.state.currToken}
+            lastStartToken={this.state.lastStartToken}
+            mode={this.state.mode}
             onTokenSelect={(tokenIdx)=>this.handleTokenSelect(tokenIdx)}
             onMouseOnToken={(tokenIdx)=>this.handleMouseOnToken(tokenIdx)}
-            lastStartToken={this.state.lastStartToken}
+            onDelete={(endIdx)=>this.handleDeleteExpr(endIdx)}
           />
         </div>
       </div>

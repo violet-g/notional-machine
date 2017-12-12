@@ -1,57 +1,80 @@
 import React from 'react'
 import CodeToken from './CodeToken'
+import DeleteExprButton from './DeleteExprButton'
 
-function isSelected(mode, tokenIdx, currToken, startToken) {
-  return mode &&
-    ((currToken > startToken && tokenIdx >= startToken && tokenIdx<=currToken) ||
-      (currToken < startToken && tokenIdx <=startToken && tokenIdx>=currToken))
-}
-const CodeFragment = ({ codeFragment, mode, currToken, expressions, onTokenSelect, onMouseOnToken, lastStartToken }) => {
+const CodeFragment = ({ codeFragment, mode, currToken, expressions, onTokenSelect, onMouseOnToken, lastStartToken, onDelete }) => {
+
   let lines = codeFragment.split(/\n/)
-  let components = []
-  let tokenIdx = 0
+  let allLines = []
   let allTokens = []
+  let tokenIdx = 0
 
+  // loop through lines
   for (let i=0; i<lines.length; i++) {
 
-    // save indentation for printing
+    // save indentation for printing and clean line
     let lineIndent = 0
     if (lines[i].match(/^\s+/) != null)
       lineIndent = lines[i].match(/^\s+/)[0].length
-
     let line = lines[i].replace(/^\s+/, "")
-    let tokens = line.split(" ")
-    let tokenComponents = []
 
+    // get tokens in line
+    let tokens = line.split(" ")
+    let tokensInLine = []
+
+    // loop through tokens
     for (let j=0; j<tokens.length; j++) {
+
       const tId = tokenIdx
       allTokens.push(tokenIdx)
-      tokenComponents.push(
+
+      let isHighlighted = mode &&
+          ((currToken > lastStartToken && tId >= lastStartToken && tId<=currToken) ||
+            (currToken < lastStartToken && tId <=lastStartToken && tId>=currToken))
+      let isSelected = !!expressions.find((expression) =>
+        tokenIdx >= expression.startTokenIdx && tokenIdx <= expression.endTokenIdx)
+      let isStart = !!expressions.find(expression => tokenIdx === expression.startTokenIdx)
+      let isEnd = !!expressions.find(expression => tokenIdx === expression.endTokenIdx)
+
+      // add token
+      tokensInLine.push(
         <CodeToken
           key={'tok_' + tokenIdx}
           token={tokens[j]}
           mode={mode}
           onClick={() => onTokenSelect(tId)}
           onMouseOnToken={() => onMouseOnToken(tId)}
-          selected={isSelected(mode, tId, currToken, lastStartToken)}
-          highlighted={!!expressions.find((expression) =>
-            tokenIdx >= expression.startTokenIdx && tokenIdx <= expression.endTokenIdx)}
-          isStart={!!expressions.find(expression => tokenIdx === expression.startTokenIdx)}
-          isEnd={!!expressions.find(expression => tokenIdx === expression.endTokenIdx)}
+          isHighlighted={isHighlighted}
+          isSelected={isSelected}
+          isStart={isStart}
+          isEnd={isEnd}
         />
       )
+      // add delete option of token is an end of an expression
+      if(isEnd) {
+        tokensInLine.push(
+          <DeleteExprButton
+            key={'del_' + tokenIdx}
+            onDelete={() => onDelete(tId)}
+          />
+        )
+      }
+      // update token index
       tokenIdx++
     }
 
-    tokenComponents.push(<br key={'br_' + i} />)
+    // and end of line
+    tokensInLine.push(<br key={'br_' + i} />)
+
+    // add the whole line with the correct indent
     let indent = 10*lineIndent
-    components.push(
+    allLines.push(
       <span key={'l_' + i} className="LineIndent" style={{ marginLeft: indent+"px" }}>
-        {tokenComponents}
+        {tokensInLine}
       </span>
     )
   }
-  return <div>{components}</div>
+  return <div>{allLines}</div>
 }
 
 export default CodeFragment
