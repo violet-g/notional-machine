@@ -48,17 +48,18 @@ const CodeFragment = ({ codeFragment, mode, currToken, expressions, onTokenSelec
           isSelected={isSelected}
           isStart={isStart}
           isEnd={isEnd}
+          onDelete={() => onDelete(tId)}
         />
       )
       // add delete option of token is an end of an expression
-      if(isEnd) {
-        tokensInLine.push(
-          <DeleteExprButton
-            key={'del_' + tokenIdx}
-            onDelete={() => onDelete(tId)}
-          />
-        )
-      }
+      // if(isEnd) {
+      //   tokensInLine.push(
+      //     <DeleteExprButton
+      //       key={'del_' + tokenIdx}
+      //       onDelete={() => onDelete(tId)}
+      //     />
+      //   )
+      // }
       // update token index
       tokenIdx++
     }
