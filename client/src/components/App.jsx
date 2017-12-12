@@ -59,10 +59,8 @@ class App extends React.Component {
     ].join('\n')
 
     const taskDescription = `
-      Read the following piece of code carefully and identify all expressions that are used in its construction.
-      Please highlight the expressions to select them.
-
-      (Hint: Highlight an expression again to deselect in case you change your mind.)
+      Step 1: Read the following piece of code carefully and select all expressions
+      that are used in its construction.
     `
     console.log(this.state)
 

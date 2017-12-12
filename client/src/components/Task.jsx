@@ -1,7 +1,7 @@
 import React from 'react'
 
 const Task = ({ taskDescription }) => (
-  <pre>{ taskDescription }</pre>
+  <pre className="Task">{ taskDescription }</pre>
 )
 
 export default Task
