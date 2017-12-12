@@ -9,7 +9,7 @@
 
 .Task {
   background-color: #ffffff;
-  opacity: 0.8;
+  opacity: 0.9;
   text-align: center;
 }
 
@@ -42,19 +42,19 @@
 
 .CodeToken.selected {
   background-color: #ffa500;
-  border: 3px solid #90ee90;
+  border: 3px solid #00b200;
   border-left: none;
   border-right: none;
 }
 
 .CodeToken.start {
-  border-left: 3px solid #90ee90;
+  border-left: 3px solid #00b200;
   border-top-left-radius: 5px;
   border-bottom-left-radius: 5px;
 }
 
 .CodeToken.end {
-  border-right: 3px solid #90ee90;
+  border-right: 3px solid #00b200;
   border-top-right-radius: 5px;
   border-bottom-right-radius: 5px;
 }
