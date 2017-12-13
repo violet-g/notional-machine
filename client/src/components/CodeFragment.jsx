@@ -41,7 +41,6 @@ const CodeFragment = ({ codeFragment, mode, currToken, expressions, onTokenSelec
         <CodeToken
           key={'tok_' + tokenIdx}
           token={tokens[j]}
-          mode={mode}
           onClick={() => onTokenSelect(tIdx)}
           onMouseOnToken={() => onMouseOnToken(tIdx)}
           isHighlighted={isHighlighted}

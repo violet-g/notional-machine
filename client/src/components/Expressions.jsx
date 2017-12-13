@@ -3,7 +3,7 @@ import Task from './Task'
 import CodeFragment from './CodeFragment'
 import CheckExprButton from './CheckExprButton'
 
-class ExpressionsPage extends React.Component {
+class Expressions extends React.Component {
 
   constructor(props) {
     super(props)
@@ -83,4 +83,4 @@ class ExpressionsPage extends React.Component {
   }
 }
 
-export default ExpressionsPage
+export default Expressions

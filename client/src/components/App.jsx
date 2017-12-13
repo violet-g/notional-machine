@@ -1,5 +1,5 @@
 import React from 'react'
-import ExpressionsPage from './ExpressionsPage'
+import Expressions from './Expressions'
 import FlowOfControl from './FlowOfControl'
 
 class App extends React.Component {
@@ -17,7 +17,7 @@ class App extends React.Component {
     switch(this.state.stage) {
     case 1:
       return (
-        <ExpressionsPage
+        <Expressions
           stage={this.state.stage}
           onNextStage={(stage)=>this.handleStageChange(stage)}
         />

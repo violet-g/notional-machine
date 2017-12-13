@@ -1,5 +1,6 @@
 import React from 'react'
 import Task from './Task'
+import CodeFragment2 from './CodeFragment2'
 
 class FlowOfControl extends React.Component {
 
@@ -29,7 +30,7 @@ class FlowOfControl extends React.Component {
         update.endLineIdx = tempLine
       }
       this.setState({
-        expressions: this.state.flows.slice(0, -1).concat([ update ]),
+        flows: this.state.flows.slice(0, -1).concat([ update ]),
         mode: !this.state.mode
       })
     }
@@ -50,6 +51,14 @@ class FlowOfControl extends React.Component {
     return (
       <div>
         <Task stage={this.props.stage} />
+        <div className="CodeFragment">
+          <CodeFragment2
+            codeFragment={codeFragment}
+            flows={this.state.flows}
+            mode={this.state.mode}
+            onLineSelect={(lineIdx)=>this.handleLineSelect(lineIdx)}
+          />
+        </div>
       </div>
     )
   }
