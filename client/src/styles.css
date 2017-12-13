@@ -1,9 +1,9 @@
 #background {
   background-image: url(
-    https://feastandwest.com/wp-content/uploads/2015/04/2560x1440_27inMacDesktop.jpg
+    /*https://feastandwest.com/wp-content/uploads/2015/04/2560x1440_27inMacDesktop.jpg*/
     /*https://cdn.pixabay.com/photo/2016/01/21/04/14/color-1152782_1280.jpg*/
-    /*https://images.unsplash.com/photo-1504060765228-f97d1772ff9e?auto=format&fit=crop&w=1950&q=80&ixid=dW5zcGxhc2guY29tOzs7Ozs%3D*/
-    );
+    https://images.unsplash.com/photo-1504060765228-f97d1772ff9e?auto=format&fit=crop&w=1950&q=80&ixid=dW5zcGxhc2guY29tOzs7Ozs%3D
+  );
   background-size: cover;
 }
 
@@ -41,20 +41,20 @@
 }
 
 .CodeToken.selected {
-  background-color: #ffa500;
-  border: 3px solid #00b200;
+  background-color: #ffb733;
+  border: 3px solid #4d4dff;
   border-left: none;
   border-right: none;
 }
 
 .CodeToken.start {
-  border-left: 3px solid #00b200;
+  border-left: 3px solid #4d4dff;
   border-top-left-radius: 5px;
   border-bottom-left-radius: 5px;
 }
 
 .CodeToken.end {
-  border-right: 3px solid #00b200;
+  border-right: 3px solid #4d4dff;
   border-top-right-radius: 5px;
   border-bottom-right-radius: 5px;
 }
@@ -76,4 +76,8 @@
   text-align: center;
   padding-bottom: 5px;
   font-weight: 700;
+}
+
+.CheckExprButton {
+  margin-top: 70px;
 }

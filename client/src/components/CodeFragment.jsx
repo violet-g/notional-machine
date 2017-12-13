@@ -25,12 +25,12 @@ const CodeFragment = ({ codeFragment, mode, currToken, expressions, onTokenSelec
     // loop through tokens
     for (let j=0; j<tokens.length; j++) {
 
-      const tId = tokenIdx
+      const tIdx = tokenIdx
       allTokens.push(tokenIdx)
 
       let isHighlighted = mode &&
-          ((currToken > lastStartToken && tId >= lastStartToken && tId<=currToken) ||
-            (currToken < lastStartToken && tId <=lastStartToken && tId>=currToken))
+          ((currToken > lastStartToken && tIdx >= lastStartToken && tIdx<=currToken) ||
+            (currToken < lastStartToken && tIdx <=lastStartToken && tIdx>=currToken))
       let isSelected = !!expressions.find((expression) =>
         tokenIdx >= expression.startTokenIdx && tokenIdx <= expression.endTokenIdx)
       let isStart = !!expressions.find(expression => tokenIdx === expression.startTokenIdx)
@@ -42,13 +42,13 @@ const CodeFragment = ({ codeFragment, mode, currToken, expressions, onTokenSelec
           key={'tok_' + tokenIdx}
           token={tokens[j]}
           mode={mode}
-          onClick={() => onTokenSelect(tId)}
-          onMouseOnToken={() => onMouseOnToken(tId)}
+          onClick={() => onTokenSelect(tIdx)}
+          onMouseOnToken={() => onMouseOnToken(tIdx)}
           isHighlighted={isHighlighted}
           isSelected={isSelected}
           isStart={isStart}
           isEnd={isEnd}
-          onDelete={() => onDelete(tId)}
+          onDelete={() => onDelete(tIdx)}
         />
       )
       tokenIdx++

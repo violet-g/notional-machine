@@ -1,7 +1,9 @@
 import React from 'react'
 import DeleteExprButton from './DeleteExprButton'
 
-const CodeToken = ({ token, mode, onClick, isSelected, isHighlighted, isStart, isEnd, onMouseOnToken, onDelete }) => (
+const CodeToken = ({ token, mode, onClick, isSelected, isHighlighted,
+  isStart, isEnd, onMouseOnToken, onDelete }) => (
+    
   <span>
     <span className={ "CodeToken" +
       (isHighlighted ? " highlighted" : "") +
