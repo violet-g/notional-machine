@@ -1,0 +1,146 @@
+#background {
+  background-image: url(
+    /*https://feastandwest.com/wp-content/uploads/2015/04/2560x1440_27inMacDesktop.jpg*/
+    /*https://cdn.pixabay.com/photo/2016/01/21/04/14/color-1152782_1280.jpg*/
+    https://images.unsplash.com/photo-1504060765228-f97d1772ff9e?auto=format&fit=crop&w=1950&q=80&ixid=dW5zcGxhc2guY29tOzs7Ozs%3D
+  );
+  background-size: cover;
+}
+
+.Task {
+  background-color: #ffffff;
+  opacity: 0.9;
+  text-align: center;
+}
+
+.CodeFragment {
+  margin-top: 10%;
+  margin-left: 40%;
+  margin-right: 40%;
+  text-align: left;
+  font-family: monospace;
+  font-size: 18px;
+  background-color: #ffffff;
+  opacity: 0.9;
+}
+
+.CodeToken:hover {
+  background-color: #ffff7f;
+}
+
+.CodeToken {
+  display: inline-block;
+  padding: 5px;
+  user-select: none;
+}
+
+.CodeToken.highlighted {
+  background-color: #ffff7f;
+  border-left: none;
+  border-right: none;
+}
+
+.CodeToken.selected {
+  background-color: #ffb733;
+  border: 3px solid #4d4dff;
+  border-left: none;
+  border-right: none;
+}
+
+.CodeToken.start {
+  border-left: 3px solid #4d4dff;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+
+.CodeToken.end {
+  border-right: 3px solid #4d4dff;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+.DeleteExprButton {
+  margin-left: 1px;
+  border: 1px solid #000000;
+  border-radius: 100%;
+  height: 15px;
+  width: 15px;
+  display: inline-block;
+  font-size: 10px;
+  cursor: pointer;
+  position: relative;
+  left: -10px;
+  top: -18px;
+  background-color: #e50000;
+  color: #ffffff;
+  text-align: center;
+  padding-bottom: 5px;
+  font-weight: 700;
+}
+
+.CheckExprButton {
+  margin-top: 70px;
+}
+
+.CodeLine:hover {
+  background-color: #ffff7f;
+}
+
+.CodeLine:hover .TextWrapper {
+  background-color: #ffff7f;
+}
+
+.CodeLine {
+  display: block;
+  padding: 5px;
+  user-select: none;
+  height: 40px;
+  line-height: 40px;
+  position: relative;
+}
+
+.TextWrapper {
+  position: relative;
+  background-color: #ffffff;
+  z-index: 2000;
+}
+
+.AdjacentLinesArrow {
+  position: absolute;
+  bottom: -15px;
+  display: block;
+  height: 20px;
+  width: 30px;
+  z-index: 1000;
+  background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Double_angle_down_font_awesome.svg/1000px-Double_angle_down_font_awesome.svg.png');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 100%;
+}
+
+.SkipDownArrow {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  width: 100%;
+  height: 80px; /* skips 2 lines */
+  z-index: 1000;
+}
+
+.SkipDownArrow .startLine {
+  position: absolute;
+  right: 0px;
+  left: 0px;
+  top: 0px;
+  height: 10px;
+  background-color: pink;
+}
+
+.SkipDownArrow .endLine {
+  position: absolute;
+  right: 0px;
+  left: 0px;
+  bottom: 0px;
+  height: 10px;
+  background-color: pink;
+}

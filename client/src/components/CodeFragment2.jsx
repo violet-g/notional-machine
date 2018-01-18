@@ -19,14 +19,18 @@ const CodeFragment2 = ({ codeFragment, flows, mode, onLineSelect }) => {
     // add the whole line with the correct indent
     let indent = 10*lineIndent
     allLines.push(
-      <span key={'l_' + i} className="LineIndent" style={{ marginLeft: indent+"px" }}>
+      <div key={'l_' + i} className="LineIndent">
         <CodeLine
           key={'line' + i}
           line={line}
           onClick={() => onLineSelect(lIdx)}
+          arrow={i === 1 ? <div className="SkipDownArrow">
+          <div className="startLine" />
+          <div className="endLine" /></div> : null}
+          style={{ paddingLeft: indent+"px" }}
         />
-      <br/>
-      </span>
+      {/* <br/> */}
+    </div>
     )
   }
   return <div>{allLines}</div>

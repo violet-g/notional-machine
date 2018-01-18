@@ -1,11 +1,10 @@
 import React from 'react'
 
-const CodeLine = ({ line, onClick }) => (
+const CodeLine = ({ line, onClick, arrow, style }) => (
 
-  <span>
-    <span className="CodeLine" onClick={onClick}>
-      { line }
-    </span>
+  <span className="CodeLine" onClick={onClick} style={style}>
+    <span className="TextWrapper">{ line }</span>
+    { arrow }
   </span>
 )
 
