@@ -7,6 +7,10 @@ body {
   margin-left: 60px;
 }
 
+.Line {
+  margin: 10px 0px;
+}
+
 .Token {
   padding: 0px 5px;
 }
@@ -17,4 +21,5 @@ body {
   height: 100%;
   top: 0px;
   left: 0px;
+  z-index: -100;
 }
