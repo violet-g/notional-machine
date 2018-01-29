@@ -3,7 +3,7 @@ import CurvedPath from './CurvedPath'
 import Arrowhead from './Arrowhead'
 
 const Flow = ({ startLine, endLine, nodes }) => {
-  // TODO figure out how to rotate Arrowhead
+
   // TODO there would be just a single code fragment per screen, remove .Task2 from querySelectors
   const getRect = idx => document.querySelector(`.Task2 .Line:nth-child(${idx + 1})`).getBoundingClientRect()
 
@@ -32,16 +32,32 @@ const Flow = ({ startLine, endLine, nodes }) => {
 
   if (endLine === startLine) {
     return null
+
   } else if (endLine === startLine + 1) {
+    console.log(startLineElement.firstChild, endLineElement.firstChild)
+
     const firstIndentRect = startLineElement.firstChild.getBoundingClientRect()
     const lastIndentRect = endLineElement.firstChild.getBoundingClientRect()
     const x = Math.max(firstIndentRect.x + firstIndentRect.width, lastIndentRect.x + lastIndentRect.width)
 
-    d =
-      'M ' +
-      (x + 20) + ' ' + (startRect.y + startRect.height) + ' ' +
-      'L ' +
-      (x + 20) + ' ' + (endRect.y + 40)
+    const x1 = x - containerRect.x + 20
+    const y1 = startRect.y - containerRect.y + startRect.height - 8
+    const x2 = x - containerRect.x + 20
+    const y2 = endRect.y - containerRect.y
+
+    console.log(x)
+    console.log(x1, y1)
+
+    d = 'M ' + x1 + ' ' + y1 + ' ' + 'L ' + x2 + ' ' + y2
+
+    return (
+      <div className="Flow">
+        <svg>
+          <path d={d} fill="none" stroke="#3d3d3d" />
+          <Arrowhead x={x2} y={y2} />
+        </svg>
+      </div>
+    )
 
   } else if (endLine > startLine) {
     const x1 = startX + startRect.width
@@ -56,11 +72,15 @@ const Flow = ({ startLine, endLine, nodes }) => {
     return (
       <div className="Flow">
         <svg>
-          <CurvedPath x1={x1} y1={y1} x2={x2} y2={y2} cx1={cx1} cy1={cy1} cx2={cx2} cy2={cy2} />
-          <Arrowhead x={x2} y={y2} />
+          <CurvedPath
+            x1={x1} y1={y1} x2={x2} y2={y2}
+            cx1={cx1} cy1={cy1} cx2={cx2} cy2={cy2}
+          />
+          <Arrowhead x={x2} y={y2} deg={45} />
         </svg>
       </div>
     )
+
   } else {
     const x1 = startX
     const y1 = startY + startRect.height / 2
@@ -74,20 +94,15 @@ const Flow = ({ startLine, endLine, nodes }) => {
     return (
       <div className="Flow">
         <svg>
-          <CurvedPath x1={x1} y1={y1} x2={x2} y2={y2} cx1={cx1} cy1={cy1} cx2={cx2} cy2={cy2} />
-          <Arrowhead x={x2} y={y2} />
+          <CurvedPath
+            x1={x1} y1={y1} x2={x2} y2={y2}
+            cx1={cx1} cy1={cy1} cx2={cx2} cy2={cy2}
+          />
+          <Arrowhead x={x2} y={y2} deg={135} />
         </svg>
       </div>
     )
   }
-
-  return (
-    <div className="Flow">
-      <svg>
-        <path d={d} fill="none" stroke="#3d3d3d" />
-      </svg>
-    </div>
-  )
 }
 
 export default Flow

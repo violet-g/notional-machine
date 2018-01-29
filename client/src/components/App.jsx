@@ -7,6 +7,7 @@ const fragment = [
   { indent: 0, tokens: ['while', 'a', '<', '3'] },
   { indent: 1, tokens: ['print', 'a'] },
   { indent: 1, tokens: ['a', '=', 'a', '+', '1'] },
+  { indent: 0, tokens: ['a', '=', 'a', '*', '5'] },
   { indent: 0, tokens: ['print', 'a'] }
 ]
 
