@@ -1,7 +1,10 @@
 import React from 'react'
 
-const Expression = ({ children }) => (
-  <span className="Expression">{children}</span>
+const Expression = ({ children, onDelete }) => (
+  <span className="Expression">
+    {children}
+    <span className="DeleteExprButton" onClick={onDelete}>x</span>
+  </span>
 )
 
 export default Expression

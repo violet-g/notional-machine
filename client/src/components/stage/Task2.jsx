@@ -3,6 +3,7 @@ import Line from './fragment/Line'
 import Token from './fragment/Token'
 import Flow from './fragment/Flow'
 import CodeFragment from './fragment/CodeFragment'
+import CheckTaskButton from './fragment/CheckTaskButton'
 
 class Task2 extends React.Component {
   constructor () {
@@ -28,7 +29,7 @@ class Task2 extends React.Component {
 
   render () {
     console.log(this.state.selecting)
-    
+
     const { fragment } = this.props
     const lines = fragment.map((line, i) =>
       <Line
@@ -55,10 +56,14 @@ class Task2 extends React.Component {
 
     return (
       <div className="Task2">
+        <div className="TaskInstructions">
+          {this.props.instructions}
+        </div>
         <CodeFragment>
           {lines}
           {flows}
         </CodeFragment>
+        <CheckTaskButton onNextStage={this.props.onNextStage} />
       </div>
     )
   }

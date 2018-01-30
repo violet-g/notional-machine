@@ -3,6 +3,7 @@ import Token from './fragment/Token'
 import Line from './fragment/Line'
 import Expression from './fragment/Expression'
 import CodeFragment from './fragment/CodeFragment'
+import CheckTaskButton from './fragment/CheckTaskButton'
 import times from 'lodash/times'
 
 class Task1 extends React.Component {
@@ -45,6 +46,19 @@ class Task1 extends React.Component {
     })
   }
 
+  handleExprDelete (lineIdx, exprIdx) {
+    this.setState({
+      expressions: [
+        ...this.state.expressions.slice(0, lineIdx),
+        [
+          ...this.state.expressions[lineIdx].slice(0, exprIdx),
+          ...this.state.expressions[lineIdx].slice(exprIdx + 1)
+        ],
+        ...this.state.expressions.slice(lineIdx + 1)
+      ]
+    })
+  }
+
   isTokenHighlighted (lineIdx, tokenIdx) {
     const { lastHoveredToken, lastSelectedToken } = this.state
     if (lastHoveredToken === null || lastSelectedToken === null || !this.state.selecting) {
@@ -83,7 +97,9 @@ class Task1 extends React.Component {
         const key = ['expr', i, k].join('_')
         tokens = [
           ...tokens.slice(0, expression[0]),
-          <Expression key={key}>{tokens.slice(expression[0], expression[1] + 1)}</Expression>,
+          <Expression key={key} onDelete={()=>this.handleExprDelete(i, k)}>
+            {tokens.slice(expression[0], expression[1] + 1)}
+          </Expression>,
           ...times(expression[1] - expression[0], null).map(el => null),
           ...tokens.slice(expression[1] + 1)
         ]
@@ -92,7 +108,17 @@ class Task1 extends React.Component {
       return (<Line key={i} indent={line.indent}>{tokens}</Line>)
     })
 
-    return (<CodeFragment>{lines}</CodeFragment>)
+    return (
+      <div>
+        <div className="TaskInstructions">
+          {this.props.instructions}
+        </div>
+        <CodeFragment>
+          {lines}
+        </CodeFragment>
+        <CheckTaskButton onNextStage={this.props.onNextStage} />
+      </div>
+    )
   }
 }
 
