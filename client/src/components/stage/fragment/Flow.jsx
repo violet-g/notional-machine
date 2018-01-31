@@ -2,14 +2,12 @@ import React from 'react'
 import CurvedPath from './CurvedPath'
 import Arrowhead from './Arrowhead'
 
-const Flow = ({ startLine, endLine, nodes }) => {
+const Flow = ({ startLine, endLine }) => {
+  const getRect = idx => document.querySelector(`.Line:nth-child(${idx + 1})`).getBoundingClientRect()
 
-  // TODO there would be just a single code fragment per screen, remove .Task2 from querySelectors
-  const getRect = idx => document.querySelector(`.Task2 .Line:nth-child(${idx + 1})`).getBoundingClientRect()
-
-  const containerRect = document.querySelector(`.Task2 .CodeFragment`).getBoundingClientRect()
-  const startLineElement = document.querySelector(`.Task2 .Line:nth-child(${startLine + 1})`)
-  const endLineElement = document.querySelector(`.Task2 .Line:nth-child(${endLine + 1})`)
+  const containerRect = document.querySelector(`.CodeFragment`).getBoundingClientRect()
+  const startLineElement = document.querySelector(`.Line:nth-child(${startLine + 1})`)
+  const endLineElement = document.querySelector(`.Line:nth-child(${endLine + 1})`)
   const startRect = startLineElement.getBoundingClientRect()
   const endRect = endLineElement.getBoundingClientRect()
   const startX = startRect.x - containerRect.x
@@ -34,7 +32,6 @@ const Flow = ({ startLine, endLine, nodes }) => {
     return null
 
   } else if (endLine === startLine + 1) {
-    console.log(startLineElement.firstChild, endLineElement.firstChild)
 
     const firstIndentRect = startLineElement.firstChild.getBoundingClientRect()
     const lastIndentRect = endLineElement.firstChild.getBoundingClientRect()
@@ -44,9 +41,6 @@ const Flow = ({ startLine, endLine, nodes }) => {
     const y1 = startRect.y - containerRect.y + startRect.height - 8
     const x2 = x - containerRect.x + 20
     const y2 = endRect.y - containerRect.y
-
-    console.log(x)
-    console.log(x1, y1)
 
     d = 'M ' + x1 + ' ' + y1 + ' ' + 'L ' + x2 + ' ' + y2
 

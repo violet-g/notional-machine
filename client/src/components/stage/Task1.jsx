@@ -3,7 +3,7 @@ import Token from './fragment/Token'
 import Line from './fragment/Line'
 import Expression from './fragment/Expression'
 import CodeFragment from './fragment/CodeFragment'
-import CheckTaskButton from './fragment/CheckTaskButton'
+import Task from './Task'
 import times from 'lodash/times'
 
 class Task1 extends React.Component {
@@ -33,10 +33,7 @@ class Task1 extends React.Component {
       const startToken = Math.min(lastSelectedToken[1], tokenIdx)
       const endToken = Math.max(lastSelectedToken[1], tokenIdx)
 
-      expressions[lineIdx] = [
-        ...(expressions[lineIdx] || []),
-        [startToken, endToken]
-      ].sort((a, b) => (a[0] < b[0]) ? -1 : 1)
+      expressions = [...expressions, [lineIdx, startToken, endToken]]
     }
 
     this.setState({
@@ -46,17 +43,9 @@ class Task1 extends React.Component {
     })
   }
 
-  handleExprDelete (lineIdx, exprIdx) {
-    this.setState({
-      expressions: [
-        ...this.state.expressions.slice(0, lineIdx),
-        [
-          ...this.state.expressions[lineIdx].slice(0, exprIdx),
-          ...this.state.expressions[lineIdx].slice(exprIdx + 1)
-        ],
-        ...this.state.expressions.slice(lineIdx + 1)
-      ]
-    })
+  handleExprDelete (i) {
+    const expressions = this.state.expressions
+    this.setState({ expressions: [...expressions.slice(0, i), ...expressions.slice(i + 1)] })
   }
 
   isTokenHighlighted (lineIdx, tokenIdx) {
@@ -81,43 +70,36 @@ class Task1 extends React.Component {
   render () {
     const { fragment } = this.props
 
-    const lines = fragment.map((line, i) => {
-      let tokens = line.tokens.map((token, j) =>
-        <Token
-          key={[i, j].join('_')}
-          content={token}
-          onMouseOver={this.handleTokenMouseOver.bind(this, i, j)}
-          onClick={this.handleTokenSelect.bind(this, i, j)}
-          highlighted={this.isTokenHighlighted(i, j)} />
-      )
+    const lines = fragment.map((line, i) =>
+      <Line key={i} indent={line.indent}>
+        {line.tokens.map((token, j) =>
+          <Token
+            key={[i, j].join('_')}
+            content={token}
+            onMouseOver={this.handleTokenMouseOver.bind(this, i, j)}
+            onClick={this.handleTokenSelect.bind(this, i, j)}
+            highlighted={this.isTokenHighlighted(i, j)}
+          />
+        )}
+      </Line>
+    )
 
-      const expressions = this.state.expressions[i] || []
-      for (let k = 0; k < expressions.length; k++) {
-        const expression = expressions[k]
-        const key = ['expr', i, k].join('_')
-        tokens = [
-          ...tokens.slice(0, expression[0]),
-          <Expression key={key} onDelete={()=>this.handleExprDelete(i, k)}>
-            {tokens.slice(expression[0], expression[1] + 1)}
-          </Expression>,
-          ...times(expression[1] - expression[0], null).map(el => null),
-          ...tokens.slice(expression[1] + 1)
-        ]
-      }
-
-      return (<Line key={i} indent={line.indent}>{tokens}</Line>)
-    })
+    const expressions = this.state.expressions.map((expression, i) =>
+      <Expression
+        key={['expr', i].join('_')}
+        line={expression[0]}
+        start={expression[1]}
+        end={expression[2]}
+        onDelete={() => this.handleExprDelete(i)} />
+    )
 
     return (
-      <div>
-        <div className="TaskInstructions">
-          {this.props.instructions}
-        </div>
+      <Task {...this.props}>
         <CodeFragment>
           {lines}
+          {expressions}
         </CodeFragment>
-        <CheckTaskButton onNextStage={this.props.onNextStage} />
-      </div>
+      </Task>
     )
   }
 }

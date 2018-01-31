@@ -1,10 +1,12 @@
 import React from 'react'
 import Task1 from './stage/Task1'
 import Task2 from './stage/Task2'
+import Task3 from './stage/Task3'
 
 const tasks = [
   'Step 1: Read the following piece of code carefully and select all expressions that are used in its construction.',
-  'Step 2: Visualise flow of control in the code below.'
+  'Step 2: Visualise flow of control in the code below.',
+  'Step 3: Do step 3.'
 ]
 
 const fragment = [
@@ -16,13 +18,31 @@ const fragment = [
   { indent: 0, tokens: ['print', 'a'] }
 ]
 
+const expressions = [
+  [0, 2, 2],
+  [1, 1, 3],
+  [2, 1, 1],
+  [3, 2, 4],
+  [4, 2, 4],
+  [5, 1, 1]
+]
+
+const flows = [
+  [0, 1],
+  [1, 2],
+  [2, 3],
+  [3, 1],
+  [3, 4],
+  [4, 5]
+]
+
 class App extends React.Component {
   constructor () {
     super()
     this.state = { stage: 1 }
   }
 
-  handleStageChange(stage) {
+  handleStageChange (stage) {
     this.setState({ stage: stage })
   }
 
@@ -45,7 +65,14 @@ class App extends React.Component {
         />
       )
     case 3:
-      break
+      return (
+        <Task3
+          instructions={tasks[2]}
+          fragment={fragment}
+          expressions={expressions}
+          flows={flows}
+        />
+      )
     default:
       return (<p> Something went wrong. </p>)
     }

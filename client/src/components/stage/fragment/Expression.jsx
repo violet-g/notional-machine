@@ -3,7 +3,7 @@ import React from 'react'
 const Expression = ({ children, onDelete }) => (
   <span className="Expression">
     {children}
-    <span className="DeleteExprButton" onClick={onDelete}>x</span>
+    {onDelete && <span className="DeleteExprButton" onClick={onDelete}>x</span>}
   </span>
 )
 
