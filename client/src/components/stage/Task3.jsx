@@ -5,12 +5,37 @@ import Line from './fragment/Line'
 import Token from './fragment/Token'
 import Expression from './fragment/Expression'
 import Flow from './fragment/Flow'
+import VariableTable from './VariableTable'
 
 class Task3 extends React.Component {
   constructor () {
     super()
-    this.state = {}
+    this.state = { variables: [] }
   }
+
+  handleVariableAdd () {
+    this.setState({ variables: [...this.state.variables, { steps: [] }] })
+  }
+
+  // handleVariableRemove (name) {
+  //   const variables = Object.assign({}, this.state.variables)
+  //   delete variables[name]
+  //   this.setState({ variables })
+  // }
+
+  handleStepAdd (idx) {
+    const variables = [
+      ...this.state.variables.slice(0, idx),
+      { steps: [...this.state.variables[idx].steps, []] },
+      ...this.state.variables.slice(idx + 1)
+    ]
+    this.setState({ variables })
+  }
+
+  // handleStepRemove (name, idx) {
+  //   const variable = [...this.state.variable[name].slice(0, idx), ...this.state.variable[name].slice(idx + 1)]
+  //   this.setState({ variables: Object.assign({}, this.state.variables, { [name]: variable }) })
+  // }
 
   render() {
     const lines = this.props.fragment.map((line, i) =>
@@ -46,6 +71,11 @@ class Task3 extends React.Component {
           {expressions}
           {flows}
         </CodeFragment>
+        <VariableTable
+          variables={this.state.variables}
+          onVariableAdd={this.handleVariableAdd.bind(this)}
+          onStepAdd={this.handleStepAdd.bind(this)}
+        />
       </Task>
     )
   }
