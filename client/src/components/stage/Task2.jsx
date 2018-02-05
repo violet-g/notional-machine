@@ -4,6 +4,7 @@ import Token from './fragment/Token'
 import Flow from './fragment/Flow'
 import CodeFragment from './fragment/CodeFragment'
 import Task from './Task'
+import uniq from 'lodash/uniq'
 
 class Task2 extends React.Component {
   constructor () {
@@ -11,7 +12,8 @@ class Task2 extends React.Component {
     this.state = {
       selecting: false,
       lastSelectedLine: -1,
-      flows: []
+      flows: [],
+      selectedFlows: []
     }
   }
 
@@ -25,6 +27,16 @@ class Task2 extends React.Component {
       lastSelectedLine: idx,
       flows: [...this.state.flows, ...flows]
     })
+  }
+
+  handleFlowSelect (i) {
+    const { selectedFlows } = this.state
+    this.setState({ selectedFlows: uniq([...selectedFlows, i]) })
+  }
+
+  handleFlowDelete (i) {
+    const { flows } = this.state
+    this.setState({ flows: [...flows.slice(0, i), ...flows.slice(idx + 1)] })
   }
 
   render () {
@@ -44,7 +56,14 @@ class Task2 extends React.Component {
     )
 
     const flows = this.state.flows.map((flow, i) =>
-      <Flow key={i} startLine={flow[0]} endLine={flow[1]} />
+      <Flow
+        key={i}
+        startLine={flow[0]}
+        endLine={flow[1]}
+        selected={!!this.state.selectedFlows.find(idx => idx === i)}
+        onClick={() => this.handleFlowSelect(i)}
+        onDelete={() => this.handleFlowDelete(i)}
+      />
     )
 
     return (

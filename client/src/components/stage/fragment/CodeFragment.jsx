@@ -1,7 +1,8 @@
 import React from 'react'
 import Expression from './Expression'
 import Line from './Line'
-import times from 'lodash/times'
+import Flow from './Flow'
+import { times, includes } from 'lodash'
 
 const CodeFragment = ({ children }) => {
   const childrenArray = React.Children.toArray(children)
@@ -28,9 +29,20 @@ const CodeFragment = ({ children }) => {
     }
     return React.cloneElement(line, line.props, tokens)
   })
-  const rest = childrenArray.filter(child => child.type !== Line && child.type !== Expression)
+  const flows = childrenArray.filter(child => child.type === Flow)
+  const rest = childrenArray.filter(child => !includes([Line, Flow, Expression], child.type))
 
-  return (<div className="CodeFragment">{newLines}{rest}</div>)
+  return (
+    <div className="CodeFragment">
+      {newLines}
+      {rest}
+      <div className="FlowContainer">
+        <svg>
+          {flows}
+        </svg>
+      </div>
+    </div>
+  )
 }
 
 export default CodeFragment
