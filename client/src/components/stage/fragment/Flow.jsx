@@ -9,6 +9,8 @@ const Flow = ({ startLine, endLine, onClick, onDelete, selected }) => {
   const containerRect = document.querySelector(`.CodeFragment`).getBoundingClientRect()
   const startLineElement = document.querySelector(`.Line:nth-child(${startLine + 1})`)
   const endLineElement = document.querySelector(`.Line:nth-child(${endLine + 1})`)
+  const startLineIndentRect = document.querySelector(`.Line:nth-child(${startLine + 1})`).firstChild.getBoundingClientRect()
+  const endLineIndentRect = document.querySelector(`.Line:nth-child(${endLine + 1})`).firstChild.getBoundingClientRect()
   const startRect = startLineElement.getBoundingClientRect()
   const endRect = endLineElement.getBoundingClientRect()
   const startX = startRect.x - containerRect.x
@@ -46,7 +48,7 @@ const Flow = ({ startLine, endLine, onClick, onDelete, selected }) => {
 
     let del = []
     if (selected) {
-      del = [<DeleteArrowButton key="del" onClick={onDelete} x={x1} y={y1} />]
+      del = [<DeleteArrowButton key="del" onDelete={onDelete} x={x1} y={y1} />]
     }
 
     return [
@@ -55,20 +57,18 @@ const Flow = ({ startLine, endLine, onClick, onDelete, selected }) => {
       ...del
     ]
   } else if (endLine > startLine) {
-    const x1 = startX + startRect.width
+    const x1 = startX + startRect.width + 10
     const y1 = startY + startRect.height / 2
-    const x2 = endX + endRect.width
+    const x2 = endX + endRect.width + 10
     const y2 = endY + endRect.height / 2
     const cx1 = maxX + 50
-    // const cy1 = startY + heightDiff * 0.25
     const cy1 = y1
     const cx2 = cx1
-    // const cy2 = startY + heightDiff * 0.75
     const cy2 = y2
 
     let del = []
     if (selected) {
-      del = [<DeleteArrowButton key="del" onClick={onDelete} x={x1} y={y1} />]
+      del = [<DeleteArrowButton key="del" onDelete={onDelete} x={x1} y={y1} />]
     }
 
     return [
@@ -77,20 +77,18 @@ const Flow = ({ startLine, endLine, onClick, onDelete, selected }) => {
       ...del
     ]
   } else {
-    const x1 = startX
+    const x1 = startX + startLineIndentRect.width - 10
     const y1 = startY + startRect.height / 2
-    const x2 = endX
+    const x2 = endX + endLineIndentRect.width - 10
     const y2 = endY + endRect.height / 2
     const cx1 = minX - 50
     const cy1 = y1
-    // const cy1 = endY + heightDiff * 0.75
     const cx2 = cx1
     const cy2 = y2
-    // const cy2 = endY + heightDiff * 0.25
 
     let del = []
     if (selected) {
-      del = [<DeleteArrowButton key="del" onClick={onDelete} x={x1} y={y1} />]
+      del = [<DeleteArrowButton key="del" onDelete={onDelete} x={x1} y={y1} />]
     }
 
     return [

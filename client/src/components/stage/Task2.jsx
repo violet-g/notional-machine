@@ -35,8 +35,11 @@ class Task2 extends React.Component {
   }
 
   handleFlowDelete (i) {
-    const { flows } = this.state
-    this.setState({ flows: [...flows.slice(0, i), ...flows.slice(idx + 1)] })
+    const { flows, selectedFlows } = this.state
+    this.setState({
+      flows: [...flows.slice(0, i), ...flows.slice(i + 1)],
+      selectedFlows: selectedFlows.filter(idx => i === idx).map(idx => idx > i ? (idx - 1) : idx)
+    })
   }
 
   render () {
@@ -60,7 +63,7 @@ class Task2 extends React.Component {
         key={i}
         startLine={flow[0]}
         endLine={flow[1]}
-        selected={!!this.state.selectedFlows.find(idx => idx === i)}
+        selected={this.state.selectedFlows.find(idx => idx === i) !== undefined}
         onClick={() => this.handleFlowSelect(i)}
         onDelete={() => this.handleFlowDelete(i)}
       />

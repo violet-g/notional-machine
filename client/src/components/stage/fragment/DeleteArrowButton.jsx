@@ -8,7 +8,7 @@ const DeleteArrowButton = ({ x, y, onDelete }) => {
       stroke="black" strokeWidth="1" fill="red"
       onClick={onDelete}
     />,
-    <text key="text" x={x} y={y} textAnchor="middle" fill="white" dy=".3em">x</text>
+    <text key="text" onClick={onDelete} x={x} y={y} textAnchor="middle" fill="white" dy=".3em">x</text>
   ]
 }
 
