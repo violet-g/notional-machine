@@ -48,7 +48,7 @@ const Flow = ({ startLine, endLine, onClick, onDelete, selected }) => {
 
     let del = []
     if (selected) {
-      del = [<DeleteArrowButton key="del" onDelete={onDelete} x={x1} y={y1} />]
+      del = [<DeleteArrowButton className="DeleteArrowButton" key="del" onDelete={onDelete} x={x1} y={y1} />]
     }
 
     return [
@@ -68,11 +68,11 @@ const Flow = ({ startLine, endLine, onClick, onDelete, selected }) => {
 
     let del = []
     if (selected) {
-      del = [<DeleteArrowButton key="del" onDelete={onDelete} x={x1} y={y1} />]
+      del = [<DeleteArrowButton className="DeleteArrowButton" key="del" onDelete={onDelete} x={x1} y={y1} />]
     }
 
     return [
-      <CurvedPath key="path" x1={x1} y1={y1} x2={x2} y2={y2} cx1={cx1} cy1={cy1} cx2={cx2} cy2={cy2} onClick={onClick}/>,
+      <CurvedPath key="path" x1={x1} y1={y1} x2={x2} y2={y2} cx1={cx1} cy1={cy1} cx2={cx2} cy2={cy2} onClick={onClick} />,
       <Arrowhead key="arrowhead" x={x2} y={y2} deg={90} />,
       ...del
     ]
@@ -88,11 +88,11 @@ const Flow = ({ startLine, endLine, onClick, onDelete, selected }) => {
 
     let del = []
     if (selected) {
-      del = [<DeleteArrowButton key="del" onDelete={onDelete} x={x1} y={y1} />]
+      del = [<DeleteArrowButton className="DeleteArrowButton" key="del" onDelete={onDelete} x={x1} y={y1} />]
     }
 
     return [
-      <CurvedPath key="path" x1={x1} y1={y1} x2={x2} y2={y2} cx1={cx1} cy1={cy1} cx2={cx2} cy2={cy2} onClick={onClick}/>,
+      <CurvedPath key="path" x1={x1} y1={y1} x2={x2} y2={y2} cx1={cx1} cy1={cy1} cx2={cx2} cy2={cy2} onClick={onClick} />,
       <Arrowhead key="arrowhead" x={x2} y={y2} deg={270} />,
       ...del
     ]

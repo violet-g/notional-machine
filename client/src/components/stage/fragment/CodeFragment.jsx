@@ -3,6 +3,7 @@ import Expression from './Expression'
 import Line from './Line'
 import Flow from './Flow'
 import { times, includes } from 'lodash'
+import classnames from 'classnames'
 
 const CodeFragment = ({ children }) => {
   const childrenArray = React.Children.toArray(children)

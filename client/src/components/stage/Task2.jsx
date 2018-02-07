@@ -38,7 +38,7 @@ class Task2 extends React.Component {
     const { flows, selectedFlows } = this.state
     this.setState({
       flows: [...flows.slice(0, i), ...flows.slice(i + 1)],
-      selectedFlows: selectedFlows.filter(idx => i === idx).map(idx => idx > i ? (idx - 1) : idx)
+      selectedFlows: selectedFlows.filter(idx => i !== idx).map(idx => idx > i ? (idx - 1) : idx)
     })
   }
 

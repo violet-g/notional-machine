@@ -42,6 +42,16 @@ body {
   cursor: pointer;
 }
 
+.CurvedPath:hover {
+  background-color: #e6e6e6;
+  cursor: pointer;
+}
+
+.DeleteArrowButton:hover {
+  cursor: pointer;
+  -ms-user-select: none;
+}
+
 .Line {
   padding: 6px;
   position: relative;
