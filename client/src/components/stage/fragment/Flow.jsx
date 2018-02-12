@@ -4,13 +4,13 @@ import Arrowhead from './Arrowhead'
 import DeleteArrowButton from './DeleteArrowButton'
 
 const Flow = ({ startLine, endLine, onClick, onDelete, selected }) => {
-  const getRect = idx => document.querySelector(`.Line:nth-child(${idx + 1})`).getBoundingClientRect()
+  const getRect = idx => document.querySelector(`.Line:nth-child(${idx + 1}) .inner`).getBoundingClientRect()
 
   const containerRect = document.querySelector(`.CodeFragment`).getBoundingClientRect()
-  const startLineElement = document.querySelector(`.Line:nth-child(${startLine + 1})`)
-  const endLineElement = document.querySelector(`.Line:nth-child(${endLine + 1})`)
-  const startLineIndentRect = document.querySelector(`.Line:nth-child(${startLine + 1})`).firstChild.getBoundingClientRect()
-  const endLineIndentRect = document.querySelector(`.Line:nth-child(${endLine + 1})`).firstChild.getBoundingClientRect()
+  const startLineElement = document.querySelector(`.Line:nth-child(${startLine + 1}) .inner`)
+  const endLineElement = document.querySelector(`.Line:nth-child(${endLine + 1}) .inner`)
+  const startLineIndentRect = document.querySelector(`.Line:nth-child(${startLine + 1}) .inner`).firstChild.getBoundingClientRect()
+  const endLineIndentRect = document.querySelector(`.Line:nth-child(${endLine + 1}) .inner`).firstChild.getBoundingClientRect()
   const startRect = startLineElement.getBoundingClientRect()
   const endRect = endLineElement.getBoundingClientRect()
   const startX = startRect.x - containerRect.x
@@ -48,7 +48,7 @@ const Flow = ({ startLine, endLine, onClick, onDelete, selected }) => {
 
     let del = []
     if (selected) {
-      del = [<DeleteArrowButton className="DeleteArrowButton" key="del" onDelete={onDelete} x={x1} y={y1} />]
+      del = [<DeleteArrowButton key="del" onDelete={onDelete} x={x1} y={y1} />]
     }
 
     return [
@@ -65,10 +65,12 @@ const Flow = ({ startLine, endLine, onClick, onDelete, selected }) => {
     const cy1 = y1
     const cx2 = cx1
     const cy2 = y2
+    const delX = cx1 - 15
+    const delY = y1 + 0.5 * (y2 - y1)
 
     let del = []
     if (selected) {
-      del = [<DeleteArrowButton className="DeleteArrowButton" key="del" onDelete={onDelete} x={x1} y={y1} />]
+      del = [<DeleteArrowButton key="del" onDelete={onDelete} x={delX} y={delY} />]
     }
 
     return [
@@ -85,10 +87,12 @@ const Flow = ({ startLine, endLine, onClick, onDelete, selected }) => {
     const cy1 = y1
     const cx2 = cx1
     const cy2 = y2
+    const delX = cx1 + 15
+    const delY = y1 + 0.5 * (y2 - y1)
 
     let del = []
     if (selected) {
-      del = [<DeleteArrowButton className="DeleteArrowButton" key="del" onDelete={onDelete} x={x1} y={y1} />]
+      del = [<DeleteArrowButton key="del" onDelete={onDelete} x={delX} y={delY} />]
     }
 
     return [
