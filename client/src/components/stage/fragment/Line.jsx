@@ -3,8 +3,8 @@ import Indent from './Indent'
 import classnames from 'classnames'
 
 const Line = ({ indent, children, onClick, highlightable, highlighted }) => (
-  <div className={classnames("Line", { highlightable, highlighted })} onClick={onClick}>
-    <span className="inner"><Indent size={indent} />{children}</span>
+  <div className={classnames("Line", { highlightable, highlighted })}>
+    <Indent size={indent} /><span className="inner" onClick={onClick}>{children}</span>
   </div>
 )
 

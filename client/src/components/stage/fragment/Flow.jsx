@@ -79,9 +79,9 @@ const Flow = ({ startLine, endLine, onClick, onDelete, selected }) => {
       ...del
     ]
   } else {
-    const x1 = startX + startLineIndentRect.width - 10
+    const x1 = startX - 5
     const y1 = startY + startRect.height / 2
-    const x2 = endX + endLineIndentRect.width - 10
+    const x2 = endX - 5
     const y2 = endY + endRect.height / 2
     const cx1 = minX - 50
     const cy1 = y1

@@ -37,7 +37,7 @@ body {
   padding: 2px;
 }
 
-.Token:hover, .Token.highlighted, .Line.highlightable:hover {
+.Token:hover, .Token.highlighted, .Line.highlightable:hover .inner {
   background-color: #e6e6e6;
   cursor: pointer;
 }
@@ -48,12 +48,17 @@ body {
 }
 
 .Line {
-  padding: 6px;
   position: relative;
-  z-index: 100;
+  margin-bottom: 10px;
 }
 
-.Line.highlighted {
+.Line .inner {
+  position: relative;
+  z-index: 100;
+  padding: 6px;
+}
+
+.Line.highlighted .inner {
   background-color: #e6e6e6;
 }
 
@@ -79,6 +84,7 @@ body {
   height: 100%;
   top: 0px;
   left: 0px;
+  z-index: 50;
 }
 
 .Indent {
