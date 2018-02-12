@@ -66,16 +66,27 @@ class Task3 extends React.Component {
 
     return (
       <Task instructions={this.props.instructions}>
-        <CodeFragment>
-          {lines}
-          {expressions}
-          {flows}
-        </CodeFragment>
-        <VariableTable
-          variables={this.state.variables}
-          onVariableAdd={this.handleVariableAdd.bind(this)}
-          onStepAdd={this.handleStepAdd.bind(this)}
-        />
+        <div className="row">
+          <div className="col-sm-4"></div>
+          <div className="col-sm-4">
+            <CodeFragment>
+              {lines}
+              {expressions}
+              {flows}
+            </CodeFragment>
+          </div>
+          <div className="col-sm-4">
+            <VariableTable
+              variables={this.state.variables}
+              onVariableAdd={this.handleVariableAdd.bind(this)}
+              onStepAdd={this.handleStepAdd.bind(this)}
+            />
+            <div className="form-group">
+              <label for="output">Output</label>
+              <input id="output" className="form-control" type="text" placeholder="Output..." />
+            </div>
+          </div>
+        </div>
       </Task>
     )
   }
