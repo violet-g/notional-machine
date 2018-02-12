@@ -35,13 +35,10 @@ const Flow = ({ startLine, endLine, onClick, onDelete, selected }) => {
     return null
   } else if (endLine === startLine + 1) {
 
-    const firstIndentRect = startLineElement.firstChild.getBoundingClientRect()
-    const lastIndentRect = endLineElement.firstChild.getBoundingClientRect()
-    const x = Math.max(firstIndentRect.x + firstIndentRect.width, lastIndentRect.x + lastIndentRect.width)
-
-    const x1 = x - containerRect.x + 20
+    const x = Math.max(startX, endX)
+    const x1 = x + 20
     const y1 = startRect.y - containerRect.y + startRect.height - 8
-    const x2 = x - containerRect.x + 20
+    const x2 = x + 20
     const y2 = endRect.y - containerRect.y
 
     d = 'M ' + x1 + ' ' + y1 + ' ' + 'L ' + x2 + ' ' + y2
