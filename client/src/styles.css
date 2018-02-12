@@ -20,7 +20,6 @@ body {
   margin: 30px 0px;
   padding: 40px 40px 40px 80px;
   border: 1px solid #e6e6e6;
-  width: 300px;
   margin: 40px auto;
   position: relative;
   background-color: #ffffff;
@@ -120,18 +119,21 @@ body {
 }
 
 .VariableTable {
+  margin: 40px auto;
+  position: relative;
+}
+
+.VariableTable .variable-table {
   display: flex;
   flex-direction: row;
-  max-width: 20vw;
-  margin: auto;
 }
 
-.VariableTable .col {
-  margin: 0px 10px;
-}
-
-.VariableTable .cell {
+.VariableTable .variable-table .cell {
   background: #e6e6e6;
   padding: 10px;
-  margin: 10px 0px;
+  margin: 2px 2px;
+}
+
+.VariableTable .btn-add-col {
+  float: right;
 }
