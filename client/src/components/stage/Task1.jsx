@@ -67,6 +67,10 @@ class Task1 extends React.Component {
     return minIdx <= tokenIdx && tokenIdx <= maxIdx
   }
 
+  handleNextStage () {
+    this.props.onNextStage({ expressions: this.state.expressions })
+  }
+
   render () {
     const { fragment } = this.props
 
@@ -94,7 +98,7 @@ class Task1 extends React.Component {
     )
 
     return (
-      <Task {...this.props}>
+      <Task {...this.props} onNextStage={this.handleNextStage.bind(this)}>
         <CodeFragment>
           {lines}
           {expressions}

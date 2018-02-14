@@ -3,6 +3,7 @@ import Line from './fragment/Line'
 import Token from './fragment/Token'
 import Flow from './fragment/Flow'
 import CodeFragment from './fragment/CodeFragment'
+import Expression from './fragment/Expression'
 import Task from './Task'
 import uniq from 'lodash/uniq'
 
@@ -43,8 +44,8 @@ class Task2 extends React.Component {
   }
 
   render () {
-
     const { fragment } = this.props
+
     const lines = fragment.map((line, i) =>
       <Line
         key={i}
@@ -69,12 +70,21 @@ class Task2 extends React.Component {
       />
     )
 
+    const expressions = this.props.expressions.map((expression, i) =>
+      <Expression
+        key={['expr', i].join('_')}
+        line={expression[0]}
+        start={expression[1]}
+        end={expression[2]} />
+      )
+
     return (
       <div className="Task2">
         <Task {...this.props}>
           <CodeFragment>
             {lines}
             {flows}
+            {expressions}
           </CodeFragment>
         </Task>
       </div>
