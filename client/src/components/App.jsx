@@ -41,13 +41,17 @@ class App extends React.Component {
     super()
     this.state = {
       stage: 1,
-      expressions: []
+      expressions: [],
+      flows: []
     }
   }
 
   handleStageChange (stage, params = {}) {
     if (params.expressions) {
       this.setState({ expressions: params.expressions })
+    }
+    if (params.flows) {
+      this.setState({ flows: params.flows})
     }
     this.setState({ stage: stage })
   }
@@ -68,7 +72,7 @@ class App extends React.Component {
           instructions={tasks[1]}
           fragment={fragment}
           expressions={this.state.expressions}
-          onNextStage={()=>this.handleStageChange(3)}
+          onNextStage={this.handleStageChange.bind(this, 3)}
         />
       )
     case 3:
@@ -77,7 +81,7 @@ class App extends React.Component {
           instructions={tasks[2]}
           fragment={fragment}
           expressions={this.state.expressions}
-          flows={flows}
+          flows={this.state.flows}
         />
       )
     default:
