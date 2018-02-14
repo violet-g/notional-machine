@@ -71,12 +71,12 @@ class Task2 extends React.Component {
     )
 
     const expressions = this.props.expressions.map((expression, i) =>
-      <Expression
-        key={['expr', i].join('_')}
-        line={expression[0]}
-        start={expression[1]}
-        end={expression[2]} />
-      )
+    <Expression
+      key={['expr', i].join('_')}
+      line={expression[0]}
+      start={expression[1]}
+      end={expression[2]} />
+    )
 
     return (
       <div className="Task2">
