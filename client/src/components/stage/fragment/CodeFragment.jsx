@@ -35,7 +35,7 @@ const CodeFragment = ({ children }) => {
   const rest = childrenArray.filter(child => !includes([Line, Flow, Expression], child.type))
 
   return (
-    <div className="CodeFragment">
+    <div className="CodeFragment section">
       <div className="list-group">
         {newLines}
       </div>
