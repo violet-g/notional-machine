@@ -1,9 +1,9 @@
 import React from 'react'
 
 const Expression = ({ children, onDelete }) => (
-  <span className="Expression">
+  <span className="Expression badge badge-primary">
     {children}
-    {onDelete && <span className="DeleteExprButton" onClick={onDelete}>x</span>}
+    {onDelete && <span className="badge badge-danger delete-btn" onClick={onDelete}>x</span>}
   </span>
 )
 

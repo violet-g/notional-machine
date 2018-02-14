@@ -34,7 +34,7 @@ body {
   padding: 2px;
 }
 
-.Token:hover, .Token.highlighted, .Line.highlightable:hover .inner {
+.Token:hover, .Token.highlighted {
   background-color: #e6e6e6;
   cursor: pointer;
 }
@@ -44,10 +44,13 @@ body {
   cursor: pointer;
 }
 
-.Line.list-group-item-action {
-  cursor: pointer;
+.Line.list-group-item {
   font-family: monospace;
   z-index: 100;
+}
+
+.Line.list-group-item-action {
+  cursor: pointer;
 }
 
 .Token.highlighted {
@@ -58,12 +61,29 @@ body {
   background: none;
 }
 
-.Expression {
+/*.Expression {
   border: 1px solid #3d3d3d;
   border-radius: 4px;
   padding: 4px;
   position: relative;
   background: #e6e6e6;
+} */
+
+.Expression {
+  position: relative;
+}
+
+.Expression.badge {
+  padding: 2px;
+  font-size: 13px;
+}
+
+.Expression .delete-btn {
+  position: absolute;
+  top: 0px;
+  right: -10px;
+  top: -8px;
+  right: -6px;
 }
 
 .FlowContainer svg {
@@ -135,7 +155,7 @@ body {
   text-align: center;
 }
 
-.DeleteExprButton {
+/*.DeleteExprButton {
   margin-left: 1px;
   border: 1px solid #000000;
   border-radius: 100%;
@@ -152,7 +172,7 @@ body {
   text-align: center;
   font-weight: 700;
   line-height: 15px;
-}
+} */
 
 .VariableTable {
   margin: 40px auto;
