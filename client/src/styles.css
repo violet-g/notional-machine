@@ -17,13 +17,11 @@ body {
 }
 
 .CodeFragment {
-  margin: 30px 0px;
-  padding: 40px 40px 40px 80px;
-  border: 1px solid #e6e6e6;
   margin: 40px auto;
+  padding: 40px 80px;
+  width: 400px;
+  background: #fff;
   position: relative;
-  background-color: #ffffff;
-  opacity: 0.9;
 }
 
 .Token {
@@ -46,19 +44,10 @@ body {
   cursor: pointer;
 }
 
-.Line {
-  position: relative;
-  margin-bottom: 10px;
-}
-
-.Line .inner {
-  position: relative;
+.Line.list-group-item-action {
+  cursor: pointer;
+  font-family: monospace;
   z-index: 100;
-  padding: 6px;
-}
-
-.Line.highlighted .inner {
-  background-color: #e6e6e6;
 }
 
 .Token.highlighted {
@@ -84,6 +73,53 @@ body {
   top: 0px;
   left: 0px;
   z-index: 50;
+}
+
+.Flow.direct {
+  position: absolute;
+  z-index: 150;
+  cursor: pointer;
+  width: 20px;
+  height: 20px;
+}
+
+.Flow.direct .arrowhead {
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 8px 5px 0 6px;
+  border-color: #3d3d3d transparent transparent transparent;
+  position: absolute;
+  bottom: 0px;
+  left: 4px;
+}
+
+.Flow.direct .line {
+  height: 100%;
+  width: 2px;
+  background: #3d3d3d;
+  position: absolute;
+  left: 9px;
+  bottom: 2px;
+}
+
+.delete-btn {
+  cursor: pointer;
+}
+
+.Flow.direct .delete-btn {
+  width: 10px;
+  height: 10px;
+  color: #fff;
+  background: #dc3545;
+  border-radius: 100%;
+  line-height: 10px;
+  font-size: 8px;
+  text-align: center;
+  position: absolute;
+  top: -5px;
+  left: 5px;
+  z-index: 200;
 }
 
 .Indent {

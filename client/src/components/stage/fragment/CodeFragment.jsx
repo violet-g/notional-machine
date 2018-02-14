@@ -2,6 +2,7 @@ import React from 'react'
 import Expression from './Expression'
 import Line from './Line'
 import Flow from './Flow'
+import FlowContainer from './FlowContainer'
 import { times, includes } from 'lodash'
 import classnames from 'classnames'
 
@@ -35,13 +36,11 @@ const CodeFragment = ({ children }) => {
 
   return (
     <div className="CodeFragment">
-      {newLines}
-      {rest}
-      <div className="FlowContainer">
-        <svg>
-          {flows}
-        </svg>
+      <div className="list-group">
+        {newLines}
       </div>
+      {rest}
+      <FlowContainer>{flows}</FlowContainer>
     </div>
   )
 }

@@ -4,7 +4,7 @@ import CheckTaskButton from './fragment/CheckTaskButton'
 const Task = ({ instructions, onNextStage, children }) => (
   <div className="Task">
     <div className="TaskInstructions">{instructions}</div>
-    {children}
+    <div className="container-fluid">{children}</div>
     {onNextStage && <CheckTaskButton onNextStage={onNextStage} />}
   </div>
 )
