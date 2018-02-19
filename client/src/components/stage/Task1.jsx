@@ -82,6 +82,10 @@ class Task1 extends React.Component {
     ))
   }
 
+  isExpressionIncorrect (line, start, end) {
+    return this.state.submitted && !this.isExpressionCorrect(line, start, end)
+  }
+
   render () {
     const { fragment } = this.props
 
@@ -106,7 +110,7 @@ class Task1 extends React.Component {
         start={expression[1]}
         end={expression[2]}
         correct={this.isExpressionCorrect(...expression)}
-        incorrect={!this.isExpressionCorrect(...expression)}
+        incorrect={this.isExpressionIncorrect(...expression)}
         onDelete={() => this.handleExprDelete(i)} />
     )
 

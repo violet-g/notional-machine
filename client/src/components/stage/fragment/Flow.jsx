@@ -16,6 +16,13 @@ function getLineY (lineIdx) {
   return CODE_FRAGMENT_PADDING_TOP_PX + lineIdx * LINE_HEIGHT_PX + LINE_HEIGHT_PX / 2
 }
 
+function getFlowColor (correct, incorrect) {
+  if (!correct && !incorrect) {
+    return '#3d3d3d'
+  }
+  return correct ? '#28a745' : '#dc3545'
+}
+
 const Flow = ({ startLine, endLine, onClick, onDelete, selected, correct, incorrect }) => {
   if (startLine === endLine - 1) {
     const x = CODE_FRAGMENT_PADDING_LEFT_PX + LINE_WIDTH_PX / 2 - DIRECT_ARROW_SVG_WIDTH
@@ -48,8 +55,9 @@ const Flow = ({ startLine, endLine, onClick, onDelete, selected, correct, incorr
     return (
       <CurvedArrow
         onClick={onClick}
-        deletable={selected}
+        deletable={selected && !correct && !incorrect}
         onDelete={onDelete}
+        stroke={getFlowColor(correct, incorrect)}
         dx={dx}
         dy={dy}
         deg={270}
@@ -82,8 +90,9 @@ const Flow = ({ startLine, endLine, onClick, onDelete, selected, correct, incorr
     return (
       <CurvedArrow
         onClick={onClick}
-        deletable={selected}
+        deletable={selected && !correct && !incorrect}
         onDelete={onDelete}
+        stroke={getFlowColor(correct, incorrect)}
         dx={dx}
         dy={dy}
         deg={90}

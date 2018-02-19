@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Arrowhead = ({ x, y, deg }) => {
+const Arrowhead = ({ x, y, deg, fill }) => {
   const ARROWHEAD_SIZE = 4
   const d =
     'M ' + (x) + ' ' + (y) + ' ' +
@@ -8,7 +8,7 @@ const Arrowhead = ({ x, y, deg }) => {
     'L ' + (x) + ' ' + (y + Math.sqrt(3) * ARROWHEAD_SIZE) + ' ' +
     'L ' + (x + ARROWHEAD_SIZE) + ' ' + (y) + ' ' +
     'Z'
-  return (<g transform={`rotate(${deg} ${x} ${y})`}><path d={d} fill="#3d3d3d" stroke="#3d3d3d" /></g>)
+  return (<g transform={`rotate(${deg} ${x} ${y})`}><path d={d} fill={fill} stroke="none" /></g>)
 }
 
 Arrowhead.defaultProps = {

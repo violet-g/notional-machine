@@ -56,6 +56,10 @@ class Task2 extends React.Component {
     return this.state.submitted && !!this.props.solution.find(flow => flow[0] === start && flow[1] === end)
   }
 
+  isFlowIncorrect (start, end) {
+    return this.state.submitted && !this.isFlowCorrect(start, end)
+  }
+
   render () {
     const { fragment } = this.props
 
@@ -79,7 +83,7 @@ class Task2 extends React.Component {
         endLine={flow[1]}
         selected={this.state.selectedFlows.find(idx => idx === i) !== undefined}
         correct={this.isFlowCorrect(...flow)}
-        incorrect={this.isFlowCorrect(...flow)}
+        incorrect={this.isFlowIncorrect(...flow)}
         onClick={() => this.handleFlowSelect(i)}
         onDelete={() => this.handleFlowDelete(i)}
       />

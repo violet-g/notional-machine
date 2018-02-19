@@ -18,8 +18,8 @@ const fragment = [
   { indent: 0, tokens: ['print', 'a'] }
 ]
 
-const solutions = {
-  expresions: [
+const solution = {
+  expressions: [
     [0, 2, 2],
     [1, 1, 3],
     [2, 1, 1],
@@ -54,7 +54,7 @@ class App extends React.Component {
         <Task1
           instructions={tasks[0]}
           fragment={fragment}
-          solution={solutions.expressions}
+          solution={solution.expressions}
           onNextStage={this.handleStageChange.bind(this, 2)}
         />
       )

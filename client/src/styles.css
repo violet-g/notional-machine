@@ -118,6 +118,22 @@ body {
   bottom: 2px;
 }
 
+.Flow.direct.correct .line {
+  background: #28a745;
+}
+
+.Flow.direct.correct .arrowhead {
+  border-color: #28a745 transparent transparent transparent;
+}
+
+.Flow.direct.incorrect .line {
+  background: #dc3545;
+}
+
+.Flow.direct.incorrect .arrowhead {
+  border-color: #dc3545 transparent transparent transparent;
+}
+
 .delete-btn {
   cursor: pointer;
 }
