@@ -3,7 +3,7 @@ import React from 'react'
 const DeleteArrowButton = ({ x, y, onDelete }) => {
   return [
     <circle
-      className="delete-btn"
+      className="delete-btn" 
       key="circle"
       cx={x} cy={y} r="5"
       fill="red"

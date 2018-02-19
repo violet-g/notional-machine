@@ -86,7 +86,7 @@ class Task3 extends React.Component {
                 <label htmlFor="output">Output</label>
                 <input id="output" className="form-control" type="text" placeholder="Output..." />
               </div>
-          </div>
+            </div>
           </div>
         </div>
       </Task>
