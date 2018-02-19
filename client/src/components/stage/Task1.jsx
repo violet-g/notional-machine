@@ -13,7 +13,8 @@ class Task1 extends React.Component {
       selecting: false,
       expressions: [],
       lastHoveredToken: null,
-      lastSelectedToken: null
+      lastSelectedToken: null,
+      submitted: false
     }
   }
 
@@ -68,7 +69,17 @@ class Task1 extends React.Component {
   }
 
   handleNextStage () {
-    this.props.onNextStage({ expressions: this.state.expressions })
+    if (this.state.submitted) {
+      this.props.onNextStage()
+      return
+    }
+    this.setState({ submitted: true })
+  }
+
+  isExpressionCorrect (line, start, end) {
+    return this.state.submitted && !!this.props.solution.find(expression => (
+      expression[0] === line && expression[1] === start && expression[2] === end
+    ))
   }
 
   render () {
@@ -94,6 +105,8 @@ class Task1 extends React.Component {
         line={expression[0]}
         start={expression[1]}
         end={expression[2]}
+        correct={this.isExpressionCorrect(...expression)}
+        incorrect={!this.isExpressionCorrect(...expression)}
         onDelete={() => this.handleExprDelete(i)} />
     )
 

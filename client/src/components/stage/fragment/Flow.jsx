@@ -1,4 +1,5 @@
 import React from 'react'
+import classnames from 'classnames'
 import CurvedArrow from './CurvedArrow'
 import Arrowhead from './Arrowhead'
 import DeleteArrowButton from './DeleteArrowButton'
@@ -15,13 +16,17 @@ function getLineY (lineIdx) {
   return CODE_FRAGMENT_PADDING_TOP_PX + lineIdx * LINE_HEIGHT_PX + LINE_HEIGHT_PX / 2
 }
 
-const Flow = ({ startLine, endLine, onClick, onDelete, selected }) => {
+const Flow = ({ startLine, endLine, onClick, onDelete, selected, correct, incorrect }) => {
   if (startLine === endLine - 1) {
     const x = CODE_FRAGMENT_PADDING_LEFT_PX + LINE_WIDTH_PX / 2 - DIRECT_ARROW_SVG_WIDTH
     const y = CODE_FRAGMENT_PADDING_TOP_PX + (startLine + 1) * LINE_HEIGHT_PX - DIRECT_ARROW_SVG_HEIGHT / 2
     return (
-      <div className="Flow direct" onClick={onClick} style={{ left: x + 'px', top: y + 'px' }}>
-        {selected && <div className="delete-btn" onClick={onDelete}>x</div>}
+      <div
+        className={classnames('Flow direct', { correct, incorrect })}
+        onClick={onClick}
+        style={{ left: x + 'px', top: y + 'px' }}
+      >
+        {selected && !correct && !incorrect && <div className="delete-btn" onClick={onDelete}>x</div>}
         <div className="arrowhead" />
         <div className="line" />
       </div>
@@ -40,7 +45,26 @@ const Flow = ({ startLine, endLine, onClick, onDelete, selected }) => {
     const ay = y2
     const dx = x1 - 6
     const dy = y1
-    return (<CurvedArrow onClick={onClick} deletable={selected} onDelete={onDelete} dx={dx} dy={dy} deg={270} ax={ax} ay={ay} x1={x1} y1={y1} x2={x2} y2={y2} cx1={cx1} cy1={cy1} cx2={cx2} cy2={cy2} />)
+    return (
+      <CurvedArrow
+        onClick={onClick}
+        deletable={selected}
+        onDelete={onDelete}
+        dx={dx}
+        dy={dy}
+        deg={270}
+        ax={ax}
+        ay={ay}
+        x1={x1}
+        y1={y1}
+        x2={x2}
+        y2={y2}
+        cx1={cx1}
+        cy1={cy1}
+        cx2={cx2}
+        cy2={cy2}
+      />
+    )
   }
   if (startLine > endLine) {
     const x1 = CODE_FRAGMENT_PADDING_LEFT_PX + LINE_WIDTH_PX
@@ -55,8 +79,32 @@ const Flow = ({ startLine, endLine, onClick, onDelete, selected }) => {
     const ay = y2
     const dx = x1 + 6
     const dy = y1
-    return (<CurvedArrow onClick={onClick} deletable={selected} onDelete={onDelete} dx={dx} dy={dy} deg={90} ax={ax} ay={ay} x1={x1} y1={y1} x2={x2} y2={y2} cx1={cx1} cy1={cy1} cx2={cx2} cy2={cy2} />)
+    return (
+      <CurvedArrow
+        onClick={onClick}
+        deletable={selected}
+        onDelete={onDelete}
+        dx={dx}
+        dy={dy}
+        deg={90}
+        ax={ax}
+        ay={ay}
+        x1={x1}
+        y1={y1}
+        x2={x2}
+        y2={y2}
+        cx1={cx1}
+        cy1={cy1}
+        cx2={cx2}
+        cy2={cy2}
+      />
+    )
   }
+}
+
+Flow.defaultProps = {
+  incorrect: false,
+  correct: false
 }
 
 export default Flow

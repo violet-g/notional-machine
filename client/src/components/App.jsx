@@ -18,42 +18,33 @@ const fragment = [
   { indent: 0, tokens: ['print', 'a'] }
 ]
 
-const expressions = [
-  [0, 2, 2],
-  [1, 1, 3],
-  [2, 1, 1],
-  [3, 2, 4],
-  [4, 2, 4],
-  [5, 1, 1]
-]
-
-const flows = [
-  [0, 1],
-  [1, 2],
-  [2, 3],
-  [3, 1],
-  [3, 4],
-  [4, 5]
-]
+const solutions = {
+  expresions: [
+    [0, 2, 2],
+    [1, 1, 3],
+    [2, 1, 1],
+    [3, 2, 4],
+    [4, 2, 4],
+    [5, 1, 1]
+  ],
+  flows: [
+    [0, 1],
+    [1, 2],
+    [2, 3],
+    [3, 1],
+    [1, 4],
+    [4, 5]
+  ]
+}
 
 class App extends React.Component {
   constructor () {
     super()
-    this.state = {
-      stage: 1,
-      expressions: [],
-      flows: []
-    }
+    this.state = { stage: 1 }
   }
 
-  handleStageChange (stage, params = {}) {
-    if (params.expressions) {
-      this.setState({ expressions: params.expressions })
-    }
-    if (params.flows) {
-      this.setState({ flows: params.flows})
-    }
-    this.setState({ stage: stage })
+  handleStageChange (stage) {
+    this.setState({ stage })
   }
 
   render() {
@@ -63,6 +54,7 @@ class App extends React.Component {
         <Task1
           instructions={tasks[0]}
           fragment={fragment}
+          solution={solutions.expressions}
           onNextStage={this.handleStageChange.bind(this, 2)}
         />
       )
@@ -71,7 +63,8 @@ class App extends React.Component {
         <Task2
           instructions={tasks[1]}
           fragment={fragment}
-          expressions={this.state.expressions}
+          expressions={solution.expressions}
+          solution={solution.flows}
           onNextStage={this.handleStageChange.bind(this, 3)}
         />
       )
@@ -80,8 +73,8 @@ class App extends React.Component {
         <Task3
           instructions={tasks[2]}
           fragment={fragment}
-          expressions={this.state.expressions}
-          flows={this.state.flows}
+          expressions={solution.expressions}
+          flows={solution.flows}
         />
       )
     default:
