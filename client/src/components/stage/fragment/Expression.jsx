@@ -22,5 +22,4 @@ Expression.defaultProps = {
   incorrect: false
 }
 
-
 export default Expression

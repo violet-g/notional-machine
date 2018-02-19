@@ -47,6 +47,11 @@ body {
   cursor: pointer;
 }
 
+.DeleteArrowButton:hover {
+  cursor: pointer;
+  -ms-user-select: none;
+}
+
 .Line.list-group-item {
   font-family: monospace;
   z-index: 100;

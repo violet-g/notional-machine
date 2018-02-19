@@ -18,6 +18,24 @@ const fragment = [
   { indent: 0, tokens: ['print', 'a'] }
 ]
 
+const expressions = [
+  [0, 2, 2],
+  [1, 1, 3],
+  [2, 1, 1],
+  [3, 2, 4],
+  [4, 2, 4],
+  [5, 1, 1]
+]
+
+const flows = [
+  [0, 1],
+  [1, 2],
+  [2, 3],
+  [3, 1],
+  [1, 4],
+  [4, 5]
+]
+
 const solution = {
   expressions: [
     [0, 2, 2],

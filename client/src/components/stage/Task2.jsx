@@ -98,15 +98,13 @@ class Task2 extends React.Component {
     )
 
     return (
-      <div className="Task2">
-        <Task {...this.props}>
-          <CodeFragment>
-            {lines}
-            {flows}
-            {expressions}
-          </CodeFragment>
-        </Task>
-      </div>
+      <Task {...this.props}>
+        <CodeFragment>
+          {lines}
+          {flows}
+          {expressions}
+        </CodeFragment>
+      </Task>
     )
   }
 }
