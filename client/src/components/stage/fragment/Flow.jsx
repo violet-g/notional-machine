@@ -39,7 +39,7 @@ const Flow = ({ startLine, endLine, onClick, onDelete, selected, correct, incorr
       </div>
     )
   }
-  if (startLine < endLine) {
+  if (startLine > endLine) {
     const x1 = CODE_FRAGMENT_PADDING_LEFT_PX
     const y1 = getLineY(startLine)
     const x2 = CODE_FRAGMENT_PADDING_LEFT_PX - 4
@@ -74,7 +74,7 @@ const Flow = ({ startLine, endLine, onClick, onDelete, selected, correct, incorr
       />
     )
   }
-  if (startLine > endLine) {
+  if (startLine < endLine) {
     const x1 = CODE_FRAGMENT_PADDING_LEFT_PX + LINE_WIDTH_PX
     const y1 = getLineY(startLine)
     const x2 = CODE_FRAGMENT_PADDING_LEFT_PX + LINE_WIDTH_PX + 6
