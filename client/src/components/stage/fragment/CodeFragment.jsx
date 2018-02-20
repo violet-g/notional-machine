@@ -3,8 +3,13 @@ import Expression from './Expression'
 import Line from './Line'
 import Flow from './Flow'
 import FlowContainer from './FlowContainer'
+import Annotation from './Annotation'
 import { times, includes } from 'lodash'
 import classnames from 'classnames'
+
+const hasAnnotation = ({ props: { selected, correct, incorrect } }) => (
+  selected && !correct && !incorrect
+)
 
 const CodeFragment = ({ children }) => {
   const childrenArray = React.Children.toArray(children)
@@ -34,11 +39,16 @@ const CodeFragment = ({ children }) => {
   const flows = childrenArray.filter(child => child.type === Flow)
   const rest = childrenArray.filter(child => !includes([Line, Flow, Expression], child.type))
 
+  const annotations = flows.filter(hasAnnotation).map((flow, i) => <Annotation key={i} flow={flow} />)
+
+  const isFlowSelected = !!flows.find(flow => flow.props.selected)
+
   return (
     <div className="CodeFragment section">
-      <div className="list-group">
+      <div className={classnames('list-group code', { disabled: isFlowSelected })}>
         {newLines}
       </div>
+      {annotations}
       {rest}
       <FlowContainer>{flows}</FlowContainer>
     </div>

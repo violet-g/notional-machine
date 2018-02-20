@@ -30,12 +30,11 @@ const Flow = ({ startLine, endLine, onClick, onDelete, selected, correct, incorr
     return (
       <div
         className={classnames('Flow direct', { correct, incorrect })}
-        onClick={onClick}
         style={{ left: x + 'px', top: y + 'px' }}
       >
         {selected && !correct && !incorrect && <div className="delete-btn" onClick={onDelete}>x</div>}
-        <div className="arrowhead" />
-        <div className="line" />
+        <div className="arrowhead" onClick={onClick} />
+        <div className="line" onClick={onClick} />
       </div>
     )
   }
