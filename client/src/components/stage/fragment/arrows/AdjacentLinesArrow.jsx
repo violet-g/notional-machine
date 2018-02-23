@@ -9,7 +9,7 @@ import {
   ADJACENT_LINES_ARROW_SVG_HEIGHT
 } from '../dimensions'
 
-const AdjacentLinesArrow = ({ startLine, selected, correct, incorrect, onClick, onDelete }) => {
+const AdjacentLinesArrow = ({ startLine, selected, correct, incorrect, onClick, onDelete, annotation }) => {
   const x = CODE_FRAGMENT_PADDING_HORIZONTAL + LINE_WIDTH / 2 - ADJACENT_LINES_ARROW_SVG_WIDTH
   const y = CODE_FRAGMENT_PADDING_VERTICAL + (startLine + 1) * LINE_HEIGHT - ADJACENT_LINES_ARROW_SVG_HEIGHT / 2
   return (
@@ -20,6 +20,7 @@ const AdjacentLinesArrow = ({ startLine, selected, correct, incorrect, onClick, 
       {selected && !correct && !incorrect && <div className="delete-btn" onClick={onDelete}>x</div>}
       <div className="arrowhead" onClick={onClick} />
       <div className="line" onClick={onClick} />
+      <div className="annotation">{annotation}</div>
     </div>
   )
 }

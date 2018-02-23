@@ -44,6 +44,14 @@ class Task2 extends React.Component {
     })
   }
 
+  handleFlowAnnotate (i, label) {
+    const { flows, selectedFlows } = this.state
+    this.setState({
+      flows: [...flows.slice(0, i), [...flows[i].slice(0, 2), label], ...flows.slice(i + 1)],
+      selectedFlows: selectedFlows.filter(idx => i !== idx)
+    })
+  }
+
   handleNextStage () {
     if (this.state.submitted) {
       this.props.onNextStage()
@@ -81,11 +89,13 @@ class Task2 extends React.Component {
         key={i}
         startLine={flow[0]}
         endLine={flow[1]}
+        annotation={flow[2]}
         selected={this.state.selectedFlows.find(idx => idx === i) !== undefined}
         correct={this.isFlowCorrect(...flow)}
         incorrect={this.isFlowIncorrect(...flow)}
         onClick={() => this.handleFlowSelect(i)}
         onDelete={() => this.handleFlowDelete(i)}
+        onAnnotate={(label) => this.handleFlowAnnotate(i, label)}
       />
     )
 

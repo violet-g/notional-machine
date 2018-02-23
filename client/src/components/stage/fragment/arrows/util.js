@@ -1,4 +1,4 @@
-import { CODE_FRAGMENT_PADDING_VERTICAL, LINE_HEIGHT } from '../dimensions'
+import { CODE_FRAGMENT_PADDING_VERTICAL, LINE_HEIGHT } from './dimensions'
 
 export function getLineY (lineIdx) {
   return CODE_FRAGMENT_PADDING_VERTICAL + lineIdx * LINE_HEIGHT + LINE_HEIGHT / 2

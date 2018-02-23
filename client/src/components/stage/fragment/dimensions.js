@@ -11,3 +11,5 @@ export const LINE_HEIGHT = 23.2 + 24 + 2
 export const ADJACENT_LINES_ARROW_SVG_WIDTH = 20
 
 export const ADJACENT_LINES_ARROW_SVG_HEIGHT = 30
+
+export const FLOW_WIDTH = 100

@@ -127,6 +127,10 @@ body {
   bottom: 2px;
 }
 
+.AdjacentLinesArrow .annotation {
+  padding-left: 20px;
+}
+
 .AdjacentLinesArrow.correct .line {
   background: #28a745;
 }
@@ -165,7 +169,7 @@ body {
 .Annotation {
   position: absolute;
   z-index: 200;
-  width: 100px;
+  width: 120px;
 }
 
 .Indent {

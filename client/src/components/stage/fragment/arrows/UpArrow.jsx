@@ -1,9 +1,12 @@
 import React from 'react'
 import CurvedArrow from './CurvedArrow'
-import { getLineY, getFlowColor } from './util'
+import { getLineY, getFlowColor } from '../util'
 import { CODE_FRAGMENT_PADDING_HORIZONTAL } from '../dimensions'
+import Text from './Text'
+import Arrowhead from './Arrowhead'
+import DeleteArrowButton from './DeleteArrowButton'
 
-const UpArrow = ({ startLine, endLine, selected, correct, incorrect, onClick, onDelete }) => {
+const UpArrow = ({ startLine, endLine, selected, correct, incorrect, onClick, onDelete, annotation }) => {
   const x1 = CODE_FRAGMENT_PADDING_HORIZONTAL
   const y1 = getLineY(startLine)
   const x2 = CODE_FRAGMENT_PADDING_HORIZONTAL - 4
@@ -16,25 +19,22 @@ const UpArrow = ({ startLine, endLine, selected, correct, incorrect, onClick, on
   const ay = y2
   const dx = x1 - 6
   const dy = y1
+
+  const arrowhead = (<Arrowhead x={ax} y={ay} deg={270} fill="#3d3d3d" />)
+  const annotationComponent = (<Text x={x2 - 20} y={y2 - 10} fill="#3d3d3d">{annotation || ''}</Text>)
+  let deleteButton = null
+  if (selected && !correct && !incorrect) {
+    deleteButton = (<DeleteArrowButton x={dx} y={dy} onDelete={onDelete} />)
+  }
+
   return (
     <CurvedArrow
       onClick={onClick}
-      deletable={selected && !correct && !incorrect}
-      onDelete={onDelete}
       stroke={getFlowColor(correct, incorrect)}
-      dx={dx}
-      dy={dy}
-      deg={270}
-      ax={ax}
-      ay={ay}
-      x1={x1}
-      y1={y1}
-      x2={x2}
-      y2={y2}
-      cx1={cx1}
-      cy1={cy1}
-      cx2={cx2}
-      cy2={cy2}
+      annotation={annotationComponent}
+      arrowhead={arrowhead}
+      deleteButton={deleteButton}
+      coordinates={{ x1, y1, x2, y2, cx1, cy1, cx2, cy2 }}
     />
   )
 }
