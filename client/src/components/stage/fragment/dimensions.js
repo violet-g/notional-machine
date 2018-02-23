@@ -1,0 +1,13 @@
+export const CODE_FRAGMENT_WIDTH = 400
+
+export const CODE_FRAGMENT_PADDING_VERTICAL = 40
+
+export const CODE_FRAGMENT_PADDING_HORIZONTAL = 80
+
+export const LINE_WIDTH = 198 + 40 + 2
+
+export const LINE_HEIGHT = 23.2 + 24 + 2
+
+export const ADJACENT_LINES_ARROW_SVG_WIDTH = 20
+
+export const ADJACENT_LINES_ARROW_SVG_HEIGHT = 30

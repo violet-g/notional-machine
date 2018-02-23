@@ -99,7 +99,7 @@ body {
   z-index: 50;
 }
 
-.Flow.direct {
+.AdjacentLinesArrow {
   position: absolute;
   z-index: 150;
   cursor: pointer;
@@ -107,7 +107,7 @@ body {
   height: 20px;
 }
 
-.Flow.direct .arrowhead {
+.AdjacentLinesArrow .arrowhead {
   width: 0;
   height: 0;
   border-style: solid;
@@ -118,7 +118,7 @@ body {
   left: 4px;
 }
 
-.Flow.direct .line {
+.AdjacentLinesArrow .line {
   height: 100%;
   width: 2px;
   background: #3d3d3d;
@@ -127,19 +127,19 @@ body {
   bottom: 2px;
 }
 
-.Flow.direct.correct .line {
+.AdjacentLinesArrow.correct .line {
   background: #28a745;
 }
 
-.Flow.direct.correct .arrowhead {
+.AdjacentLinesArrow.correct .arrowhead {
   border-color: #28a745 transparent transparent transparent;
 }
 
-.Flow.direct.incorrect .line {
+.AdjacentLinesArrow.incorrect .line {
   background: #dc3545;
 }
 
-.Flow.direct.incorrect .arrowhead {
+.AdjacentLinesArrow.incorrect .arrowhead {
   border-color: #dc3545 transparent transparent transparent;
 }
 
@@ -147,7 +147,7 @@ body {
   cursor: pointer;
 }
 
-.Flow.direct .delete-btn {
+.AdjacentLinesArrow .delete-btn {
   width: 10px;
   height: 10px;
   color: #fff;
