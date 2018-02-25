@@ -6,6 +6,7 @@ import Token from './fragment/Token'
 import Expression from './fragment/Expression'
 import Flow from './fragment/Flow'
 import VariableTable from './VariableTable'
+import ResetButton from './ResetButton'
 
 class Task3 extends React.Component {
   constructor () {
@@ -40,6 +41,13 @@ class Task3 extends React.Component {
         ...flows.slice(idx + 1)
       ],
       nextAnnotationIdx: nextAnnotationIdx + 1
+    })
+  }
+
+  handleResetAnnotations () {
+    this.setState({
+      flows: this.state.flows.map(flow => [flow[0], flow[1]]),
+      nextAnnotationIdx: 1
     })
   }
 
@@ -82,6 +90,7 @@ class Task3 extends React.Component {
               {expressions}
               {flows}
             </CodeFragment>
+            <ResetButton onClick={this.handleResetAnnotations.bind(this)} />
           </div>
           <div className="col-lg-4">
             <div className="section">
