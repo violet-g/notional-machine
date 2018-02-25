@@ -52,6 +52,11 @@ const solution = {
     [3, 1],
     [1, 4],
     [4, 5]
+  ],
+  inputs: [
+    [5, 79],
+    [4, 1],
+    [3, 302]
   ]
 }
 
@@ -93,6 +98,7 @@ class App extends React.Component {
           fragment={fragment}
           expressions={solution.expressions}
           flows={solution.flows}
+          inputs={solution.inputs}
         />
       )
     default:
