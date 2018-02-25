@@ -15,6 +15,10 @@ body {
   cursor: pointer;
 }
 
+.badge-danger-outline {
+  border: 1px solid #dc3545;
+}
+
 .App {
   margin-top: 60px;
   margin-left: 60px;

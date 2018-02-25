@@ -86,6 +86,12 @@ class Task1 extends React.Component {
     return this.state.submitted && !this.isExpressionCorrect(line, start, end)
   }
 
+  isMissedSolution (solution) {
+    return !this.state.expressions.find(expr =>
+      expr[0] === solution[0] && expr[1] === solution[1] && expr[2] === solution[2]
+    )
+  }
+
   render () {
     const { fragment } = this.props
 
@@ -103,7 +109,7 @@ class Task1 extends React.Component {
       </Line>
     )
 
-    const expressions = this.state.expressions.map((expression, i) =>
+    let expressions = this.state.expressions.map((expression, i) =>
       <Expression
         key={['expr', i].join('_')}
         line={expression[0]}
@@ -111,8 +117,22 @@ class Task1 extends React.Component {
         end={expression[2]}
         correct={this.isExpressionCorrect(...expression)}
         incorrect={this.isExpressionIncorrect(...expression)}
-        onDelete={() => this.handleExprDelete(i)} />
+        onDelete={() => this.handleExprDelete(i)}
+      />
     )
+
+    // also display expressions which were missed by the pupil
+    if (this.state.submitted) {
+      expressions = expressions.concat(this.props.solution.filter(this.isMissedSolution.bind(this)).map((expression, i) =>
+        <Expression
+          key={['expr_solution', i].join('_')}
+          line={expression[0]}
+          start={expression[1]}
+          end={expression[2]}
+          missed={true}
+        />
+      ))
+    }
 
     return (
       <Task {...this.props} onNextStage={this.handleNextStage.bind(this)}>
