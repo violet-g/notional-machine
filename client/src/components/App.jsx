@@ -58,7 +58,7 @@ const solution = {
 class App extends React.Component {
   constructor () {
     super()
-    this.state = { stage: 3 }
+    this.state = { stage: 1 }
   }
 
   handleStageChange (stage) {
