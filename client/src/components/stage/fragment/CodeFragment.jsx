@@ -44,7 +44,7 @@ const CodeFragment = ({ children }) => {
   const isFlowSelected = !!flows.find(flow => flow.props.selected)
 
   return (
-    <div className="CodeFragment section">
+    <div className="CodeFragment  card card-body">
       <div className={classnames('list-group code', { disabled: isFlowSelected })}>
         {newLines}
       </div>

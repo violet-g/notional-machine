@@ -1,27 +1,84 @@
 import React from 'react'
+import classnames from 'classnames'
 
-const VariableTable = ({ variables, onVariableAdd, onStepAdd }) => (
-  <div className="VariableTable">
-    <button className="btn btn-default btn-add-col" onClick={onVariableAdd}>[+]</button>
-    <div className="variable-table">
-      {variables.map((variable, i) =>
-        <div key={i} className="variable-table-col">
-          <div className="cell"><input type="text" className="form-control" placeholder="Name..." /></div>
-          {variable.steps.map((step, j) =>
-            <div className="cell" key={[i, j].join('_')}>
-              <div className="form-group">
-                <input type="text" className="form-control" placeholder="Line..." />
+class VariableTable extends React.Component {
+  constructor () {
+    super()
+    this.state = { variableName: '', activeVariable: null }
+  }
+  handleVariableNameChange ({ target: { value } }) {
+    this.setState({ variableName: value })
+  }
+  handleVariableAdd (e) {
+    e.preventDefault()
+    if (this.state.variableName === '') {
+      return
+    }
+    if (this.state.activeVariable === null) {
+      this.setState({ activeVariable: 0 })
+    }
+    this.props.onVariableAdd(this.state.variableName)
+    this.setState({ variableName: '' })
+  }
+  handleActiveVariableChange (i) {
+    this.setState({ activeVariable: i })
+  }
+  handleStepAdd () {
+    this.props.onStepAdd(this.state.activeVariable)
+  }
+  render () {
+    const { variables, onVariableAdd } = this.props
+    return (
+      <div className="VariableTable card">
+        <div className="card-body">
+          <h5 className="card-title">Variables</h5>
+          <form onSubmit={this.handleVariableAdd.bind(this)}>
+            <div className="input-group">
+              <input
+                type="text"
+                className="form-control"
+                placeholder="Variable name"
+                value={this.state.variableName}
+                onChange={this.handleVariableNameChange.bind(this)}
+              />
+              <div className="input-group-append">
+                <button className="btn btn-outline-secondary" type="submit">
+                  Add variable +
+                </button>
               </div>
-              <div className="form-group">
-                <input type="text" className="form-control" placeholder="Value..." />
+            </div>
+          </form>
+        </div>
+        <div className="card-header">
+          <ul className="nav nav-tabs card-header-tabs">
+            {variables.map((variable, i) =>
+              <li key={i} className="nav-item">
+                <a
+                  className={classnames('nav-link', { active: this.state.activeVariable === i })}
+                  onClick={this.handleActiveVariableChange.bind(this, i)}
+                >
+                {variable.name}
+                </a>
+              </li>
+            )}
+          </ul>
+        </div>
+        <div className="card-body">
+          {this.props.variables[this.state.activeVariable] && this.props.variables[this.state.activeVariable].steps.map((step, i) =>
+            <div key={i} className="row form-group">
+              <div className="col-sm-6">
+                <input className="form-control form-control-sm" type="text" placeholder="Line" />
+              </div>
+              <div className="col-sm-6">
+                <input className="form-control form-control-sm" type="text" placeholder="Value" />
               </div>
             </div>
           )}
-          <button class="btn btn-default" onClick={() => onStepAdd(i)}>[+]</button>
+          <a onClick={this.handleStepAdd.bind(this)} className="btn btn-outline-secondary">Add step +</a>
         </div>
-      )}
-    </div>
-  </div>
-)
+      </div>
+    )
+  }
+}
 
 export default VariableTable

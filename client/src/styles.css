@@ -20,10 +20,6 @@ body {
   margin-left: 60px;
 }
 
-.section {
-  background: #fff;
-}
-
 .CodeFragment {
   margin: 40px auto;
   padding: 40px 80px;
@@ -195,7 +191,7 @@ body {
   position: relative;
 }
 
-.VariableTable .variable-table {
+/*.VariableTable .variable-table {
   display: flex;
   flex-direction: row;
 }
@@ -208,4 +204,4 @@ body {
 
 .VariableTable .btn-add-col {
   float: right;
-}
+}*/

@@ -18,14 +18,14 @@ class Task3 extends React.Component {
     this.setState({ flows: this.props.flows })
   }
 
-  handleVariableAdd () {
-    this.setState({ variables: [...this.state.variables, { steps: [] }] })
+  handleVariableAdd (name) {
+    this.setState({ variables: [...this.state.variables, { steps: [], name }] })
   }
 
   handleStepAdd (idx) {
     const variables = [
       ...this.state.variables.slice(0, idx),
-      { steps: [...this.state.variables[idx].steps, []] },
+      Object.assign({}, this.state.variables[idx], { steps: [...this.state.variables[idx].steps, []] }),
       ...this.state.variables.slice(idx + 1)
     ]
     this.setState({ variables })
@@ -90,19 +90,19 @@ class Task3 extends React.Component {
               {expressions}
               {flows}
             </CodeFragment>
-            <ResetButton onClick={this.handleResetAnnotations.bind(this)} />
+            <div className="card card-body">
+              <ResetButton onClick={this.handleResetAnnotations.bind(this)} />
+            </div>
           </div>
           <div className="col-lg-4">
-            <div className="section">
-              <VariableTable
-                variables={this.state.variables}
-                onVariableAdd={this.handleVariableAdd.bind(this)}
-                onStepAdd={this.handleStepAdd.bind(this)}
-              />
-              <div className="form-group">
-                <label htmlFor="output">Output</label>
-                <input id="output" className="form-control" type="text" placeholder="Output..." />
-              </div>
+            <VariableTable
+              variables={this.state.variables}
+              onVariableAdd={this.handleVariableAdd.bind(this)}
+              onStepAdd={this.handleStepAdd.bind(this)}
+            />
+            <div className="form-group">
+              <label htmlFor="output">Output</label>
+              <input id="output" className="form-control" type="text" placeholder="Output..." />
             </div>
           </div>
         </div>
