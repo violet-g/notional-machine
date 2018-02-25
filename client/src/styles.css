@@ -133,6 +133,7 @@ body {
 
 .AdjacentLinesArrow .annotation {
   padding-left: 20px;
+  width: 600px;
 }
 
 .AdjacentLinesArrow.correct .line {

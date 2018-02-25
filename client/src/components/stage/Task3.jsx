@@ -10,18 +10,16 @@ import VariableTable from './VariableTable'
 class Task3 extends React.Component {
   constructor () {
     super()
-    this.state = { variables: [] }
+    this.state = { variables: [], flows: [], nextAnnotationIdx: 1 }
+  }
+
+  componentDidMount () {
+    this.setState({ flows: this.props.flows })
   }
 
   handleVariableAdd () {
     this.setState({ variables: [...this.state.variables, { steps: [] }] })
   }
-
-  // handleVariableRemove (name) {
-  //   const variables = Object.assign({}, this.state.variables)
-  //   delete variables[name]
-  //   this.setState({ variables })
-  // }
 
   handleStepAdd (idx) {
     const variables = [
@@ -32,10 +30,18 @@ class Task3 extends React.Component {
     this.setState({ variables })
   }
 
-  // handleStepRemove (name, idx) {
-  //   const variable = [...this.state.variable[name].slice(0, idx), ...this.state.variable[name].slice(idx + 1)]
-  //   this.setState({ variables: Object.assign({}, this.state.variables, { [name]: variable }) })
-  // }
+  handleFlowAnnotate (idx) {
+    const { flows, nextAnnotationIdx } = this.state
+    const annotation = flows[idx][2] ? flows[idx][2] + ', ' + nextAnnotationIdx : nextAnnotationIdx + ''
+    this.setState({
+      flows: [
+        ...flows.slice(0, idx),
+        [...flows[idx].slice(0, 2), annotation],
+        ...flows.slice(idx + 1)
+      ],
+      nextAnnotationIdx: nextAnnotationIdx + 1
+    })
+  }
 
   render() {
     const lines = this.props.fragment.map((line, i) =>
@@ -57,11 +63,13 @@ class Task3 extends React.Component {
         end={expression[2]} />
     )
 
-    const flows = this.props.flows.map((flow, i) =>
+    const flows = this.state.flows.map((flow, i) =>
       <Flow
         key={['flow', i].join('_')}
         startLine={flow[0]}
-        endLine={flow[1]} />
+        endLine={flow[1]}
+        annotation={flow[2]}
+        onClick={this.handleFlowAnnotate.bind(this, i)} />
     )
 
     return (
