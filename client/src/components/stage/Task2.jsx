@@ -68,6 +68,10 @@ class Task2 extends React.Component {
     return this.state.submitted && !this.isFlowCorrect(start, end)
   }
 
+  isMissedSolution (solution) {
+    return !this.state.flows.find(flow => flow[0] === solution[0] && flow[1] === solution[1])
+  }
+
   render () {
     const { fragment } = this.props
 
@@ -84,7 +88,7 @@ class Task2 extends React.Component {
       </Line>
     )
 
-    const flows = this.state.flows.map((flow, i) =>
+    let flows = this.state.flows.map((flow, i) =>
       <Flow
         key={i}
         startLine={flow[0]}
@@ -99,6 +103,18 @@ class Task2 extends React.Component {
       />
     )
 
+    // also display flows which were missed by the pupil
+    if (this.state.submitted) {
+      flows = flows.concat(this.props.solution.filter(this.isMissedSolution.bind(this)).map((flow, i) =>
+        <Flow
+          key={['flow_solution', i].join('_')}
+          startLine={flow[0]}
+          endLine={flow[1]}
+          incorrect={true}
+        />
+      ))
+    }
+    
     const expressions = this.props.expressions.map((expression, i) =>
       <Expression
         key={['expr', i].join('_')}
