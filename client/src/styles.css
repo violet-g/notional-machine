@@ -186,22 +186,7 @@ body {
   text-align: center;
 }
 
-.VariableTable {
+.VariableTable, .InputTable {
   margin: 40px auto;
   position: relative;
 }
-
-/*.VariableTable .variable-table {
-  display: flex;
-  flex-direction: row;
-}
-
-.VariableTable .variable-table .cell {
-  background: #e6e6e6;
-  padding: 10px;
-  margin: 2px 2px;
-}
-
-.VariableTable .btn-add-col {
-  float: right;
-}*/

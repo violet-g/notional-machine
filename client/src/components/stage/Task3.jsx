@@ -7,7 +7,9 @@ import Expression from './fragment/Expression'
 import Flow from './fragment/Flow'
 import VariableTable from './VariableTable'
 import ResetButton from './ResetButton'
+import InputTable from './InputTable'
 import OutputTable from './OutputTable'
+import ExpressionEvaluationCanvas from './ExpressionEvaluationCanvas'
 
 class Task3 extends React.Component {
   constructor () {
@@ -88,7 +90,10 @@ class Task3 extends React.Component {
     return (
       <Task instructions={this.props.instructions}>
         <div className="row">
-          <div className="col-lg-4" />
+          <div className="col-lg-4">
+            <InputTable inputs={this.props.inputs} />
+            <ExpressionEvaluationCanvas />
+          </div>
           <div className="col-lg-4">
             <CodeFragment>
               {lines}
