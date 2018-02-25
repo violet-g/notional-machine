@@ -135,7 +135,7 @@ class Task1 extends React.Component {
     }
 
     return (
-      <Task {...this.props} onNextStage={this.handleNextStage.bind(this)}>
+      <Task {...this.props} onNextStage={this.handleNextStage.bind(this)} submitted={this.state.submitted}>
         <CodeFragment>
           {lines}
           {expressions}

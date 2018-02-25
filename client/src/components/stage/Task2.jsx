@@ -114,7 +114,7 @@ class Task2 extends React.Component {
         />
       ))
     }
-    
+
     const expressions = this.props.expressions.map((expression, i) =>
       <Expression
         key={['expr', i].join('_')}
@@ -124,7 +124,7 @@ class Task2 extends React.Component {
     )
 
     return (
-      <Task {...this.props} onNextStage={this.handleNextStage.bind(this)}>
+      <Task {...this.props} onNextStage={this.handleNextStage.bind(this)} submitted={this.state.submitted}>
         <CodeFragment>
           {lines}
           {flows}
