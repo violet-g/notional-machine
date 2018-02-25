@@ -109,10 +109,6 @@ class Task3 extends React.Component {
               outputs={this.state.outputs}
               onOutputAdd={this.handleOutputAdd.bind(this)}
             />
-            <div className="form-group">
-              <label htmlFor="output">Output</label>
-              <input id="output" className="form-control" type="text" placeholder="Output..." />
-            </div>
           </div>
         </div>
       </Task>
