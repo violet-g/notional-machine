@@ -11,6 +11,10 @@ body {
   background-size: cover;
 }
 
+.btn-group .btn {
+  cursor: pointer;
+}
+
 .App {
   margin-top: 60px;
   margin-left: 60px;
