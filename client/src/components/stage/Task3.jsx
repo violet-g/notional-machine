@@ -7,11 +7,12 @@ import Expression from './fragment/Expression'
 import Flow from './fragment/Flow'
 import VariableTable from './VariableTable'
 import ResetButton from './ResetButton'
+import OutputTable from './OutputTable'
 
 class Task3 extends React.Component {
   constructor () {
     super()
-    this.state = { variables: [], flows: [], nextAnnotationIdx: 1 }
+    this.state = { variables: [], flows: [], outputs: [], nextAnnotationIdx: 1 }
   }
 
   componentDidMount () {
@@ -49,6 +50,10 @@ class Task3 extends React.Component {
       flows: this.state.flows.map(flow => [flow[0], flow[1]]),
       nextAnnotationIdx: 1
     })
+  }
+
+  handleOutputAdd () {
+    this.setState({ outputs: [...this.state.outputs, {}] })
   }
 
   render() {
@@ -99,6 +104,10 @@ class Task3 extends React.Component {
               variables={this.state.variables}
               onVariableAdd={this.handleVariableAdd.bind(this)}
               onStepAdd={this.handleStepAdd.bind(this)}
+            />
+            <OutputTable
+              outputs={this.state.outputs}
+              onOutputAdd={this.handleOutputAdd.bind(this)}
             />
             <div className="form-group">
               <label htmlFor="output">Output</label>

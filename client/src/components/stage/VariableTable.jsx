@@ -49,33 +49,37 @@ class VariableTable extends React.Component {
             </div>
           </form>
         </div>
-        <div className="card-header">
-          <ul className="nav nav-tabs card-header-tabs">
-            {variables.map((variable, i) =>
-              <li key={i} className="nav-item">
-                <a
-                  className={classnames('nav-link', { active: this.state.activeVariable === i })}
-                  onClick={this.handleActiveVariableChange.bind(this, i)}
-                >
-                {variable.name}
-                </a>
-              </li>
+        {this.state.activeVariable !== null && (
+          <div className="card-header">
+            <ul className="nav nav-tabs card-header-tabs">
+              {variables.map((variable, i) =>
+                <li key={i} className="nav-item">
+                  <a
+                    className={classnames('nav-link', { active: this.state.activeVariable === i })}
+                    onClick={this.handleActiveVariableChange.bind(this, i)}
+                  >
+                    {variable.name}
+                  </a>
+                </li>
+              )}
+            </ul>
+          </div>
+        )}
+        {this.state.activeVariable !== null && (
+          <div className="card-body">
+            {this.props.variables[this.state.activeVariable] && this.props.variables[this.state.activeVariable].steps.map((step, i) =>
+              <div key={i} className="row form-group">
+                <div className="col-sm-6">
+                  <input className="form-control form-control-sm" type="text" placeholder="Line" />
+                </div>
+                <div className="col-sm-6">
+                  <input className="form-control form-control-sm" type="text" placeholder="Value" />
+                </div>
+              </div>
             )}
-          </ul>
-        </div>
-        <div className="card-body">
-          {this.props.variables[this.state.activeVariable] && this.props.variables[this.state.activeVariable].steps.map((step, i) =>
-            <div key={i} className="row form-group">
-              <div className="col-sm-6">
-                <input className="form-control form-control-sm" type="text" placeholder="Line" />
-              </div>
-              <div className="col-sm-6">
-                <input className="form-control form-control-sm" type="text" placeholder="Value" />
-              </div>
-            </div>
-          )}
-          <a onClick={this.handleStepAdd.bind(this)} className="btn btn-outline-secondary">Add step +</a>
-        </div>
+            <a onClick={this.handleStepAdd.bind(this)} className="btn btn-outline-secondary">Add step +</a>
+          </div>
+        )}            
       </div>
     )
   }
