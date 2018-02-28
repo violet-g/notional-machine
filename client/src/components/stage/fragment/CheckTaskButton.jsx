@@ -6,7 +6,6 @@ const CheckTaskButton = ({ onNextStage, submitted }) => (
     className="CheckExprButton btn btn-large btn-danger btn-block"
     onClick={() => onNextStage()}
   >
-    Check answers
     {submitted ? 'Continue to next task' : 'Check answers'}
   </button>
 )

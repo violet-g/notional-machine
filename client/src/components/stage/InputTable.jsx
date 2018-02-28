@@ -2,7 +2,7 @@ import React from 'react'
 
 const InputTable = ({ inputs }) => (
   <div className="InputTable card">
-    <div className="card-body"><h5 className="card-title">Variables</h5></div>
+    <div className="card-body"><h5 className="card-title">Inputs</h5></div>
     <ul className="list-group list-group-flush">
       {inputs.map((input, i) =>
         <li key={i} className="list-group-item">
