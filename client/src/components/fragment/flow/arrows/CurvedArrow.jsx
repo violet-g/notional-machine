@@ -5,19 +5,20 @@ import CurvedPath from './CurvedPath'
 import DeleteArrowButton from './DeleteArrowButton'
 import { FLOW_COLOR_DEFAULT } from '../dimensions'
 
-const CurvedArrow = ({ arrowhead, annotation, deleteButton, coordinates, stroke, onClick }) => {
+const CurvedArrow = ({ arrowhead, annotation, deleteButton, coordinates, stroke, strokeDasharray, onClick }) => {
   return (
     <React.Fragment>
       {arrowhead}
       {annotation}
-      <CurvedPath stroke={stroke} onClick={onClick} coordinates={coordinates} />
+      <CurvedPath stroke={stroke} strokeDasharray={strokeDasharray} onClick={onClick} coordinates={coordinates} />
       {deleteButton}
     </React.Fragment>
   )
 }
 
 CurvedArrow.defaultProps = {
-  stroke: FLOW_COLOR_DEFAULT
+  stroke: FLOW_COLOR_DEFAULT,
+  strokeDasharray: '0, 0'
 }
 
 CurvedArrow.propTypes = {
@@ -44,6 +45,9 @@ CurvedArrow.propTypes = {
 
   /** The arrow stroke **/
   stroke: PropTypes.string,
+
+  /** Controls whether this is a curved path or not **/
+  strokeDasharray: PropTypes.string,
 
   /** Called when the arrow is clicked **/
   onClick: PropTypes.func

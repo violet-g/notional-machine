@@ -21,6 +21,6 @@ app.use('/arrow', restRouter(Arrow))
 app.use('/variable', restRouter(Variable))
 app.use('/expression', restRouter(Expression))
 
-app.listen(process.env.PORT || 3000, function() {
+app.listen(3000, function() {
   console.log('Server is listening on port 3000.')
 })

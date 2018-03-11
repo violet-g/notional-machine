@@ -2,15 +2,6 @@ body {
   font-family: Arial, sans-serif;
 }
 
-#background {
-  background-image: url(
-    /*https://feastandwest.com/wp-content/uploads/2015/04/2560x1440_27inMacDesktop.jpg*/
-    /*https://cdn.pixabay.com/photo/2016/01/21/04/14/color-1152782_1280.jpg*/
-    https://images.unsplash.com/photo-1504060765228-f97d1772ff9e?auto=format&fit=crop&w=1950&q=80&ixid=dW5zcGxhc2guY29tOzs7Ozs%3D
-  );
-  background-size: cover;
-}
-
 .btn-group .btn {
   cursor: pointer;
 }
@@ -148,7 +139,17 @@ body {
   background: #dc3545;
 }
 
-.AdjacentLinesArrow.incorrect .arrowhead {
+.AdjacentLinesArrow.missed .line {
+  background: repeating-linear-gradient(
+    0deg,
+    #dc3545,
+    #dc3545 4px,
+    #fff 4px,
+    #fff 8px
+  )
+}
+
+.AdjacentLinesArrow.incorrect .arrowhead, .AdjacentLinesArrow.missed .arrowhead {
   border-color: #dc3545 transparent transparent transparent;
 }
 

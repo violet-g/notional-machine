@@ -15,6 +15,7 @@ import Task3Solution from './tasks/solutions/Task3'
 // Admin
 import Task1Admin from './tasks/admin/Task1'
 import Task2Admin from './tasks/admin/Task2'
+import Task3Admin from './tasks/admin/Task3'
 
 const Exercise = ({ match }) => (
   <Switch>
@@ -30,6 +31,7 @@ const Exercise = ({ match }) => (
 
     <Route exact path="/exercise/:id/task/1/admin" component={Task1Admin} />
     <Route exact path="/exercise/:id/task/2/admin" component={Task2Admin} />
+    <Route exact path="/exercise/:id/task/3/admin" component={Task3Admin} />
   </Switch>
 )
 

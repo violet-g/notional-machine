@@ -6,7 +6,7 @@ import Text from './Text'
 import Arrowhead from './Arrowhead'
 import DeleteArrowButton from './DeleteArrowButton'
 
-const UpArrow = ({ start, end, selected, correct, incorrect, onClick, onDelete, annotation }) => {
+const UpArrow = ({ start, end, selected, correct, incorrect, missed, onClick, onDelete, annotation }) => {
   const x1 = CODE_FRAGMENT_PADDING_HORIZONTAL
   const y1 = getLineY(start)
   const x2 = CODE_FRAGMENT_PADDING_HORIZONTAL - 4
@@ -30,7 +30,8 @@ const UpArrow = ({ start, end, selected, correct, incorrect, onClick, onDelete, 
   return (
     <CurvedArrow
       onClick={onClick}
-      stroke={getFlowColor(correct, incorrect)}
+      stroke={getFlowColor(correct, incorrect || missed)}
+      strokeDasharray={missed ? '5, 5' : '0, 0'}
       annotation={annotationComponent}
       arrowhead={arrowhead}
       deleteButton={deleteButton}
@@ -54,6 +55,12 @@ UpArrow.propTypes = {
 
   /** Whether the arrow is incorrect **/
   incorrect: PropTypes.bool,
+
+  /**
+   * Determines whether this arrow is marked as missed. Missed arrows are
+   * arrows which were in the model solution but the pupil failed to highlight.
+   */
+  missed: PropTypes.bool,
 
   /** Called when the arrow is clicked **/
   onClick: PropTypes.func,

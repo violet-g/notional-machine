@@ -11,11 +11,11 @@ import {
   ADJACENT_LINES_ARROW_SVG_HEIGHT
 } from '../dimensions'
 
-const AdjacentLinesArrow = ({ start, selected, correct, incorrect, onClick, onDelete, annotation }) => {
+const AdjacentLinesArrow = ({ start, selected, correct, incorrect, missed, onClick, onDelete, annotation }) => {
   const x = CODE_FRAGMENT_PADDING_HORIZONTAL + LINE_WIDTH / 2 - ADJACENT_LINES_ARROW_SVG_WIDTH
   const y = CODE_FRAGMENT_PADDING_VERTICAL + (start + 1) * LINE_HEIGHT - ADJACENT_LINES_ARROW_SVG_HEIGHT / 2
 
-  const className = classnames('AdjacentLinesArrow', { correct, incorrect })
+  const className = classnames('AdjacentLinesArrow', { correct, incorrect, missed })
   const style = { left: x + 'px', top: y + 'px' }
 
   return (
@@ -48,6 +48,12 @@ AdjacentLinesArrow.propTypes = {
 
   /** Determines whether the arrow is incorrect. **/
   incorrect: PropTypes.bool,
+
+  /**
+   * Determines whether this arrow is marked as missed. Missed arrows are
+   * arrows which were in the model solution but the pupil failed to highlight.
+   */
+  missed: PropTypes.bool,
 
   /** Called with the arrow ID when the arrow is clicked. **/
   onClick: PropTypes.func,

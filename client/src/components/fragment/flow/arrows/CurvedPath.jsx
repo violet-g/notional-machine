@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { FLOW_COLOR_DEFAULT } from '../dimensions'
 
-const CurvedPath = ({ coordinates, onClick, stroke }) => {
+const CurvedPath = ({ coordinates, onClick, stroke, strokeDasharray }) => {
   const { x1, y1, x2, y2, cx1, cx2, cy1, cy2 } = coordinates
   const d =
     'M ' + (x1) + ' ' + (y1) + ' ' +
@@ -14,13 +14,15 @@ const CurvedPath = ({ coordinates, onClick, stroke }) => {
       onClick={onClick}
       fill="none"
       stroke={stroke}
+      strokeDasharray={strokeDasharray}
       strokeWidth="2"
     />
   )
 }
 
 CurvedPath.defaultProps = {
-  stroke: FLOW_COLOR_DEFAULT
+  stroke: FLOW_COLOR_DEFAULT,
+  strokeDasharray: '0, 0'
 }
 
 CurvedPath.propTypes = {
@@ -38,6 +40,9 @@ CurvedPath.propTypes = {
 
   /** The path stroke **/
   stroke: PropTypes.string,
+
+  /** Controls whether this is a curved path or not **/
+  strokeDasharray: PropTypes.string,
 
   /** Called when the path is clicked **/
   onClick: PropTypes.func

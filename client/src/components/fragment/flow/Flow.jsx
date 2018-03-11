@@ -6,13 +6,14 @@ import DownArrow from './arrows/DownArrow'
 import { getBoolValue, getNodeValue } from '../util'
 
 const Flow = props => {
-  const { id, annotation, start, end, selected, correct, incorrect, onClick, onDelete } = props
+  const { id, annotation, start, end, selected, correct, incorrect, missed, onClick, onDelete } = props
 
   const arrowProps = Object.assign({}, props, {
     annotation: getNodeValue(annotation, id),
     selected: getBoolValue(selected, id),
     correct: getBoolValue(correct, id),
     incorrect: getBoolValue(incorrect, id),
+    missed: getBoolValue(missed, id),
     onClick: () => onClick(id),
     onDelete: () => onDelete(id)
   })
@@ -33,6 +34,7 @@ Flow.defaultProps = {
   incorrect: false,
   correct: false,
   selected: false,
+  missed: false,
   onClick: () => ({}),
   onDelete: () => ({})
 }
@@ -58,6 +60,13 @@ Flow.propTypes = {
    * Can be a function in which case it's called with the Flow ID and should return boolean.
    */
   correct: PropTypes.oneOfType([PropTypes.bool, PropTypes.func]),
+
+  /**
+   * Determines whether this flow is marked as missed. Missed flows are
+   * flows which were in the model solution but the pupil failed to highlight.
+   * Can be a function in which case it's called with the Flow ID and should return boolean.
+   */
+  missed: PropTypes.oneOfType([PropTypes.bool, PropTypes.func]),
 
   /**
    * Determines whether the flow is incorrect.
