@@ -38,17 +38,18 @@ const Step = sequelize.define('step', {
 
 const Arrow = sequelize.define('arrow', {
   start_row: { type: Sequelize.INTEGER },
-  end_row: { type: Sequelize. INTEGER },
+  end_row: { type: Sequelize.INTEGER },
   step_ID: { type: Sequelize.INTEGER }
 })
 
 const Variable = sequelize.define('variable', {
   name: { type: Sequelize.STRING },
-  value: { type: Sequelize. STRING },
+  value: { type: Sequelize.STRING },
   step_ID: { type: Sequelize.STRING }
 })
 
 const Expression = sequelize.define('expression', {
+  line: { type: Sequelize.INTEGER },
   start_pos: { type: Sequelize.INTEGER },
   end_pos: { type: Sequelize.INTEGER },
   solution_ID: { type: Sequelize.INTEGER }
