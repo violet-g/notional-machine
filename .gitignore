@@ -1,3 +1,4 @@
 server/node_modules
 server/notional-machine-db.sqlite
 client/node_modules
+client/build
