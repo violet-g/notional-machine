@@ -1,10 +1,11 @@
 import React from 'react'
-import TaskInstructions from '../../layout/TaskInstructions'
+import hydrate from './hydrate'
+import Task3Layout from '../../layout/Task3'
 
-const Task3 = () => (
-  <div className="Task3">
-    <TaskInstructions>Step 3: Do step 3.</TaskInstructions>
-  </div>
-)
+class Task3 extends React.Component {
+  render () {
+    return (<Task3Layout {...this.props} />)
+  }
+}
 
-export default Task3
+export default hydrate(Task3)

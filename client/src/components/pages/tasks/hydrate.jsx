@@ -3,21 +3,12 @@ import client from '../../api-client'
 import * as cookie from '../../cookies'
 import { USER_ID_COOKIE_NAME } from '../../config'
 
-function getUserId () {
+function getPupilId () {
   return cookie.get(USER_ID_COOKIE_NAME)
 }
 
 async function fetchExercise (id) {
   return client.resource('exercise').get(id)
-}
-
-async function fetchSolution (id) {
-  const pupilId = getUserId()
-  let [solution] = await client.resource('solution').find({ exercise_ID: id, pupil_ID: pupilId })
-  if (!solution) {
-    solution = await client.resource('solution').create({ exercise_ID: id, pupil_ID: pupilId })
-  }
-  return solution
 }
 
 async function fetchExpressions (solution) {
@@ -32,30 +23,39 @@ async function fetchArrows (solution) {
   return client.resource('arrow').find({ solution_ID: solution.id })
 }
 
-export default function hydrate (ChildComponent) {
+async function fetchSolution (userId, id) {
+  let [solution] = await client.resource('solution').find({ exercise_ID: id, pupil_ID: userId })
+  if (!solution) {
+    solution = await client.resource('solution').create({ exercise_ID: id, pupil_ID: userId })
+  }
+
+  // fetch components of solution
+  const expressions = await fetchExpressions(solution)
+  const steps = await fetchSteps(solution)
+  const arrows = await fetchArrows(solution)
+
+  return { solution, expressions, steps, arrows }
+}
+
+export default function hydrate (ChildComponent, options = {}) {
   return class HydratableComponent extends React.Component {
     constructor () {
       super()
       this.state = { hydrated: false, data: null }
     }
     async hydrate () {
+      // fetch exercise
       const exerciseId = this.props.match.params.id
       const exercise = await fetchExercise(exerciseId)
-      const solution = await fetchSolution(exerciseId)
-      const expressions = await fetchExpressions(solution)
-      const steps = await fetchSteps(solution)
-      const arrows = await fetchArrows(solution)
 
-      this.setState({
-        hydrated: true,
-        data: {
-          exercise,
-          solution,
-          expressions,
-          steps,
-          arrows
-        }
-      })
+      // fetch the solution of the specified user
+      const userId = options.userId ? options.userId : getPupilId()
+      const solution = await fetchSolution(userId, exerciseId)
+
+      // fetch teacher solution (a.k.a. model solution, a.k.a. the correct solution)
+      const model = await fetchSolution('NULL', exerciseId)
+
+      this.setState({ hydrated: true, data: Object.assign({}, solution, { exercise, model }) })
     }
     async componentDidMount () {
       await this.hydrate()

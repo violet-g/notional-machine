@@ -56,14 +56,21 @@ class Task1 extends React.Component {
       <Task1Layout
         {...this.props}
         {...this.state}
-        onClick={this.handleClick.bind(this)}
-        onMouseOver={this.handleMouseOver.bind(this)}
-        onDelete={this.handleDelete.bind(this)}
-        highlighted={this.isHighlighted.bind(this)}
-        next={{ to: '1/solution', text: 'Check Expressions' }}
+        token={{
+          onClick: this.handleClick.bind(this),
+          onMouseOver: this.handleMouseOver.bind(this), 
+          highlighted: this.isHighlighted.bind(this)
+        }}
+        expression={{ onDelete: this.handleDelete.bind(this) }}
       />
     )
   }
 }
+
+Task1.defaultProps = {
+  next: { to: '1/solution', text: 'Check Expressions' }
+}
+
+export { Task1 }
 
 export default hydrate(Task1)

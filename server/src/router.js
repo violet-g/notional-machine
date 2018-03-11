@@ -4,26 +4,6 @@ const express = require('express')
 const Router = express.Router
 const Sequelize = require('sequelize')
 
-// checks if the model attribute is of type integer
-function isIntegerAttribute (attribute, Model) {
-  return Model.rawAttributes[attribute].type === Sequelize.INTEGER
-}
-
-// parses URL query params into the appropriate Sequelize data types
-function parseQuery (query = {}, Model) {
-  const newQuery = {}
-  for (const param of Object.keys(query)) {
-    if (query[param] === 'NULL') {
-      newQuery[param] = { $eq: null }
-    } else if (isIntegerAttribute(param, Model)) {
-      newQuery[param] = parseInt(query[param])
-    } else {
-      newQuery[param] = query[param]
-    }
-  }
-  return newQuery
-}
-
 module.exports = function(Model) {
   const router = Router()
 
@@ -51,7 +31,7 @@ module.exports = function(Model) {
   })
 
   router.get('/', async function(req, res) {
-    const resources = await Model.findAll({ where: parseQuery(req.query, Model) })
+    const resources = await Model.findAll({ where: req.query })
     res.send(resources)
   })
 

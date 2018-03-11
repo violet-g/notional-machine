@@ -65,17 +65,30 @@ class Task2 extends React.Component {
     return (
       <Task2Layout
         {...this.props}
-        annotation={this.getAnnotation.bind(this)}
-        highlighted={this.isHighlighted.bind(this)}
-        selected={this.isSelected.bind(this)}
-        onClick={this.handleClick.bind(this)}
-        onFlowClick={this.handleFlowClick.bind(this)}
-        onDelete={this.handleDelete.bind(this)}
-        popover={{ flowId: this.state.lastSelectedFlow, onClick: this.handlePopoverClick.bind(this) }}
-        next={{ to: '2/solution', text: 'Check Flows' }}
+        flow={{
+          annotation: this.getAnnotation.bind(this),
+          selected: this.isSelected.bind(this),
+          onClick: this.handleFlowClick.bind(this),
+          onDelete: this.handleDelete.bind(this)
+        }}
+        line={{
+          highlightable: true,
+          highlighted: this.isHighlighted.bind(this),
+          onClick: this.handleClick.bind(this)
+        }}
+        popover={{
+          flowId: this.state.lastSelectedFlow,
+          onClick: this.handlePopoverClick.bind(this)
+        }}
       />
     )
   }
 }
+
+Task2.defaultProps = {
+  next: { to: '2/solution', text: 'Check Flows' }
+}
+
+export { Task2 }
 
 export default hydrate(Task2)
