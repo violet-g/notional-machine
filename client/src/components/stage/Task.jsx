@@ -5,7 +5,7 @@ const Task = ({ instructions, onNextStage, children, submitted }) => (
   <div className="Task">
     <div className="TaskInstructions">{instructions}</div>
     <div className="container-fluid">{children}</div>
-    {onNextStage && <CheckTaskButton onNextStage={onNextStage} submitted={submitted}/>}
+    {onNextStage && <CheckTaskButton onNextStage={onNextStage} submitted={submitted} />}
   </div>
 )
 

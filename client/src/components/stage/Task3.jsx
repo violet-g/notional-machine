@@ -105,15 +105,15 @@ class Task3 extends React.Component {
             </div>
           </div>
           <div className="col-lg-4">
-            <VariableTable
-              variables={this.state.variables}
-              onVariableAdd={this.handleVariableAdd.bind(this)}
-              onStepAdd={this.handleStepAdd.bind(this)}
-            />
-            <OutputTable
-              outputs={this.state.outputs}
-              onOutputAdd={this.handleOutputAdd.bind(this)}
-            />
+              <VariableTable
+                variables={this.state.variables}
+                onVariableAdd={this.handleVariableAdd.bind(this)}
+                onStepAdd={this.handleStepAdd.bind(this)}
+              />
+              <OutputTable
+                outputs={this.state.outputs}
+                onOutputAdd={this.handleOutputAdd.bind(this)}
+              />
           </div>
         </div>
       </Task>

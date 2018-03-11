@@ -7,7 +7,10 @@ var HTMLWebackPluginConfig = new HTMLWebpackPlugin({
 });
 
 module.exports = {
-  entry: __dirname + '/src/index.js',
+  entry: [
+    'babel-polyfill',
+    __dirname + '/src/index.js'
+  ],
   module: {
     loaders: [
       {
@@ -31,5 +34,6 @@ module.exports = {
     filename: 'transformed.js',
     path: __dirname + '/build'
   },
+  devtool: 'source-map',
   plugins: [HTMLWebackPluginConfig]
 };

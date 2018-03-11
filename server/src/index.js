@@ -2,8 +2,12 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const app = express()
 const restRouter = require('./router')
+const cors = require('cors')
 const { Pupil, Exercise, Solution, Step, Arrow, Variable, Expression } =
   require('./models')
+
+// Enable CORS
+app.use(cors())
 
 // Global Body parser middleware to convert the req body to a standard JS object
 app.use(bodyParser.json())

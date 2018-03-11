@@ -27,34 +27,32 @@ function parseQuery (query = {}, Model) {
 module.exports = function(Model) {
   const router = Router()
 
-  router.post('/', function(req, res) {
-    Model.create(req.body).then(resource =>
-      res.send(resource)
-    )
+  router.post('/', async function(req, res) {
+    const resource = await Model.create(req.body)
+    res.send(resource)
   })
 
-  router.put('/:id', function(req, res) {
-    res.send('Updated resource ' + req.params.id + '.')
+  router.put('/:id', async function(req, res) {
+    const resource = await Model.findOne({ where: { id: req.params.id } })
+    await resource.update(req.body)
+    await resource.reload()
+    res.send(resource)
   })
 
-  router.delete('/:id', function(req, res) {
-    res.send('Deleted resource ' + req.params.id + '.')
+  router.delete('/:id', async function(req, res) {
+    const resource = await Model.findOne({ where: { id: req.params.id } })
+    await resource.destroy()
+    res.send(resource)
   })
 
-  router.get('/:id', function(req, res) {
-    Model.findAll({
-      where: { id: req.params.id }
-    }).then(resources =>
-      res.send(resources[0])
-    )
+  router.get('/:id', async function(req, res) {
+    const resource = await Model.findOne({ where: { id: req.params.id } })
+    res.send(resource)
   })
 
-  router.get('/', function(req, res) {
-    Model.findAll({
-      where: parseQuery(req.query, Model)
-    }).then(resources =>
-      res.send(resources)
-    )
+  router.get('/', async function(req, res) {
+    const resources = await Model.findAll({ where: parseQuery(req.query, Model) })
+    res.send(resources)
   })
 
   return router

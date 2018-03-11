@@ -39,7 +39,9 @@ const Step = sequelize.define('step', {
 const Arrow = sequelize.define('arrow', {
   start_row: { type: Sequelize.INTEGER },
   end_row: { type: Sequelize.INTEGER },
-  step_ID: { type: Sequelize.INTEGER }
+  annotation: { type: Sequelize.BOOLEAN },
+  step_ID: { type: Sequelize.INTEGER },
+  solution_ID: { type: Sequelize.STRING }
 })
 
 const Variable = sequelize.define('variable', {

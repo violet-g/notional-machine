@@ -70,7 +70,7 @@ class VariableTable extends React.Component {
             {this.props.variables[this.state.activeVariable] && this.props.variables[this.state.activeVariable].steps.map((step, i) =>
               <div key={i} className="row form-group">
                 <div className="col-sm-6">
-                  <input className="form-control form-control-sm" type="text" placeholder="Step" />
+                  <input className="form-control form-control-sm" type="text" placeholder="Line" />
                 </div>
                 <div className="col-sm-6">
                   <input className="form-control form-control-sm" type="text" placeholder="Value" />

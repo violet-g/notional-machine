@@ -1,15 +1,13 @@
 import React from 'react'
-import ExerciseList from './ExerciseList'
-import Exercise from './Exercise'
+import { HashRouter, Switch, Route } from 'react-router-dom'
+import client from './api-client'
 
-// TODO modify webpack config to provide the API url via process.env.API_URL
-const API_URL = 'http://localhost:3000'
-
-const tasks = [
-  'Step 1: Read the following piece of code carefully and select all expressions that are used in its construction.',
-  'Step 2: Visualise flow of control in the code below.',
-  'Step 3: Do step 3.'
-]
+// pages
+import Err from './pages/Err'
+import Exercise from './pages/Exercise'
+import ExerciseList from './pages/ExerciseList'
+import Home from './pages/Home'
+import Signup from './pages/Signup'
 
 // TODO remove
 // const fragment = [
@@ -36,7 +34,7 @@ const tasks = [
 //     [1, 2],
 //     [2, 3],
 //     [3, 1],
-//     [1, 4],
+//     [3, 4],
 //     [4, 5]
 //   ],
 //   inputs: [
@@ -46,83 +44,16 @@ const tasks = [
 //   ]
 // }
 
-async function getApiData (resource, query = {}) {
-  let queryString = Object.keys(query).map(key => `${key}=${query[key]}`).join('&')
-  if (queryString !== '') {
-    queryString = '?' + queryString
-  }
-  const response = await fetch(API_URL + '/' + resource + queryString)
-  if (response.status !== 200) {
-    throw new Error(response.status)
-  }
-  return response.json()
-}
-
-class App extends React.Component {
-  constructor () {
-    super()
-    this.state = {
-      view: 'Loading',
-      exercises: [],
-      tasks,
-      fragment: [],
-      solution: [],
-      error: ''
-    }
-  }
-  async componentDidMount () {
-    try {
-      const exercises = await getApiData('exercise')
-    } catch (error) {
-      this.setState({ view: 'Error', error: error.message })
-    }
-  }
-  handleViewChage (view) {
-    this.setState({ view })
-  }
-  async handleExerciseSelect ({ id, code_fragment }) {
-    // parse the code fragment
-    const fragment = code_fragment.split('\n')
-    for (let i = 0; i < fragment.length; i++) {
-      const line = frgment[i]
-      const indent = line.match(/^\s*/)[0].length
-      const tokens = line.replace(/^\s*/, '').split(' ')
-      fragment[i] = { indent, tokens }
-    }
-
-    this.setState({ view: 'Loading', fragment })
-
-    try {
-      const solutions = await getApiData('solution', { exercise_ID: id, pupil_ID: 'NULL' })
-      const expressions = await getApiData('expression', { solution_ID: solutions[0].id })
-      const steps = await getApiData('step', { solution_ID: solutions[0].id })
-      let flows = []
-      for (step of steps) {
-        flows.concat(await getApiData('arrow', { step_ID: step.id }))
-      }
-      const solutions = [
-        expressions: expressions.map(({ line, start_pos, end_pos }) => [line, start_pos, end_pos]),
-        flows: flows.map(({ start_row, end_row }) => [start_row, end_row]),
-        inputs: [/* TODO ??? */]
-      ]
-      this.setState({ view: 'Exercise', solutions })
-    } catch (error) {
-      this.setState({ view: 'Error', error: error.message })
-    }
-  }
-  render() {
-    switch(this.state.view) {
-      case 'ExerciseList':
-        return (<ExerciseList {...this.state} onExerciseSelect={this.handleExerciseSelect.bind(this)} />)
-      case 'Exercise':
-        return (<Exercise {...this.state} />)
-      case 'Error':
-        return (<p>An unexpected error occurred. Please, refresh the page. Error: {this.state.error}</p>)
-      case 'Loading':
-      default:
-        return (<p>Insert some fancy loading animation here</p>)
-    }
-  }
-
+const App = () => (
+  <HashRouter>
+    <Switch>
+      <Route exact path="/" component={Home} />
+      <Route exact path="/exercise-list" component={ExerciseList} />
+      <Route path="/exercise/:id" component={Exercise} />
+      <Route exact path="/error" component={Err} />
+      <Route exact path="/signup" component={Signup} />
+    </Switch>
+  </HashRouter>
+)
 
 export default App

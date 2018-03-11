@@ -39,12 +39,12 @@ const CodeFragment = ({ children }) => {
   const flows = childrenArray.filter(child => child.type === Flow)
   const rest = childrenArray.filter(child => !includes([Line, Flow, Expression], child.type))
 
-  const annotations = flows.filter(hasAnnotation).map((flow, i) => <Annotation key={i} flow={flow} onClick={flow.props.onAnnotate}/>)
+  const annotations = flows.filter(hasAnnotation).map((flow, i) => <Annotation key={i} flow={flow} onClick={flow.props.onAnnotate} />)
 
   const isFlowSelected = !!flows.find(flow => flow.props.selected)
 
   return (
-    <div className="CodeFragment  card card-body">
+    <div className="CodeFragment card card-body">
       <div className={classnames('list-group code', { disabled: isFlowSelected })}>
         {newLines}
       </div>
