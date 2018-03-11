@@ -7,6 +7,7 @@ const Home = () => (
       <li><Link to='/exercise-create'>Create Exercise</Link></li>
       <li><Link to='/exercise-list'>Exercises</Link></li>
       <li><Link to='/signup'>Sign up</Link></li>
+      <li><Link to='/login'>Log in</Link></li>
     </ul>
   </div>
 )

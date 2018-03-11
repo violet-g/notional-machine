@@ -20,6 +20,7 @@ const Pupil = sequelize.define('pupil', {
 })
 
 const Exercise = sequelize.define('exercise', {
+  name: { type: Sequelize.STRING },
   code_fragment: { type: Sequelize.TEXT }
 })
 

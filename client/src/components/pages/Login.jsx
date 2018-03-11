@@ -1,11 +1,14 @@
 import React from 'react'
 import client from '../api-client'
+import * as cookie from '../cookies'
+import { USER_ID_COOKIE_NAME } from '../config'
+import { Link } from 'react-router-dom'
 
-const Signup = ({ username, password, onChange, onSignup }) => (
-  <div className="Signup container">
+const Login = ({ username, password, onChange, onLogin }) => (
+  <div className="Login container">
     <div className="row">
       <div className="col-md-4 offset-md-4">
-        <form className="form" onSubmit={onSignup}>
+        <form className="form" onSubmit={onLogin}>
           <div className="form-group">
             <input
               className="form-control"
@@ -26,15 +29,16 @@ const Signup = ({ username, password, onChange, onSignup }) => (
             />
           </div>
           <div className="form-group">
-            <button type="submit" className="btn btn-primary btn-block">Sign up</button>
+            <button type="submit" className="btn btn-primary btn-block">Log in</button>
           </div>
+          <Link to='/signup'>No account yet?</Link>
         </form>
       </div>
     </div>
   </div>
 )
 
-class SignupContainer extends React.Component {
+class LoginContainer extends React.Component {
   constructor () {
     super()
     this.state = { username: '', password: '' }
@@ -42,19 +46,24 @@ class SignupContainer extends React.Component {
   handleChange (e) {
     this.setState({ [e.target.name]: e.target.value })
   }
-  async handleSignup (e) {
+  async handleLogin (e) {
     e.preventDefault()
     try {
-      const pupil = await client.resource('pupil').create(this.state)
-      this.props.history.push('/login')
+      const [pupil] = await client.resource('pupil').find(this.state)
+      if (!pupil) {
+        this.setState({ username: '', password: '' })
+        return
+      }
+      cookie.set(USER_ID_COOKIE_NAME, pupil.id)
+      this.props.history.push('/exercise-list')
     } catch (error) {
       console.log(error)
       this.props.history.push('/error')
     }
   }
   render () {
-    return (<Signup {...this.state} onChange={this.handleChange.bind(this)} onSignup={this.handleSignup.bind(this)} />)
+    return (<Login {...this.state} onChange={this.handleChange.bind(this)} onLogin={this.handleLogin.bind(this)} />)
   }
 }
 
-export default SignupContainer
+export default LoginContainer

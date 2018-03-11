@@ -4,12 +4,19 @@ import client from '../api-client'
 
 const ExerciseList = ({ exercises }) => (
   <div className="ExerciseList">
-    <h1>Select exercise</h1>
-    <ul>
-      {exercises.map(({ id }) =>
-        <li key={id}><Link to={'/exercise/' + id}>Exercise #{id}</Link></li>
-      )}
-    </ul>
+    <h1>Available exercises:</h1>
+    <table className="table table-striped">
+      <tbody>
+        {exercises.map(({ id, createdAt }) =>
+          <tr key={id}>
+            <th> {id} </th>
+            <td> Exercise #{id} </td>
+            <td> Added on: {createdAt} </td>
+            <td><Link to={'/exercise/' + id}> Attempt </Link></td>
+          </tr>
+        )}
+      </tbody>
+    </table>
   </div>
 )
 

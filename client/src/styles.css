@@ -10,6 +10,24 @@ body {
   border: 1px solid #dc3545;
 }
 
+.caret {
+  display: inline-block;
+  width: 0;
+  height: 0;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  position: relative;
+  top: -1px;
+}
+
+.caret-down {
+  border-top: 6px solid #868e96;
+}
+
+.caret-up {
+  border-bottom: 6px solid #868e96;
+}
+
 .App {
   margin-top: 60px;
   margin-left: 60px;
@@ -194,4 +212,21 @@ body {
 .VariableTable, .InputTable {
   margin: 40px auto;
   position: relative;
+}
+
+.Login {
+  margin-top: 160px;
+}
+
+.Signup {
+  margin-top: 160px;
+}
+
+.AdminExerciseList .attempted-by {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.AdminExerciseList .attempted-by p {
+  margin: 0;
 }
