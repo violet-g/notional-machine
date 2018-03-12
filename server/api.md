@@ -1,5 +1,23 @@
 # API Resources
 
+- all resources share same methods
+- CRUD (Create Read Update Delete) for all resources
+
+// create
+POST /<resource>
+
+// read
+GET /<resource>
+GET /<resource>/<id>
+
+// update
+PUT /<resource>/<id>
+
+// delete
+DELETE /<resource>/<id>
+
+- All methods return HTTP code 200
+
 ## Resources
 
 ### Exercise

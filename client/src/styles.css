@@ -230,3 +230,7 @@ body {
 .AdminExerciseList .attempted-by p {
   margin: 0;
 }
+
+.AdminExerciseList .create-exercise {
+  margin-top: 80px;
+}

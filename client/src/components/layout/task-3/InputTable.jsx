@@ -33,7 +33,7 @@ const InputTable = ({ steps, modelSteps, editable, onChange, onConsume, onSave }
               {editable ? <InputEdit step={step} onChange={onChange} /> : step.input}
             </div>
             <div className="col-sm-4 text-right">
-              {steps.length > 0 && getLastPupilStep(steps) === i && (
+              {!editable && steps.length > 0 && getLastPupilStep(steps) === i && (
                 <ConsumeButton onClick={() => onConsume(step.input)} />
               )}
             </div>

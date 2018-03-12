@@ -21,7 +21,6 @@ const Task3 = props => (
           />
         </div>
         <div className="col-md-4">
-          TODO
         </div>
       </div>
     </Task>

@@ -31,7 +31,7 @@ class Task3 extends React.Component {
       <Task3Layout
         {...this.props}
         flow={{ onClick: this.handleClick.bind(this), annotation: this.getAnnotation.bind(this) }}
-        input={{ onConsume: this.handleConsume.bind(this) }}
+        input={this.props.input || { onConsume: this.handleConsume.bind(this) }}
       />
     )
   }
