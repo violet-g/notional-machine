@@ -55,6 +55,9 @@ class VariableTableController extends React.Component {
   render () {
     return (
       <VariableTable
+        readOnly={this.props.readOnly}
+        correct={this.props.correct}
+        incorrect={this.props.incorrect}
         variables={this.props.data.variables}
         steps={this.props.data.steps}
         active={this.state.active}

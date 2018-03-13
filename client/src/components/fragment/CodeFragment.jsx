@@ -21,10 +21,12 @@ const CodeFragment = ({ fragment, expressions, flows, line, expression, flow, to
   const flowProps = Object.assign({}, flow)
   const popoverProps = Object.assign({}, popover)
 
+  const lines = fragment.split('\n')
+
   return (
     <div className="CodeFragment card card-body">
       <div className="list-group code">
-        {fragment.split('\n').map((line, i) =>
+        {lines.map((line, i) =>
           <Line {...lineProps} line={i} key={i} indent={getIndent(line)}>
             <ExpressionWrapper expressions={expressions.filter(expr => expr.line === i)} expression={expression}>
               {tokenize(line).map((token, j) =>
@@ -39,6 +41,7 @@ const CodeFragment = ({ fragment, expressions, flows, line, expression, flow, to
             </ExpressionWrapper>
           </Line>
         )}
+        <Line line={lines.length} {...lineProps} end>END LINE</Line>
       </div>
       <FlowWrapper>
         {flows.map((flow, i) =>

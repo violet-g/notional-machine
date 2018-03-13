@@ -1,15 +1,18 @@
 import React from 'react'
+import classnames from 'classnames'
 
 function hasVariableWithoutValue (variables) {
   return !!variables.find(variable => variable.value === null || variable.value === undefined)
 }
 
-const VariableUpateForm = ({ variables, steps, value, onUpdateClick, onChange, onSubmit }) => (
+const VariableUpateForm = ({ readOnly, variables, correct, incorrect, steps, value, onUpdateClick, onChange, onSubmit }) => (
   <div className="VariableUpdateForm card-body">
     {variables.map(variable =>
       <form key={variable.id} className="row form-group" onSubmit={onSubmit}>
         <div className="col-sm-6">
-          Step #{steps.find(step => step.id === variable.step_ID).number}
+          <p className={classnames({ correct: correct(variable.id), incorrect: incorrect(variable.id) })}>
+            Step #{steps.find(step => step.id === variable.step_ID).number}
+          </p>
         </div>
         <div className="col-sm-6">
           {(variable.value === null || variable.value === undefined) && (
@@ -22,12 +25,14 @@ const VariableUpateForm = ({ variables, steps, value, onUpdateClick, onChange, o
             />
           )}
           {variable.value !== null && variable.value !== undefined && (
-            <p>{variable.value}</p>
+            <p className={classnames({ correct: correct(variable.id), incorrect: incorrect(variable.id) })}>
+              {variable.value}
+            </p>
           )}
         </div>
       </form>
     )}
-    {!hasVariableWithoutValue(variables) && (
+    {!hasVariableWithoutValue(variables) && !readOnly && (
       <a className="btn btn-outline-secondary" onClick={onUpdateClick}>Update</a>
     )}
   </div>
@@ -35,7 +40,9 @@ const VariableUpateForm = ({ variables, steps, value, onUpdateClick, onChange, o
 
 VariableUpateForm.defaultProps = {
   variables: [],
-  steps: []
+  steps: [],
+  correct: () => false,
+  incorrect: () => false
 }
 
 export default VariableUpateForm

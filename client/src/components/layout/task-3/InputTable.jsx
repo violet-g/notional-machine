@@ -1,4 +1,5 @@
 import React from 'react'
+import classnames from 'classnames'
 import InputEdit from './InputEdit'
 import ConsumeButton from './ConsumeButton'
 
@@ -21,16 +22,25 @@ function getLastPupilStep (steps) {
   return sort(getSteps(steps)).length
 }
 
-const InputTable = ({ steps, modelSteps, editable, onChange, onConsume, onSave }) => (
+const InputTable = ({ correct, incorrect, steps, modelSteps, editable, onChange, onConsume, onSave }) => (
   <div className="InputTable card">
     <div className="card-body"><h5 className="card-title">Inputs</h5></div>
     <ul className="list-group list-group-flush">
       {sort(getSteps(modelSteps, editable)).map((step, i) =>
         <li key={step.id} className="list-group-item">
           <div className="row">
-            <div className="col-sm-4">Step #{(getPupilStep(steps, i) || {}).number || '___'}</div>
+            <div className="col-sm-4">
+              <p className={classnames({ correct: correct(step.id), incorrect: incorrect(step.id) })}>
+                Step #{(getPupilStep(steps, i) || {}).number || '___'}
+              </p>
+            </div>
             <div className="col-sm-4 text-center">
-              {editable ? <InputEdit step={step} onChange={onChange} /> : step.input}
+              {editable && <InputEdit step={step} onChange={onChange} />}
+              {!editable && (
+                <p className={classnames({ correct: correct(step.id), incorrect: incorrect(step.id) })}>
+                  {step.input}
+                </p>
+              )}
             </div>
             <div className="col-sm-4 text-right">
               {!editable && steps.length > 0 && getLastPupilStep(steps) === i && (
@@ -52,7 +62,9 @@ const InputTable = ({ steps, modelSteps, editable, onChange, onConsume, onSave }
 InputTable.defaultProps = {
   inputs: [],
   editable: false,
-  onConsume: () => ({})
+  onConsume: () => ({}),
+  correct: () => false,
+  incorrect: () => false
 }
 
 export default InputTable

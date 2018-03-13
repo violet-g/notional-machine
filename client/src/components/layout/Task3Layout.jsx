@@ -3,6 +3,7 @@ import Task from './Task'
 import TaskInstructions from './TaskInstructions'
 import CodeFragment from '../fragment/CodeFragment'
 import InputTable from './task-3/InputTable'
+import ExpressionEvaluation from './task-3/ExpressionEvaluation'
 
 const Task3Layout = props => (
   <div className="Task3">
@@ -11,6 +12,7 @@ const Task3Layout = props => (
       <div className="row">
         <div className="col-md-4">
           <InputTable steps={props.data.steps} modelSteps={props.data.model.steps} {...props.input} />
+          <ExpressionEvaluation />
         </div>
         <div className="col-md-4">
           <CodeFragment

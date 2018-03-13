@@ -17,9 +17,9 @@ function getUniqVariables (variables) {
   return uniqBy(variables, variable => variable.name)
 }
 
-const VariableTable = ({ active, variables, steps, create, update, onActiveChange }) => (
+const VariableTable = ({ readOnly, correct, incorrect, active, variables, steps, create, update, onActiveChange }) => (
   <div className="VariableTable card">
-    <VariableCreateForm {...create} />
+    {!readOnly && <VariableCreateForm {...create} />}
     {variables.length > 0 && (
       <VariableTabs
         active={active}
@@ -29,6 +29,9 @@ const VariableTable = ({ active, variables, steps, create, update, onActiveChang
     )}
     {active !== null && (
       <VariableUpdateForm
+        readOnly={readOnly}
+        correct={correct}
+        incorrect={incorrect}
         steps={steps}
         variables={getActiveVariables(variables, active)}
         {...update}

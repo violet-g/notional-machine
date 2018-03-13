@@ -26,6 +26,9 @@ class OutputTableController extends React.Component {
   render () {
     return (
       <OutputTable
+        readOnly={this.props.readOnly}
+        correct={this.props.correct}
+        incorrect={this.props.incorrect}
         steps={this.props.data.steps}
         displayForm={this.state.displayForm}
         value={this.state.value}
