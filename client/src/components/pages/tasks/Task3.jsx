@@ -3,6 +3,7 @@ import maxBy from 'lodash/maxBy'
 import hydrate from './hydrate'
 import Task3Layout from '../../layout/Task3Layout'
 import VariableTableController from '../../controllers/VariableTableController'
+import OutputTableController from '../../controllers/OutputTableController'
 import client from '../../api-client'
 
 class Task3 extends React.Component {
@@ -36,7 +37,12 @@ class Task3 extends React.Component {
         {...this.props}
         flow={{ onClick: this.handleClick.bind(this), annotation: this.getAnnotation.bind(this) }}
         input={this.props.input || { onConsume: this.handleConsume.bind(this) }}
-        rightCol={<VariableTableController {...this.props} />}
+        rightCol={(
+          <React.Fragment>
+            <VariableTableController {...this.props} />
+            <OutputTableController {...this.props} />
+          </React.Fragment>
+        )}
       />
     )
   }
