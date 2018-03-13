@@ -1,6 +1,6 @@
 import React from 'react'
 import hydrate from './hydrate'
-import Task2Layout from '../../layout/Task2'
+import Task2Layout from '../../layout/Task2Layout'
 import client from '../../api-client'
 
 class Task2 extends React.Component {

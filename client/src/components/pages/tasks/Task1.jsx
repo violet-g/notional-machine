@@ -1,7 +1,7 @@
 import React from 'react'
 import client from '../../api-client'
 import hydrate from './hydrate'
-import Task1Layout from '../../layout/Task1'
+import Task1Layout from '../../layout/Task1Layout'
 
 class Task1 extends React.Component {
   constructor () {
@@ -58,7 +58,7 @@ class Task1 extends React.Component {
         {...this.state}
         token={{
           onClick: this.handleClick.bind(this),
-          onMouseOver: this.handleMouseOver.bind(this), 
+          onMouseOver: this.handleMouseOver.bind(this),
           highlighted: this.isHighlighted.bind(this)
         }}
         expression={{ onDelete: this.handleDelete.bind(this) }}

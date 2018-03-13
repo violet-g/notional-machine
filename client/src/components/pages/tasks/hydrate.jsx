@@ -23,6 +23,15 @@ async function fetchArrows (solution) {
   return client.resource('arrow').find({ solution_ID: solution.id })
 }
 
+async function fetchVariables (steps) {
+  let variables = []
+  for (const step of steps) {
+    const results = await client.resource('variable').find({ step_ID: step.id })
+    variables = variables.concat(results)
+  }
+  return variables
+}
+
 async function fetchSolution (userId, id) {
   let [solution] = await client.resource('solution').find({ exercise_ID: id, pupil_ID: userId })
   if (!solution) {
@@ -33,8 +42,9 @@ async function fetchSolution (userId, id) {
   const expressions = await fetchExpressions(solution)
   const steps = await fetchSteps(solution)
   const arrows = await fetchArrows(solution)
+  const variables = await fetchVariables(steps)
 
-  return { solution, expressions, steps, arrows }
+  return { solution, expressions, steps, arrows, variables }
 }
 
 export default function hydrate (ChildComponent, options = {}) {

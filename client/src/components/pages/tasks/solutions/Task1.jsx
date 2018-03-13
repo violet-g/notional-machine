@@ -1,7 +1,7 @@
 import React from 'react'
 import uniqBy from 'lodash/uniqBy'
 import hydrate from '../hydrate'
-import Task1Layout from '../../../layout/Task1'
+import Task1Layout from '../../../layout/Task1Layout'
 
 // checks whether 2 expressions are equal
 function equals (e1, e2) {

@@ -1,7 +1,8 @@
 import React from 'react'
 import maxBy from 'lodash/maxBy'
 import hydrate from './hydrate'
-import Task3Layout from '../../layout/Task3'
+import Task3Layout from '../../layout/Task3Layout'
+import VariableTableController from '../../controllers/VariableTableController'
 import client from '../../api-client'
 
 class Task3 extends React.Component {
@@ -11,6 +12,9 @@ class Task3 extends React.Component {
     const solution = this.props.data.solution.id
     await client.resource('step').create({ number, solution_ID: solution, arrow_ID: id })
     this.props.rehydrate()
+  }
+  getLastStep () {
+    return maxBy(this.props.data.steps, step => step.number)
   }
   getAnnotation (id) {
     const steps = this.props.data.steps.filter(step => step.arrow_ID === id)
@@ -22,7 +26,7 @@ class Task3 extends React.Component {
     return annotation
   }
   async handleConsume (input) {
-    const lastStep = maxBy(this.props.data.steps, step => step.number)
+    const lastStep = this.getLastStep()
     await client.resource('step').update(lastStep.id, { input })
     this.props.rehydrate()
   }
@@ -32,6 +36,7 @@ class Task3 extends React.Component {
         {...this.props}
         flow={{ onClick: this.handleClick.bind(this), annotation: this.getAnnotation.bind(this) }}
         input={this.props.input || { onConsume: this.handleConsume.bind(this) }}
+        rightCol={<VariableTableController {...this.props} />}
       />
     )
   }

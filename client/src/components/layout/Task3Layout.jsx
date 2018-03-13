@@ -4,7 +4,7 @@ import TaskInstructions from './TaskInstructions'
 import CodeFragment from '../fragment/CodeFragment'
 import InputTable from './task-3/InputTable'
 
-const Task3 = props => (
+const Task3Layout = props => (
   <div className="Task3">
     <Task next={props.next}>
       <TaskInstructions>Step 3: Do step 3.</TaskInstructions>
@@ -21,10 +21,11 @@ const Task3 = props => (
           />
         </div>
         <div className="col-md-4">
+          {props.rightCol}
         </div>
       </div>
     </Task>
   </div>
 )
 
-export default Task3
+export default Task3Layout

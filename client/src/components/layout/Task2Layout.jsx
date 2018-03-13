@@ -3,21 +3,19 @@ import Task from './Task'
 import TaskInstructions from './TaskInstructions'
 import CodeFragment from '../fragment/CodeFragment'
 
-const Task1 = props => (
-  <div className="Task1">
+const Task2Layout = (props) => (
+  <div className="Task2">
     <Task next={props.next}>
-      <TaskInstructions>
-        Step 1: Read the following piece of code carefully and select all expressions
-        that are used in its construction.
-      </TaskInstructions>
+      <TaskInstructions>Step 2: Visualise flow of control in the code below.</TaskInstructions>
 
       <CodeFragment
         fragment={props.data.exercise.code_fragment}
-        expressions={props.data.expressions}
+        expressions={props.data.model.expressions}
+        flows={props.data.arrows}
         {...props}
       />
     </Task>
   </div>
 )
 
-export default Task1
+export default Task2Layout

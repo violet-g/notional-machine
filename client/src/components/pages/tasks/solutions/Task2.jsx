@@ -1,7 +1,7 @@
 import React from 'react'
 import uniqBy from 'lodash/uniqBy'
 import hydrate from '../hydrate'
-import Task2Layout from '../../../layout/Task2'
+import Task2Layout from '../../../layout/Task2Layout'
 
 // checks whether 2 flows are equal
 function equals (f1, f2) {
