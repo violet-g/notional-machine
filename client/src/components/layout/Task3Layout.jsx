@@ -24,6 +24,14 @@ const Task3Layout = props => (
             flows={props.data.model.arrows}
             {...props}
           />
+          <div className="Task3Undo">
+            <button className="btn btn-outline-secondary" type="submit">
+              Undo
+            </button>&nbsp;
+            <button className="btn btn-outline-secondary" type="submit">
+              Refresh
+            </button>
+          </div>
         </div>
         <div className="col-md-4">
           {props.rightCol}

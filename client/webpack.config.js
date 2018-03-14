@@ -1,9 +1,21 @@
 var path = require('path');
+var webpack = require('webpack')
 var HTMLWebpackPlugin = require('html-webpack-plugin');
+
 var HTMLWebackPluginConfig = new HTMLWebpackPlugin({
   template: __dirname + '/src/index.html',
   filename: 'index.html',
   inject: 'body'
+});
+
+// TODO differentiate if running npm start and npm run build
+// - npm start: API_URL = http://localhost:3000
+// - npm run build: API_URL = <heroku URL>
+
+// console.log('....', process.argv)
+
+var EnvironmentPluginConfig = new webpack.EnvironmentPlugin({
+  API_URL: 'http://localhost:3000'
 });
 
 module.exports = {
@@ -35,5 +47,8 @@ module.exports = {
     path: __dirname + '/build'
   },
   devtool: 'source-map',
-  plugins: [HTMLWebackPluginConfig]
+  plugins: [
+    HTMLWebackPluginConfig,
+    EnvironmentPluginConfig
+  ]
 };

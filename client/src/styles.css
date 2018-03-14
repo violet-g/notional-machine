@@ -262,3 +262,7 @@ p.correct, span.correct, p.incorrect, span.incorrect {
 .OutputTable {
   margin-bottom: 40px;
 }
+
+.Task3Undo {
+  padding-left: 250px;
+}

@@ -14,7 +14,7 @@ const VariableCreateForm = ({ value, onChange, onSubmit }) => (
         />
         <div className="input-group-append">
           <button className="btn btn-outline-secondary" type="submit">
-            Add variable +
+            Add variable
           </button>
         </div>
       </div>

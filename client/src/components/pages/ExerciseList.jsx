@@ -2,6 +2,11 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import client from '../api-client'
 
+function formatDate (dateString) {
+  const [y, m, d] = dateString.replace(/T.*$/, '').split('-')
+  return [d, m, y].join('/')
+}
+
 const ExerciseList = ({ exercises }) => (
   <div className="ExerciseList">
     <h1>Available exercises:</h1>
@@ -11,7 +16,7 @@ const ExerciseList = ({ exercises }) => (
           <tr key={id}>
             <th> {id} </th>
             <td> Exercise #{id} </td>
-            <td> Added on: {createdAt} </td>
+            <td> Added on: {formatDate(createdAt)} </td>
             <td><Link to={'/exercise/' + id}> Attempt </Link></td>
           </tr>
         )}
