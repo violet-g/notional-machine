@@ -2,6 +2,17 @@ body {
   font-family: Arial, sans-serif;
 }
 
+#background {
+  background-image: url(
+    /*https://feastandwest.com/wp-content/uploads/2015/04/2560x1440_27inMacDesktop.jpg*/
+    /*https://cdn.pixabay.com/photo/2016/01/21/04/14/color-1152782_1280.jpg*/
+    /* https://images.unsplash.com/photo-1504060765228-f97d1772ff9e?auto=format&fit=crop&w=1950&q=80&ixid=dW5zcGxhc2guY29tOzs7Ozs%3D */
+    /* https://images.unsplash.com/photo-1509388967014-f4d87be14eaf?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=b30ea5ac9316f5fa6aa98e93ad09e418&auto=format&fit=crop&w=334&q=80 */
+    https://images.unsplash.com/photo-1517391864774-5467613bb83c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=1b4c82a21dcdb9ecf065903d25c70dc2&auto=format&fit=crop&w=1050&q=80
+  );
+  background-size: cover;
+}
+
 .btn-group .btn {
   cursor: pointer;
 }

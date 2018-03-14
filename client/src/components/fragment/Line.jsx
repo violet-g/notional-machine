@@ -4,13 +4,14 @@ import classnames from 'classnames'
 import { getBoolValue } from './util'
 import Indent from './Indent'
 
-const Line = ({ indent, children, onClick, highlightable, highlighted, line, end }) => {
+const Line = ({ indent, children, onClick, highlightable, highlighted, line, start, end }) => {
   const isHighlightable = getBoolValue(highlightable, line)
   const isHighlighted = getBoolValue(highlighted, line)
 
   const className = classnames('Line list-group-item', {
     active: isHighlighted,
     'list-group-item-action': isHighlightable,
+    start,
     end
   })
   return (
@@ -25,6 +26,7 @@ Line.defaultProps = {
   onClick: () => ({}),
   highlightable: false,
   highlighted: false,
+  start: false,
   end: false
 }
 
@@ -50,6 +52,9 @@ Line.propTypes = {
 
   /** The index of this line in the code fragment **/
   line: PropTypes.number.isRequired,
+
+  /** Indicates if this is a start line **/
+  start: PropTypes.bool,
 
   /** Indicates if this is an end line **/
   end: PropTypes.bool

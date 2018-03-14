@@ -33,6 +33,17 @@ class Task2 extends React.Component {
   isMissed (id) {
     return !this.hasEqual(id, this.props.data.arrows)
   }
+  getAnnotation (flows, id) {
+    console.log(id)
+    const annotation = flows.find(arrow => arrow.id === id).annotation
+    if (annotation === true) {
+      return 'T'
+    }
+    if (annotation === false) {
+      return 'F'
+    }
+    return null
+  }
   render () {
     let flows = this.props.data.arrows.concat(this.props.data.model.arrows)
     flows = uniqBy(flows, getFlowUniqueKey)
@@ -44,7 +55,8 @@ class Task2 extends React.Component {
         flow={{
           correct: this.isCorrect.bind(this),
           incorrect: this.isIncorrect.bind(this),
-          missed: this.isMissed.bind(this)
+          missed: this.isMissed.bind(this),
+          annotation: this.getAnnotation.bind(this, flows)
         }}
         next={{ to: '../3', text: 'Next task' }}
       />

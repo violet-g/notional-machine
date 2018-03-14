@@ -8,7 +8,10 @@ import ExpressionEvaluation from './task-3/ExpressionEvaluation'
 const Task3Layout = props => (
   <div className="Task3">
     <Task next={props.next}>
-      <TaskInstructions>Step 3: Do step 3.</TaskInstructions>
+      <TaskInstructions>
+        <p>Step 3: Execute the program code</p>
+        <p>Hint: Click on the arrows consecutively to illustrate which line will be executed next. Then execute it by using the visual aids on the left and right of the program code.</p>
+      </TaskInstructions>
       <div className="row">
         <div className="col-md-4">
           <InputTable steps={props.data.steps} modelSteps={props.data.model.steps} {...props.input} />

@@ -26,14 +26,15 @@ const CodeFragment = ({ fragment, expressions, flows, line, expression, flow, to
   return (
     <div className="CodeFragment card card-body">
       <div className="list-group code">
+        <Line line={0} {...lineProps} start>START</Line>
         {lines.map((line, i) =>
-          <Line {...lineProps} line={i} key={i} indent={getIndent(line)}>
-            <ExpressionWrapper expressions={expressions.filter(expr => expr.line === i)} expression={expression}>
+          <Line {...lineProps} line={i+1} key={i+1} indent={getIndent(line)}>
+            <ExpressionWrapper expressions={expressions.filter(expr => expr.line === i + 1)} expression={expression}>
               {tokenize(line).map((token, j) =>
                 <Token
                   {...tokenProps}
-                  key={`${i}_${j}`}
-                  line={i}
+                  key={`${i+1}_${j}`}
+                  line={i+1}
                   token={j}
                   content={token}
                 />
@@ -41,7 +42,7 @@ const CodeFragment = ({ fragment, expressions, flows, line, expression, flow, to
             </ExpressionWrapper>
           </Line>
         )}
-        <Line line={lines.length} {...lineProps} end>END LINE</Line>
+        <Line line={lines.length + 1} {...lineProps} end>FINISH</Line>
       </div>
       <FlowWrapper>
         {flows.map((flow, i) =>

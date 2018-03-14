@@ -7,8 +7,9 @@ const Task1Layout = props => (
   <div className="Task1">
     <Task next={props.next}>
       <TaskInstructions>
-        Step 1: Read the following piece of code carefully and select all expressions
-        that are used in its construction.
+        <p>Step 1: Read the following piece of code carefully and select all expressions
+        that are used in its construction.</p>
+        <p>Hint: Click on the two ends of the expression to select it.</p>
       </TaskInstructions>
 
       <CodeFragment
