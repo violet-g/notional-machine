@@ -10,7 +10,7 @@ var HTMLWebackPluginConfig = new HTMLWebpackPlugin({
 
 let API_URL = 'http://localhost:3000'
 if (process.env.NODE_ENV === 'production') {
-  API_URL = 'https://notional-machine.herokuapp.com/'
+  API_URL = 'https://notional-machine.herokuapp.com'
 }
 
 var EnvironmentPluginConfig = new webpack.EnvironmentPlugin({ API_URL });
