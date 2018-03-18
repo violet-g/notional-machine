@@ -19,6 +19,9 @@ function getUniqVariables (variables) {
 
 const VariableTable = ({ readOnly, correct, incorrect, active, variables, steps, create, update, onActiveChange }) => (
   <div className="VariableTable card">
+    <div className="card-body">
+      <h5 className="card-title">Variables</h5>
+    </div>
     {!readOnly && <VariableCreateForm {...create} />}
     {variables.length > 0 && (
       <VariableTabs

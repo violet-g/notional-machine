@@ -20,8 +20,8 @@ const DownArrow = ({ start, end, selected, correct, incorrect, missed, onClick, 
   const dx = x1 + 6
   const dy = y1
 
-  const arrowhead = (<Arrowhead x={ax} y={ay} deg={90} fill="#3d3d3d" />)
-  const annotationComponent = (<Text x={x1 + 20} y={y1 - 10} fill="#3d3d3d">{annotation || ''}</Text>)
+  const arrowhead = (<Arrowhead x={ax} y={ay} deg={90} fill={getFlowColor(correct, incorrect || missed)} />)
+  const annotationComponent = (<Text x={x1 + 20} y={y1 - 10} fill={getFlowColor(correct, incorrect || missed)}>{annotation || ''}</Text>)
   let deleteButton = null
   if (selected && !correct && !incorrect) {
     deleteButton = (<DeleteArrowButton x={dx} y={dy} onDelete={onDelete} />)

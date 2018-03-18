@@ -20,7 +20,7 @@ const UpArrow = ({ start, end, selected, correct, incorrect, missed, onClick, on
   const dx = x1 - 6
   const dy = y1
 
-  const arrowhead = (<Arrowhead x={ax} y={ay} deg={270} fill="#3d3d3d" />)
+  const arrowhead = (<Arrowhead x={ax} y={ay} deg={270} fill={getFlowColor(correct, incorrect || missed)} />)
   const annotationComponent = (<Text x={x2 - 20} y={y2 - 10} fill="#3d3d3d">{annotation || ''}</Text>)
   let deleteButton = null
   if (selected && !correct && !incorrect) {

@@ -12,9 +12,10 @@ const ExerciseList = ({ exercises }) => (
     <h1>Available exercises:</h1>
     <table className="table table-striped">
       <tbody>
-        {exercises.map(({ id, createdAt }) =>
+        {exercises.map(({ id, name, createdAt }) =>
           <tr key={id}>
             <th> {id} </th>
+            <td> {name} </td>
             <td> Exercise #{id} </td>
             <td> Added on: {formatDate(createdAt)} </td>
             <td><Link to={'/exercise/' + id}> Attempt </Link></td>

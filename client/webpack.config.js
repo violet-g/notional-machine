@@ -8,15 +8,12 @@ var HTMLWebackPluginConfig = new HTMLWebpackPlugin({
   inject: 'body'
 });
 
-// TODO differentiate if running npm start and npm run build
-// - npm start: API_URL = http://localhost:3000
-// - npm run build: API_URL = <heroku URL>
+let API_URL = 'http://localhost:3000'
+if (process.env.NODE_ENV === 'production') {
+  API_URL = 'https://notional-machine.herokuapp.com/'
+}
 
-// console.log('....', process.argv)
-
-var EnvironmentPluginConfig = new webpack.EnvironmentPlugin({
-  API_URL: 'http://localhost:3000'
-});
+var EnvironmentPluginConfig = new webpack.EnvironmentPlugin({ API_URL });
 
 module.exports = {
   entry: [

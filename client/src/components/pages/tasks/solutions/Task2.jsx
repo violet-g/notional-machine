@@ -5,7 +5,7 @@ import Task2Layout from '../../../layout/Task2Layout'
 
 // checks whether 2 flows are equal
 function equals (f1, f2) {
-  return f1.start_row === f2.start_row && f1.end_row === f2.end_row
+  return f1.start_row === f2.start_row && f1.end_row === f2.end_row && f1.annotation === f2.annotation
 }
 
 function getFlowUniqueKey ({ start_row, end_row }) {

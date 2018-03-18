@@ -2,7 +2,7 @@ import React from 'react'
 
 const VariableCreateForm = ({ value, onChange, onSubmit }) => (
   <div className="VariableCreateForm card-body">
-    <h5 className="card-title">Variables</h5>
+    {/* <h5 className="card-title">Variables</h5> */}
     <form onSubmit={onSubmit}>
       <div className="input-group">
         <input
