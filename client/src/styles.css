@@ -169,6 +169,18 @@ p.correct, span.correct, p.incorrect, span.incorrect {
   width: 200px;
 }
 
+.AdjacentLinesArrow.correct .annotation {
+  color: #28a745;
+}
+
+.AdjacentLinesArrow.incorrect .annotation {
+  color: #dc3545;
+}
+
+.AdjacentLinesArrow.missed .annotation {
+  color:  #dc3545;
+}
+
 .AdjacentLinesArrow.correct .line {
   background: #28a745;
 }
