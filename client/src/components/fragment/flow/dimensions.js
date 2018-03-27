@@ -1,3 +1,4 @@
+/** Set up the dimensions of the code fragment and its children **/
 export const ARROWHEAD_SIZE = 4
 
 export const CODE_FRAGMENT_WIDTH = 400
@@ -22,10 +23,12 @@ export const FLOW_COLOR_CORRECT = '#28a745'
 
 export const FLOW_COLOR_INCORRECT = '#dc3545'
 
+/** Returns the position of a specific line **/
 export function getLineY (lineIdx) {
   return CODE_FRAGMENT_PADDING_VERTICAL + lineIdx * LINE_HEIGHT + LINE_HEIGHT / 2
 }
 
+/** Returns the colour an arrow should have depending on its correctness **/
 export function getFlowColor (correct, incorrect) {
   if (!correct && !incorrect) {
     return FLOW_COLOR_DEFAULT

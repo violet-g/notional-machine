@@ -4,6 +4,7 @@ import * as cookie from '../cookies'
 import { USER_ID_COOKIE_NAME } from '../config'
 import { Link } from 'react-router-dom'
 
+/** Login page for pupils **/
 const Login = ({ username, password, onChange, onLogin }) => (
   <div className="Login container">
     <div className="row">
@@ -38,14 +39,20 @@ const Login = ({ username, password, onChange, onLogin }) => (
   </div>
 )
 
+/** Adds the functionality to the login page and visualises it **/
 class LoginContainer extends React.Component {
+
   constructor () {
     super()
     this.state = { username: '', password: '' }
   }
+
+  /** consume a change **/
   handleChange (e) {
     this.setState({ [e.target.name]: e.target.value })
   }
+
+  /** log a pupil in **/
   async handleLogin (e) {
     e.preventDefault()
     try {
@@ -61,6 +68,7 @@ class LoginContainer extends React.Component {
       this.props.history.push('/error')
     }
   }
+  
   render () {
     return (<Login {...this.state} onChange={this.handleChange.bind(this)} onLogin={this.handleLogin.bind(this)} />)
   }

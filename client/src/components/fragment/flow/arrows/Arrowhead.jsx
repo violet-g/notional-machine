@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { ARROWHEAD_SIZE, FLOW_COLOR_DEFAULT } from '../dimensions'
 
+/** Represents the pointer at the end of an arrow **/
 const Arrowhead = ({ x, y, deg, fill }) => {
   const d =
     'M ' + (x) + ' ' + (y) + ' ' +

@@ -5,6 +5,7 @@ import CodeFragment from '../fragment/CodeFragment'
 import InputTable from './task-3/InputTable'
 import ExpressionEvaluation from './task-3/ExpressionEvaluation'
 
+/** Extends the generic task to represent the layout of task 3 **/
 const Task3Layout = props => (
   <div className="Task3">
     <Task next={props.next}>

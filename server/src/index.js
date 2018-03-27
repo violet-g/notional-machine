@@ -6,13 +6,13 @@ const cors = require('cors')
 const { Pupil, Exercise, Solution, Step, Arrow, Variable, Expression } =
   require('./models')
 
-// Enable CORS
+/** Enable CORS **/
 app.use(cors())
 
-// Global Body parser middleware to convert the req body to a standard JS object
+/** Global Body parser middleware to convert the req body to a standard JS object **/
 app.use(bodyParser.json())
 
-// RESTful resources
+/** RESTful resources **/
 app.use('/pupil', restRouter(Pupil))
 app.use('/exercise', restRouter(Exercise))
 app.use('/solution', restRouter(Solution))

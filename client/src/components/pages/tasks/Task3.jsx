@@ -6,7 +6,10 @@ import VariableTableController from '../../controllers/VariableTableController'
 import OutputTableController from '../../controllers/OutputTableController'
 import client from '../../api-client'
 
+/** Represents the third task of an exercise **/
 class Task3 extends React.Component {
+
+  /** Adds a step to an arrow **/
   async handleClick (id) {
     const lastStep = maxBy(this.props.data.steps, step => step.number)
     const number = lastStep === undefined ? 1 : lastStep.number + 1
@@ -14,9 +17,13 @@ class Task3 extends React.Component {
     await client.resource('step').create({ number, solution_ID: solution, arrow_ID: id })
     this.props.rehydrate()
   }
+
+  /** Returns current step **/
   getLastStep () {
     return maxBy(this.props.data.steps, step => step.number)
   }
+
+  /** Returns flow annotation **/
   getAnnotation (id) {
     const steps = this.props.data.steps.filter(step => step.arrow_ID === id)
     let annotation = steps.map(step => step.number).join(', ')
@@ -26,11 +33,14 @@ class Task3 extends React.Component {
     }
     return annotation
   }
+
+  /** Adds step to an input **/
   async handleConsume (input) {
     const lastStep = this.getLastStep()
     await client.resource('step').update(lastStep.id, { input })
     this.props.rehydrate()
   }
+  
   render () {
     return (
       <Task3Layout

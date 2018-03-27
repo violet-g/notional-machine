@@ -7,14 +7,17 @@ import Token from './Token'
 import Flow from './flow/Flow'
 import Popover from './flow/Popover'
 
+/** Determine indentation of a line **/
 function getIndent (line) {
   return line.match(/^\s*/)[0].length
 }
 
+/** Split line into tokens **/
 function tokenize (line) {
   return line.replace(/^\s*/, '').split(' ')
 }
 
+/** Represents the program code used in the exercise **/
 const CodeFragment = ({ fragment, expressions, flows, line, expression, flow, token, popover }) => {
   const lineProps = Object.assign({}, line)
   const tokenProps = Object.assign({}, token)

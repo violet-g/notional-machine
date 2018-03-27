@@ -3,7 +3,9 @@ import client from '../../api-client'
 import hydrate from './hydrate'
 import Task1Layout from '../../layout/Task1Layout'
 
+/** Represents the first task of an exercise **/
 class Task1 extends React.Component {
+
   constructor () {
     super()
     this.state = {
@@ -13,12 +15,16 @@ class Task1 extends React.Component {
       highlight: null
     }
   }
+
+  /** Saves a selected expression **/
   async saveExpression (line, start, end) {
     const id = this.props.data.solution.id
     const data = { line, start_pos: start, end_pos: end, solution_ID: id }
     await client.resource('expression').create(data)
     this.props.rehydrate()
   }
+
+  /** Start/end a new expression **/
   handleClick (line, token) {
     if (!this.state.selecting) {
       this.setState({ selecting: true, lastSelectedToken: { line, token } })
@@ -31,6 +37,8 @@ class Task1 extends React.Component {
     }
     this.setState({ selecting: false, lastSelectedToken: { line, token }, highlight: null })
   }
+
+  /** Hover over a token **/
   handleMouseOver (line, token) {
     this.setState({ lastHoveredToken: { line, token } })
     if (this.state.selecting) {
@@ -43,14 +51,19 @@ class Task1 extends React.Component {
       }
     }
   }
+
+  /** Delete an expression **/
   async handleDelete (id) {
     await client.resource('expression').remove(id)
     this.props.rehydrate()
   }
+
+  /** Check if a token is part of an expression to highlight it **/
   isHighlighted (line, token) {
     const { highlight } = this.state
     return highlight && highlight[0] === line && token >= highlight[1] && token <= highlight[2]
   }
+  
   render () {
     return (
       <Task1Layout

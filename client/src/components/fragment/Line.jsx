@@ -4,6 +4,7 @@ import classnames from 'classnames'
 import { getBoolValue } from './util'
 import Indent from './Indent'
 
+/** Represents a single line in the code fragment **/
 const Line = ({ indent, children, onClick, highlightable, highlighted, line, start, end }) => {
   const isHighlightable = getBoolValue(highlightable, line)
   const isHighlighted = getBoolValue(highlighted, line)
@@ -14,6 +15,7 @@ const Line = ({ indent, children, onClick, highlightable, highlighted, line, sta
     start,
     end
   })
+  
   return (
     <div className={className} onClick={() => onClick(line)}>
       <Indent size={indent} />{children}

@@ -3,6 +3,7 @@ import Task from './Task'
 import TaskInstructions from './TaskInstructions'
 import CodeFragment from '../fragment/CodeFragment'
 
+/** Extends the generic task to represent the layout of task 1 **/
 const Task1Layout = props => (
   <div className="Task1">
     <Task next={props.next}>
@@ -11,7 +12,6 @@ const Task1Layout = props => (
         that are used in its construction.</p>
         <p>Hint: Click on the two ends of the expression to select it.</p>
       </TaskInstructions>
-
       <CodeFragment
         fragment={props.data.exercise.code_fragment}
         expressions={props.data.expressions}

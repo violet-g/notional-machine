@@ -5,6 +5,7 @@ function hasVariableWithoutValue (variables) {
   return !!variables.find(variable => variable.value === null || variable.value === undefined)
 }
 
+/** Represents the form used to update variables **/
 const VariableUpateForm = ({ readOnly, variables, correct, incorrect, steps, value, onUpdateClick, onChange, onSubmit }) => (
   <div className="VariableUpdateForm card-body">
     {variables.map(variable =>

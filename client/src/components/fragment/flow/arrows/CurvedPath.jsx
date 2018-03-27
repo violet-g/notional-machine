@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { FLOW_COLOR_DEFAULT } from '../dimensions'
 
+/** Represents the curve used to create an arrow **/
 const CurvedPath = ({ coordinates, onClick, stroke, strokeDasharray }) => {
   const { x1, y1, x2, y2, cx1, cx2, cy1, cy2 } = coordinates
   const d =

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import classnames from 'classnames'
 import { getBoolValue } from './util'
 
+/** Represents a single token in the code fragment **/
 const Token = ({ content, highlighted, onMouseOver, onClick, line, token }) => (
   <span
     className={classnames('Token', { highlighted: getBoolValue(highlighted, line, token) })}

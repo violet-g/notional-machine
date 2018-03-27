@@ -2,14 +2,17 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Expression from './Expression'
 
+/** Sorts the expressions by positions in the code fragment **/
 function sort (expressions) {
   return expressions.slice().sort((a, b) => (a.start_pos < b.start_pos) ? -1 : 1)
 }
 
+/** Visualises the expressions in the fragment **/
 const ExpressionWrapper = ({ expressions, expression, children }) => {
   const expressionProps = Object.assign({}, expression)
   const tokens = React.Children.toArray(children)
   const sorted = sort(expressions)
+  
   let result = []
   for (let i = 0; i < sorted.length; i++) {
     const id = sorted[i].id

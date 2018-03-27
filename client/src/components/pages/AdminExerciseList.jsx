@@ -8,6 +8,7 @@ function formatDate (dateString) {
   return [d, m, y].join('/')
 }
 
+/** Represents the list of exercises the admin sees **/
 const AdminExerciseList = ({ values, exercises, expanded, attempted, fetching, onToggle, onChange, onCreate, onDelete }) => (
   <div className="AdminExerciseList container">
     <h1>Current exercises</h1>
@@ -39,7 +40,6 @@ const AdminExerciseList = ({ values, exercises, expanded, attempted, fetching, o
         )}
       </tbody>
     </table>
-
     <div className="create-exercise">
       <form className="form row" onSubmit={onCreate}>
         <div className="col-sm-6">
@@ -61,7 +61,9 @@ const AdminExerciseList = ({ values, exercises, expanded, attempted, fetching, o
   </div>
 )
 
+/** Adds the functionality to the ExerciseList component **/
 class AdminExerciseListContainer extends React.Component {
+
   constructor () {
     super()
     this.state = {
@@ -72,13 +74,18 @@ class AdminExerciseListContainer extends React.Component {
       values: { name: '', code_fragment: '' }
     }
   }
+
+  /** Fetches all exercises from the server **/
   async fetchExercises () {
     const exercises = await client.resource('exercise').find()
     this.setState({ exercises })
   }
+
   componentDidMount () {
     this.fetchExercises()
   }
+
+  /** Get the pupils that have attempted an exercise **/
   async handleToggle (id) {
     if (this.state.expanded === id) {
       this.setState({ expanded: null })
@@ -95,19 +102,26 @@ class AdminExerciseListContainer extends React.Component {
     }
     this.setState({ fetching: false, attempted })
   }
+
+  /** Add changes to the new code fragment **/
   handleChange (e) {
     this.setState({ values: Object.assign({}, this.state.values, { [e.target.name]: e.target.value }) })
   }
+
+  /** Creates a new exercise with the code fragment added **/
   async handleCreate (e) {
     e.preventDefault()
     await client.resource('exercise').create(this.state.values)
     this.setState({ values: { name: '', code_fragment: '' } })
     this.fetchExercises()
   }
+
+  /** Deletes an exercise **/
   async handleDelete (id) {
     await client.resource('exercise').remove(id)
     this.fetchExercises()
   }
+  
   render () {
     return (
       <AdminExerciseList

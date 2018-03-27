@@ -1,6 +1,7 @@
 import React from 'react'
 import TaskButton from './TaskButton'
 
+/** Represents a generic task **/
 const Task = ({ children, next }) => (
   <div className="Task">
     <div className="container-fluid">{children}</div>

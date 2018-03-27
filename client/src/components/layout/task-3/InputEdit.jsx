@@ -1,5 +1,6 @@
 import React from 'react'
 
+/** Field that allows the admin to add an input at a specific step **/
 const InputEdit = ({ step, onChange }) => (
   <div className="InputEdit form-group">
     <input

@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
+/** Home page - currently not used **/
 const Home = () => (
   <div>
     <ul>

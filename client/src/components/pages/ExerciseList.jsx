@@ -7,6 +7,7 @@ function formatDate (dateString) {
   return [d, m, y].join('/')
 }
 
+/** Represents the exercise list a pupil sees **/
 const ExerciseList = ({ exercises }) => (
   <div className="ExerciseList">
     <h1>Available exercises:</h1>
@@ -26,15 +27,19 @@ const ExerciseList = ({ exercises }) => (
   </div>
 )
 
+/** Displays the exercise list **/
 class ExerciseListContainer extends React.Component {
+
   constructor () {
     super()
     this.state = { exercises: [] }
   }
+
   async componentDidMount () {
     const exercises = await client.resource('exercise').find()
     this.setState({ exercises })
   }
+  
   render () {
     return (<ExerciseList {...this.state} />)
   }

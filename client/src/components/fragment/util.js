@@ -3,7 +3,7 @@ import isFunction from 'lodash/isFunction'
 /**
  * Given a boolean value or a function which returns a boolean value,
  * this function will return a boolean value:
- * - equal to the value of the first argument if its a boolean
+ * - equal to the value of the first argument if it is a boolean
  * - equal to the return value of the first argument if it's a function; the first
  *   argument is called in that case with any extra arguments provided to the
  *   original function

@@ -1,5 +1,6 @@
 import React from 'react'
 
+/** Represents a form to create new variables **/
 const VariableCreateForm = ({ value, onChange, onSubmit }) => (
   <div className="VariableCreateForm card-body">
     <form onSubmit={onSubmit}>

@@ -1,6 +1,7 @@
 import React from 'react'
 import client from '../api-client'
 
+/** Represents the exercise create form **/
 const ExerciseCreate = ({ value, onChange, onCreate }) => (
   <div className="ExerciseCreate">
     <form className="form" onSubmit={onCreate}>
@@ -12,14 +13,20 @@ const ExerciseCreate = ({ value, onChange, onCreate }) => (
   </div>
 )
 
+/** Adds the functionality to the exercise create form and visualises it **/
 class ExerciseCreateContainer extends React.Component {
+
   constructor () {
     super()
     this.state = { value: '' }
   }
+
+  /** Adds a change **/
   handleChange (e) {
     this.setState({ value: e.target.value })
   }
+
+  /** Saves the code fragment **/
   async handleCreate (e) {
     e.preventDefault()
     try {
@@ -30,6 +37,7 @@ class ExerciseCreateContainer extends React.Component {
       this.props.hitory.push('/error')
     }
   }
+  
   render () {
     return (
       <ExerciseCreate

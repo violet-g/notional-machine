@@ -6,7 +6,10 @@ import Text from './Text'
 import Arrowhead from './Arrowhead'
 import DeleteArrowButton from './DeleteArrowButton'
 
+/** Represents an arrow that links lines in an upward direction **/
 const UpArrow = ({ start, end, selected, correct, incorrect, missed, onClick, onDelete, annotation }) => {
+
+  /** Prepare coordinates **/
   const x1 = CODE_FRAGMENT_PADDING_HORIZONTAL
   const y1 = getLineY(start)
   const x2 = CODE_FRAGMENT_PADDING_HORIZONTAL - 4
@@ -20,6 +23,7 @@ const UpArrow = ({ start, end, selected, correct, incorrect, missed, onClick, on
   const dx = x1 - 6
   const dy = y1
 
+  /** Prepare arrowhead, and potentially annotation and/or delete button **/
   const arrowhead = (<Arrowhead x={ax} y={ay} deg={270} fill={getFlowColor(correct, incorrect || missed)} />)
   const annotationComponent = (<Text x={x2 - 20} y={y2 - 10} fill={getFlowColor(correct, incorrect || missed)}>{annotation || ''}</Text>)
   let deleteButton = null

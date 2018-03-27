@@ -2,7 +2,7 @@ import React from 'react'
 import { HashRouter, Switch, Route, Redirect } from 'react-router-dom'
 import client from './api-client'
 
-// pages
+/** Pages **/
 import AdminExerciseList from './pages/AdminExerciseList'
 import Err from './pages/Err'
 import Exercise from './pages/Exercise'
@@ -12,6 +12,7 @@ import Home from './pages/Home'
 import Signup from './pages/Signup'
 import Login from './pages/Login'
 
+/** App component - root **/
 const App = () => (
   <HashRouter>
     <Switch>

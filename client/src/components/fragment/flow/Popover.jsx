@@ -12,11 +12,13 @@ import {
   getLineY
 } from './dimensions'
 
+/** Represent a popover component used to annotate an arrow **/
 const Popover = ({ flowId, flows, onClick }) => {
   if (!flowId || flows.length === 0) {
     return null
   }
 
+  /** Devise the style depending on the type of arrow that will be annotated **/
   const { start_row: start, end_row: end } = flows.find(flow => flow.id === flowId)
   let style = {}
   if (start === end - 1) {

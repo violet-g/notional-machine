@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import classnames from 'classnames'
 import { getBoolValue } from './util'
 
+/** Represents a single expression selected by the user **/
 const Expression = ({ children, onDelete, correct, incorrect, missed, id }) => {
   const isCorrect = getBoolValue(correct, id)
   const isIncorrect = getBoolValue(incorrect, id)

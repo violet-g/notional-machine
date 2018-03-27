@@ -5,6 +5,7 @@ import CurvedPath from './CurvedPath'
 import DeleteArrowButton from './DeleteArrowButton'
 import { FLOW_COLOR_DEFAULT } from '../dimensions'
 
+/** Represents a default curved arrow that can be used for the DownArrow and UpArrow components **/
 const CurvedArrow = ({ arrowhead, annotation, deleteButton, coordinates, stroke, strokeDasharray, onClick }) => {
   return (
     <React.Fragment>

@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { FLOW_COLOR_INCORRECT } from '../dimensions'
 
+/** Represents the button used to delete an arrow **/
 const DeleteArrowButton = ({ x, y, onDelete }) => (
   <React.Fragment>
     <circle className="delete-btn" cx={x} cy={y} r="5" fill={FLOW_COLOR_INCORRECT} onClick={onDelete} />

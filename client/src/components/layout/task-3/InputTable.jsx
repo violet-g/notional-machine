@@ -3,6 +3,7 @@ import classnames from 'classnames'
 import InputEdit from './InputEdit'
 import ConsumeButton from './ConsumeButton'
 
+/** Get all steps with inputs **/
 function getSteps (steps, editable = false) {
   if (editable) {
     return steps
@@ -10,18 +11,22 @@ function getSteps (steps, editable = false) {
   return steps.filter(step => step.input)
 }
 
+/** Sort the steps by number **/
 function sort (steps) {
   return steps.slice().sort((a, b) => a.number < b.number ? -1 : 1)
 }
 
+/** Get a specific step **/
 function getPupilStep (steps, i) {
   return sort(getSteps(steps))[i]
 }
 
+/** Get the last step **/
 function getLastPupilStep (steps) {
   return sort(getSteps(steps)).length
 }
 
+/** Represents the table of inputs **/
 const InputTable = ({ correct, incorrect, steps, modelSteps, editable, onChange, onConsume, onSave }) => (
   <div className="InputTable card">
     <div className="card-body"><h5 className="card-title">Inputs</h5></div>

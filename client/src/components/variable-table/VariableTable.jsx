@@ -4,19 +4,23 @@ import VariableCreateForm from './VariableCreateForm'
 import VariableTabs from './VariableTabs'
 import VariableUpdateForm from './VariableUpdateForm'
 
+/** Returns a single variable **/
 function getVariable (variables, id) {
   return variables.find(variable => variable.id === id)
 }
 
+/** Returns the active variables **/
 function getActiveVariables (variables, id) {
   const variable = getVariable(variables, id)
   return variables.filter(({ name }) => name === variable.name)
 }
 
+/** Returns all unique variables **/
 function getUniqVariables (variables) {
   return uniqBy(variables, variable => variable.name)
 }
 
+/** Represents the table of variables for task 3 **/
 const VariableTable = ({ readOnly, correct, incorrect, active, variables, steps, create, update, onActiveChange }) => (
   <div className="VariableTable card">
     <div className="card-body">

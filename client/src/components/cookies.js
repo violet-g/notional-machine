@@ -1,3 +1,5 @@
+/** Functions to get and set HTTP cookies **/
+
 export function set (name, value, exdays = 365, exhours = 0) {
   const date = new Date()
   date.setTime(date.getTime() + (exdays * 24 * 60 * 60 * 1000) + (exhours * 60 * 60 * 1000))

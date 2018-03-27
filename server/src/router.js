@@ -1,4 +1,4 @@
-// Customized router for the RESTful API actions
+/** Customized router for the RESTful API actions **/
 
 const express = require('express')
 const Router = express.Router

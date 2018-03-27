@@ -6,7 +6,10 @@ import Text from './Text'
 import Arrowhead from './Arrowhead'
 import DeleteArrowButton from './DeleteArrowButton'
 
+/** Represents an arrow used to link non-adjacent lines in downward direction **/
 const DownArrow = ({ start, end, selected, correct, incorrect, missed, onClick, onDelete, annotation }) => {
+
+  /** Prepare coordinates **/
   const x1 = CODE_FRAGMENT_PADDING_HORIZONTAL + LINE_WIDTH
   const y1 = getLineY(start)
   const x2 = CODE_FRAGMENT_PADDING_HORIZONTAL + LINE_WIDTH + 6
@@ -20,6 +23,7 @@ const DownArrow = ({ start, end, selected, correct, incorrect, missed, onClick, 
   const dx = x1 + 6
   const dy = y1
 
+  /** Set up arrowhead, annotation and potentially delete button **/
   const arrowhead = (<Arrowhead x={ax} y={ay} deg={90} fill={getFlowColor(correct, incorrect || missed)} />)
   const annotationComponent = (<Text x={x1 + 20} y={y1 - 10} fill={getFlowColor(correct, incorrect || missed)}>{annotation || ''}</Text>)
   let deleteButton = null

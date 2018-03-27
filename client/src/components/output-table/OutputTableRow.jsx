@@ -1,6 +1,7 @@
 import React from 'react'
 import classnames from 'classnames'
 
+/** Represents a single output **/
 const OutputTableRow = ({ step, correct, incorrect, children }) => (
   <li className="list-group-item">
     <div className="row">

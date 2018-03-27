@@ -4,7 +4,10 @@ import Task3Layout from '../../../layout/Task3Layout'
 import VariableTableController from '../../../controllers/VariableTableController'
 import OutputTableController from '../../../controllers/OutputTableController'
 
+/** Represents the solution of the third task **/
 class Task3 extends React.Component {
+
+  /** Return the annotation of a flow **/
   getAnnotation (id) {
     const steps = this.props.data.steps.filter(step => step.arrow_ID === id)
     let annotation = steps.map(step => step.number).join(', ')
@@ -14,19 +17,29 @@ class Task3 extends React.Component {
     }
     return annotation
   }
+
+  /** Get a specific step **/
   getStep (steps, id) {
     return steps.find(step => step.id === id)
   }
+
+  /** Get a specific variable **/
   getVariable (variables, id) {
     return variables.find(variable => variable.id === id)
   }
+
+  /** Check if the step of an input is correct **/
   isInputCorrect (id) {
     const step = this.getStep(this.props.data.model.steps, id)
     return !!this.props.data.steps.find(({ number, input }) => number === step.number && input === step.input)
   }
+
+  /** Check if the step of an input is incorrect **/
   isInputIncorrect (id) {
     return !this.isInputCorrect(id)
   }
+
+  /** Check if the step and value of a variable are correct **/
   isVariableCorrect (id) {
     const variable = this.getVariable(this.props.data.variables, id)
     const stepNum = this.getStep(this.props.data.steps, variable.step_ID).number
@@ -36,16 +49,23 @@ class Task3 extends React.Component {
         value === variable.value
     )
   }
+
+  /** Check if the step and value of a variable are incorrect **/
   isVariableIncorrect (id) {
     return !this.isVariableCorrect(id)
   }
+
+  /** Check if the step of an output is correct **/
   isOutputCorrect (id) {
     const step = this.getStep(this.props.data.steps, id)
     return !!this.props.data.model.steps.find(({ number, output }) => number === step.number && output === step.output)
   }
+
+  /** Check if the step of an output is incorrect **/
   isOutputIncorrect (id) {
     return !this.isOutputCorrect(id)
   }
+  
   render () {
     return (
       <Task3Layout

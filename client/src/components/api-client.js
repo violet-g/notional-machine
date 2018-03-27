@@ -5,6 +5,7 @@ class HttpError extends Error {
   }
 }
 
+/** Get the response for a specific request **/
 async function request (url, path, query = {}, options = {}) {
   let queryString = ''
   if (Object.keys(query).length > 0) {
@@ -17,11 +18,14 @@ async function request (url, path, query = {}, options = {}) {
   return response.json()
 }
 
+/** Represents a single API resource **/
 class Resource {
   constructor (url, name) {
     this.url = url
     this.name = name
   }
+
+  /** CRUD methods **/
 
   find (query = {}, options = {}) {
     return request(this.url, this.name, query, Object.assign({ method: 'get' }, options))
@@ -46,11 +50,13 @@ class Resource {
   }
 }
 
+/** Represents the API client **/
 class ApiClient {
   constructor (url) {
     this.url = url
   }
 
+  /** Returns a single resource **/
   resource (name) {
     return new Resource(this.url, name)
   }

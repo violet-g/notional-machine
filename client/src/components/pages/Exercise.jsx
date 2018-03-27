@@ -2,21 +2,22 @@ import React from 'react'
 import { Switch, Route, Redirect } from 'react-router-dom'
 import Task from '../layout/Task'
 
-// Tasks
+/** Tasks **/
 import Task1 from './tasks/Task1'
 import Task2 from './tasks/Task2'
 import Task3 from './tasks/Task3'
 
-// Solutions
+/** Solutions **/
 import Task1Solution from './tasks/solutions/Task1'
 import Task2Solution from './tasks/solutions/Task2'
 import Task3Solution from './tasks/solutions/Task3'
 
-// Admin
+/** Admin **/
 import Task1Admin from './tasks/admin/Task1'
 import Task2Admin from './tasks/admin/Task2'
 import Task3Admin from './tasks/admin/Task3'
 
+/** Represents a single exercise **/
 const Exercise = ({ match }) => (
   <Switch>
     <Redirect from={'/exercise/' + match.params.id} exact to={'/exercise/' + match.params.id + '/task/1'} />

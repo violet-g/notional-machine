@@ -5,6 +5,7 @@ import UpArrow from './arrows/UpArrow'
 import DownArrow from './arrows/DownArrow'
 import { getBoolValue, getNodeValue } from '../util'
 
+/** Represents a single flow component **/
 const Flow = props => {
   const { id, annotation, start, end, selected, correct, incorrect, missed, onClick, onDelete } = props
 
@@ -18,6 +19,7 @@ const Flow = props => {
     onDelete: () => onDelete(id)
   })
 
+  /** Determine the type of arrow appropriate to represent this flow **/
   if (start === end - 1) {
     return (<AdjacentLinesArrow {...arrowProps} />)
   }

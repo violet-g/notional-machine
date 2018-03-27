@@ -14,6 +14,7 @@ sequelize
     console.error('Unable to connect to the database:', err);
   })
 
+/** Define all ORM models **/
 const Pupil = sequelize.define('pupil', {
   username: { type: Sequelize.STRING },
   password: { type: Sequelize.STRING }

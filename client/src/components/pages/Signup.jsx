@@ -1,6 +1,7 @@
 import React from 'react'
 import client from '../api-client'
 
+/** Sign up page for pupils **/
 const Signup = ({ username, password, onChange, onSignup }) => (
   <div className="Signup container">
     <div className="row">
@@ -34,14 +35,19 @@ const Signup = ({ username, password, onChange, onSignup }) => (
   </div>
 )
 
+/** Adds the functionality to the sign up page and visualises it **/
 class SignupContainer extends React.Component {
+
   constructor () {
     super()
     this.state = { username: '', password: '' }
   }
+
   handleChange (e) {
     this.setState({ [e.target.name]: e.target.value })
   }
+
+  /** sign a pupil in **/
   async handleSignup (e) {
     e.preventDefault()
     try {
@@ -52,6 +58,7 @@ class SignupContainer extends React.Component {
       this.props.history.push('/error')
     }
   }
+
   render () {
     return (<Signup {...this.state} onChange={this.handleChange.bind(this)} onSignup={this.handleSignup.bind(this)} />)
   }
