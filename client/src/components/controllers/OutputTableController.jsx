@@ -3,7 +3,7 @@ import maxBy from 'lodash/maxBy'
 import client from '../api-client'
 import OutputTable from '../output-table/OutputTable'
 
-/*"" Adds the functionality of the OutputTable component and visualises it **/
+/** Adds the functionality of the OutputTable component and visualises it **/
 class OutputTableController extends React.Component {
 
   constructor () {
